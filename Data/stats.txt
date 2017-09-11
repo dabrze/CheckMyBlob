@@ -1,0 +1,85 @@
+09/12/2017 00:15:44 INFO: Preparing CMB dataset...
+09/12/2017 00:15:44 INFO: Reading: all_summary.csv
+09/12/2017 00:17:14 INFO: Read dataset in: 90.11 seconds
+09/12/2017 00:17:14 INFO: Cleaning data...
+09/12/2017 00:17:14 INFO: Initial dataset:
+	examples: 591042
+	attributes: 412
+	num of classes: 19610
+	min class examples: 1
+	max class examples: 56572
+	classes: 19610
+09/12/2017 00:17:14 INFO: Removing 141 examples taken from PDB entries with experimental methods other tha X-ray diffraction (22 non-xray PDB files)
+09/12/2017 00:17:16 INFO: Removing 7 examples with no electron density
+09/12/2017 00:18:07 INFO: Removing 6094 examples with blobs covered by the model below 10.0%
+09/12/2017 00:18:09 INFO: Removing 59451 examples with models covered by the blob below 20.0%
+09/12/2017 00:18:11 INFO: Removing 121318 examples with non-H atom count < 2 or > 1000000000
+09/12/2017 00:18:13 INFO: Removing 1822 examples with resolution < 0.0 or > 4.0
+09/12/2017 00:18:14 INFO: Removing 1151 unknown and non-ligand structures
+09/12/2017 00:18:26 INFO: Removing 2484 ligands centered in a symmetry
+09/12/2017 00:18:28 INFO: Removing 2659 ligands without over 50 % of non-H electrons modeled
+09/12/2017 00:18:35 INFO: Removing 4150 examples with R > 0.3 (1533) or occupancy < 0.3 (248) or RSCC < 0.6 (2492)
+09/12/2017 00:18:44 INFO: Removing 203 examples flagged by Twilight (twilight-2017-01-11.tsv)
+09/12/2017 00:18:44 INFO: Limiting dataset to 200 most popular classes
+09/12/2017 00:19:30 INFO: Dataset after preprocessing:
+	examples: 227871
+	attributes: 61
+	num of classes: 200
+	min class examples: 109
+	max class examples: 50522
+	classes: SO4: 50522 GOL: 25901 EDO: 21861 NAG: 12222 PO4: 9350 ACT: 6254 DMS: 5757 HEM: 5421 FAD: 3145 PEG: 2694 NAD: 2582 MLY: 2487 FMT: 2475 NAG_NAG: 2277 NAP: 2061 MPD: 2009 MES: 1727 FMN: 1485 ADP: 1463 SF4: 1420 NO3: 1353 ACY: 1285 PG4: 1280 PLP: 1249 SAH: 1154 NDP: 1147 SEP: 1083 EPE: 1081 HEC: 1080 TRS: 1077 1PE: 1008 ACE: 994 FES: 987 BME: 960 PGE: 927 MAN: 925 CSO: 886 TPO: 846 IPA: 840 CLA: 818 ATP: 816 CIT: 794 COA: 786 CME: 785 IMD: 765 ADP_MG: 735 AMP: 710 GDP: 689 LLP: 633 GSH: 600 SCN: 596 PCA: 590 BOG: 579 PTR: 573 MRD: 566 H4B: 564 SAM: 555 CAS: 550 HYP: 524 ANP_MG: 508 CSD: 502 NCO: 497 MLI: 487 ATP_MG: 482 LDA: 478 BGC: 477 P6G: 470 FLC: 469 BMA_NAG_NAG: 461 C8E: 441 ANP: 413 TLA: 389 GAL: 382 GTP: 377 BCL: 373 NAI: 370 GLC: 341 OCS: 337 CO3: 332 CYC: 332 GDP_MG: 330 KCX: 326 GNP_MG: 318 UDP: 317 ACO: 316 MAL: 312 DMF: 306 FUC: 305 SUC: 302 BEN: 299 UMP: 287 DIO: 286 F3S: 280 BMA: 279 ZN: 274 SIA: 272 GTP_MG: 269 NI_OGA: 267 BMA_MAN_NAG_NAG: 265 NDG: 264 CAC: 259 OLC: 258 PLM: 257 NHE: 254 PYR: 246 BCT: 246 MYR: 244 CRO: 243 HEM_OXY: 242 EOH: 236 CSX: 234 ALY: 231 LMT: 230 MLA: 228 M3L: 227 5CM: 226 ADN: 225 URE: 220 YCM: 214 DOC: 211 FME: 209 CMO_HEM: 208 HEZ: 202 RET: 202 ACT_ZN: 202 SMC: 201 MLZ: 200 DTT: 199 CMP: 199 GAI: 199 AZI: 198 SIN: 196 NRQ: 192 MG_TPP: 186 ABA: 185 FUC_NAG_NAG: 184 CAP_KCX_MG: 184 BEZ: 182 THP: 172 PEP: 166 BTB: 164 BTN: 163 IMP: 163 TYS: 161 DMU: 161 PGO: 160 CHD: 159 ACP: 158 AGS: 156 FUC_NAG: 153 CSS: 150 PTR_PTR: 149 GAL_SIA: 149 IPH: 148 GLA: 147 OLA: 146 POP: 145 BPH: 144 ADE: 143 XYP: 142 MN_UDP: 140 8OG: 136 5GP: 135 GLC_GLC: 134 MG_PO4: 134 TAR: 133 CRQ: 133 CR2: 133 BCR: 132 THM: 131 BNG: 130 FDA: 127 CLR: 127 TYD: 126 BLA: 126 CHT: 124 ATP_CA: 123 B12: 123 MG: 123 SFG: 123 C2E: 123 SO4_SO4: 123 PEB: 123 CPS: 123 PMP: 121 PGV: 121 APR: 119 BRU: 117 DAL: 116 MPO: 116 IRI: 114 MLY_MLY: 114 H4B_HEM: 114 OXY: 114 BO2: 113 CYN_HEM: 113 3BV: 112 KCX_ZN_ZN: 111 CR8: 109 CXS: 109
+09/12/2017 00:19:51 INFO: Finished preparing CMB dataset...
+09/12/2017 00:19:51 INFO: -----------------------------------------
+09/12/2017 00:19:51 INFO: 
+09/12/2017 00:19:51 INFO: 
+09/12/2017 00:19:51 INFO: Preparing Terwilliger dataset...
+09/12/2017 00:19:51 INFO: Reading: all_summary.csv
+09/12/2017 00:21:08 INFO: Read dataset in: 76.88 seconds
+09/12/2017 00:21:08 INFO: Cleaning data...
+09/12/2017 00:21:08 INFO: Initial dataset:
+	examples: 591042
+	attributes: 412
+	num of classes: 19610
+	min class examples: 1
+	max class examples: 56572
+	classes: 19610
+09/12/2017 00:21:08 INFO: Removing 141 examples taken from PDB entries with experimental methods other tha X-ray diffraction (22 non-xray PDB files)
+09/12/2017 00:21:09 INFO: Removing 7 examples with no electron density
+09/12/2017 00:21:51 INFO: Removing 259675 examples with non-H atom count < 6 or > 150
+09/12/2017 00:21:53 INFO: Removing 519 unknown and non-ligand structures
+09/12/2017 00:22:01 INFO: Limiting dataset to 200 most popular classes
+09/12/2017 00:22:34 INFO: Dataset after preprocessing:
+	examples: 161175
+	attributes: 61
+	num of classes: 200
+	min class examples: 114
+	max class examples: 36466
+	classes: GOL: 36466 NAG: 18679 HEM: 5926 PEG: 4135 FAD: 3211 MPD: 3001 MLY: 2748 NAD: 2670 CLA: 2641 NAG_NAG: 2359 MAN: 2274 NAP: 2141 MES: 1952 PG4: 1933 ADP: 1580 FMN: 1539 SF4: 1474 1PE: 1454 TRS: 1446 PGE: 1402 EPE: 1286 PLP: 1273 SEP: 1197 SAH: 1196 NDP: 1189 HEC: 1147 BMA: 1106 CIT: 1075 TPO: 931 BOG: 921 COA: 908 CSO: 901 ATP: 893 LDA: 859 MRD: 827 C8E: 810 HYP: 807 CME: 803 AMP: 791 BGC: 750 GDP: 748 ADP_MG: 736 NCO: 715 OLC: 693 GSH: 688 PCA: 674 P6G: 669 GLC: 665 LLP: 652 GAL: 650 PTR: 614 FLC: 612 MLI: 594 H4B: 580 SAM: 578 CAS: 573 LMT: 536 ANP_MG: 512 CSD: 506 FUC: 496 ATP_MG: 495 ANP: 491 BMA_NAG_NAG: 480 TLA: 479 GTP: 462 NDG: 440 BCL: 422 BCR: 399 SUC: 393 NAI: 393 DIO: 372 SIA: 369 BEN: 367 CYC: 355 UDP: 348 OLA: 343 HEZ: 342 ACO: 342 MAL: 341 PLM: 339 OCS: 339 KCX: 338 GDP_MG: 331 GNP_MG: 318 ZN: 311 UMP: 299 MYR: 294 F3S: 284 BMA_MAN_NAG_NAG: 281 BNG: 279 DTT: 278 NHE: 273 5CM: 272 GTP_MG: 271 FME: 269 NI_OGA: 267 ALY: 256 MLA: 256 CRO: 253 M3L: 249 YCM: 248 RET: 248 XYP: 245 DMU: 244 CHD: 243 HEM_OXY: 242 ADN: 240 SIN: 236 MLZ: 236 CSX: 234 BTB: 233 PX4: 218 DOC: 216 CMP: 213 SMC: 208 BEZ: 208 CMO_HEM: 208 LFA: 202 NRQ: 199 HED: 191 ABA: 189 GLA: 188 PYR: 187 FUC_NAG_NAG: 187 MG_TPP: 186 PLC: 185 CAP_KCX_MG: 184 BTN: 183 CDL: 183 ACP: 179 TYS: 179 TAR: 176 2PE: 174 THP: 172 IMP: 170 LHG: 168 CLR: 167 PEP: 167 DLE: 167 PE4: 166 AGS: 165 ADE: 165 POP: 164 IPH: 164 IRI: 163 CPS: 162 MG: 162 BRU: 157 5GP: 157 78M: 157 FUC_NAG: 156 CSS: 155 PGV: 155 BPH: 154 DGL: 153 CGU: 151 CHT: 151 PEB: 150 GAL_SIA: 149 PTR_PTR: 149 CR2: 145 BLA: 144 8OG: 142 U10: 141 MN_UDP: 140 C2E: 138 THM: 136 2CV: 136 CRQ: 134 GLC_GLC: 134 A2G: 133 FDA: 131 DGD: 131 MPO: 131 PEE: 129 OCT: 129 CHL: 129 APR: 128 TYD: 128 DCY: 127 B12: 126 CXS: 126 U5P: 125 PG0: 125 SFG: 124 NLE: 124 ATP_CA: 123 PMP: 121 MPG: 120 5BU: 120 CVM: 119 DVA: 119 CR8: 117 SRT: 117 12P: 117 FBP: 116 H4B_HEM: 116 FUL: 116 MLY_MLY: 114 3DR: 114
+09/12/2017 00:22:49 INFO: Finished preparing Terwilliger dataset...
+09/12/2017 00:22:49 INFO: -----------------------------------------
+09/12/2017 00:22:49 INFO: 
+09/12/2017 00:22:49 INFO: 
+09/12/2017 00:22:49 INFO: Preparing Carolan dataset...
+09/12/2017 00:22:49 INFO: Reading: all_summary.csv
+09/12/2017 00:24:22 INFO: Read dataset in: 93.05 seconds
+09/12/2017 00:24:22 INFO: Cleaning data...
+09/12/2017 00:24:22 INFO: Initial dataset:
+	examples: 591042
+	attributes: 412
+	num of classes: 19610
+	min class examples: 1
+	max class examples: 56572
+	classes: 19610
+09/12/2017 00:24:22 INFO: Removing 141 examples taken from PDB entries with experimental methods other tha X-ray diffraction (22 non-xray PDB files)
+09/12/2017 00:24:23 INFO: Removing 7 examples with no electron density
+09/12/2017 00:25:01 INFO: Removing 120755 examples with resolution < 1.0 or > 2.5
+09/12/2017 00:25:03 INFO: Selecting only user-defined ligands
+09/12/2017 00:25:29 INFO: Dataset after preprocessing:
+	examples: 121360
+	attributes: 61
+	num of classes: 82
+	min class examples: 16
+	max class examples: 42622
+	classes: SO4: 42622 GOL: 32141 HEM: 5761 PEG: 3603 MPD: 2582 FAD: 2366 NAD: 2122 PG4: 1751 NAP: 1706 ADP: 1688 MES: 1499 TRS: 1293 FMN: 1245 1PE: 1221 EPE: 1051 PLP: 1045 SF4: 1012 ATP: 980 IMD: 933 CIT: 931 COA: 751 GSH: 645 AMP: 609 P6G: 596 LDA: 587 H4B: 547 NCO: 536 MLI: 528 SIA: 464 TLA: 460 SAM: 426 DIO: 301 AKG: 284 ACO: 271 PYR: 267 PLM: 260 BTB: 235 OLA: 234 TPP: 231 CYC: 228 POP: 227 CLA: 225 CHD: 222 BCL: 218 DTT: 213 NHE: 213 PEP: 199 ADN: 196 PGO: 196 RET: 191 HED: 187 MYR: 183 F3S: 180 THP: 179 BTN: 173 CMP: 151 2PE: 150 ADE: 139 5GP: 137 IPH: 133 CXS: 118 C2E: 117 B3P: 110 MLT: 109 TYD: 108 UPG: 104 CAM: 85 HEA: 84 A3P: 83 CDL: 83 TAM: 75 ORO: 75 PGA: 66 2GP: 63 HC4: 54 MTE: 53 U10: 51 017: 50 STU: 49 PHQ: 49 FPP: 34 SPO: 16
+09/12/2017 00:25:38 INFO: Finished preparing Carolan dataset...
+09/12/2017 00:25:38 INFO: -----------------------------------------

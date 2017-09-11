@@ -1,0 +1,32 @@
+Description of column names in the Twilight script
+
+This table contains a reference sheet for all columns shown in the Twilight main table, supplying remarks on their origin. If a datum is unavailable for a particular PDB entry, the description mentions its default value for the corresponding column.
+
+Column name	Description
+Rank†	Initial sort order upon loading, which is a combination of descending score S and grouping by PDB four-character code.
+PDBID‡	RCSB Protein Data Bank (PDB) four-character accession code.
+LigNm‡	Three-letter PDB ligand name.
+ResNr‡	Unique residue identifier. This has the general format CNNNNI, where C is the chain name, NNNN is the four-digit residue number and I is the insertion code. The residue number NNNN is right-justified and the insertion code I is mostly the space character. Residue number 66 of chain A is therefore represented as `A  66 '. Notice that the RSCC values are not reported by the EDS separately when alternate conformers are present and therefore the alternate conformation indicators are not included.
+RSCC§	Real-space correlation coefficient for the ligand retrieved from EDS. Used in the computation of the score S.
+OWAB§	Occupancy-weighted average B factor of the ligand, also retrieved from EDS.
+MolWt‡	Molecular weight of the ligand in units of Da.
+Charge¶	Ligand charge, computed from its chemical formula.
+#Heavy¶	Number of non-H atoms that the ligand is composed of.
+#Hydrog¶	Number of H atoms for the ligand.
+#Atoms¶	The overall number of atoms; that is, #Heavy + #Hydrog.
+DepDate‡	Protein structure deposition date according to the HEADER record from the PDB.
+Resol‡	Experimental resolution of the crystal structure in units of A. Used in the calculation of the score S.
+Rwork‡	Working-set R value. A negative number indicates its absence.
+Rfree‡	Test-set R value (Rfree). A negative number indicates its absence.
+Robs‡	Observed-set (working set and test set taken together) R value. A negative number indicates its absence.
+Softwre†	Software used for crystallographic refinement as stated in REMARK 3 of the PDB entry. In the case that multiple refinement programs are stated, this becomes a comma-separated list of program names.
+Jrnl‡	Abbreviated journal name if an article describing the structure has been published. Contains `To be Published' if no publication is associated with the PDB entry.
+PMID‡	NCBI PubMed identifier of the primary citation, if the structure has been published; otherwise, the cell is empty.
+Class†	Ligand type. Frequently encountered crystallization buffer molecules are conveniently flagged with the letter `B', otherwise the hyphen character `-' is printed.
+Valid†	This column contains the letter `Y' (RSCC ? 0.6) or `G' (RSCC ? 0.95) to indicate that the ligand has passed all of the filter criteria described in §[link]2. The letter `A' is used for heterogroups from a manually imported structure.
+Score†	Combination of the real-space correlation coefficient and the experimental resolution into a single score S, which is used for ranking the list of ligands.
+Comment	Author comment if the particular ligand has been analyzed; otherwise, it is empty. We have blanked all our in-house-generated annotations except for false positives. However, users are especially encouraged to add their own annotations in this column.
+†Value resulting from the filtering procedure mentioned in §[link]2. 
+‡Value directly taken from the result list returned by the PDB Advanced Search Interface query described in §[link]2. 
+§Value retrieved from the EDS server. 
+¶Value derived from the chemical formula returned by the PDB Advanced Search Interface query described in §[link]2. 
