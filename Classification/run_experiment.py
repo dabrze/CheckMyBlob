@@ -316,12 +316,12 @@ scaler = {
 # Main script #
 if __name__ == '__main__':
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "cmesg")
+        opts, args = getopt.getopt(sys.argv[1:], "cmes")
         if len(opts) == 0:
-            print('run_experiment.py [-c -m -e -s -g]')
+            print('run_experiment.py [-c -m -e -s]')
             sys.exit(2)
     except getopt.GetoptError:
-        print('run_experiment.py [-c -m -e -s -g]')
+        print('run_experiment.py [-c -m -e -s]')
         sys.exit(2)
     for opt, arg in opts:
         if opt in ("-c", "--create_datasets"):
