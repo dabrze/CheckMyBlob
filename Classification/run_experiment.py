@@ -41,8 +41,8 @@ VALIDATION_DATASET_PATH = os.path.join(DATA_FOLDER, "validation_all.csv")
 NONXRAY_LIST_PATH = os.path.join(DATA_FOLDER, "non_xray_pdbs.csv")
 TWIGHLIGHT_PATH = os.path.join(DATA_FOLDER, "twilight-2017-01-11.tsv")
 CMB_PATH = os.path.join(DATA_FOLDER, "cmb.pkl")
-TERWILLIGER_PATH = os.path.join(DATA_FOLDER, "terwilliger.pkl")
-CAROLAN_PATH = os.path.join(DATA_FOLDER, "carolan.pkl")
+TERWILLIGER_PATH = os.path.join(DATA_FOLDER, "tamc.pkl")
+CAROLAN_PATH = os.path.join(DATA_FOLDER, "cl.pkl")
 
 CLASS_ATTRIBUTE = "res_name"
 SELECTION = ["resolution", "percent_cut", "part_00_electrons", "part_00_volume",
