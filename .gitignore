@@ -108,3 +108,7 @@ ENV/
 /Classification/.idea/misc.xml
 /Classification/.idea/modules.xml
 /Classification/.idea/workspace.xml
+/Data/all_summary.7z
+/Data/cl.csv
+/Data/cmb.csv
+/Data/tamc.csv
