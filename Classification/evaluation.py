@@ -265,7 +265,7 @@ class Evaluation:
                                                                        "predictions", "csv")))
 
     def save_model(self, save_to_folder=os.path.join(os.path.dirname(__file__), "ExperimentResults")):
-        util.save_model(self.classifier, os.path.join(save_to_folder, _get_file_name(self.classifier, "model", "pkl")))
+        util.save_model(self.classifier, os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier, "model", "pkl")))
 
     def save_feature_importance(self, plot=False, save_to_folder=os.path.join(os.path.dirname(__file__),
                                                                         "ExperimentResults")):
@@ -303,7 +303,7 @@ class Evaluation:
              "importance": importances[indices]},
             index=range(len(column_names)),
             columns=["attribute", "importance"])
-        importance_df.to_csv(os.path.join(save_to_folder, _get_file_name(self.classifier, "feature_importance", "csv")),
+        importance_df.to_csv(os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier, "feature_importance", "csv")),
                              index=False)
         if plot:
             self._plot_interactive_feature_importance(column_names[indices], importances[indices], classifier_name)
@@ -315,9 +315,9 @@ class Evaluation:
         :type save_to_folder: string, optional (default=source file folder/ExperimentResults)
         :return:
         """
-        np.savetxt(os.path.join(save_to_folder, _get_file_name(self.classifier, "confusion_matrix", "txt")),
+        np.savetxt(os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier, "confusion_matrix", "txt")),
                    metrics.confusion_matrix(self.y_true, self.y_pred).astype("int"), fmt="%d")
-        with open(os.path.join(save_to_folder, _get_file_name(self.classifier, "confusion_matrix", "txt")) +
+        with open(os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier, "confusion_matrix", "txt")) +
                   "_classes.txt", 'w') as file_obj:
             for c in self.preprocessing.classes:
                 file_obj.write(c + '\n')
@@ -340,7 +340,7 @@ class Evaluation:
         plt.ylabel('True label')
         plt.xlabel('Predicted label')
 
-        file_name = _get_file_name(self.classifier, "confusion_matrix", "png")
+        file_name = _get_file_name(self.dataset_name, self.classifier, "confusion_matrix", "png")
         if not os.path.exists(save_to_folder):
             os.mkdir(save_to_folder)
         plt.savefig(os.path.join(save_to_folder, file_name))
@@ -358,7 +358,7 @@ class Evaluation:
 
         confusion_matrix = metrics.confusion_matrix(self.y_true, self.y_pred)
         cm_normalized = confusion_matrix.astype('float') / confusion_matrix.sum(axis=1)[:, np.newaxis]
-        file_name = os.path.join(save_to_folder, _get_file_name(self.classifier, "confusion_matrix", "html"))
+        file_name = os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier, "confusion_matrix", "html"))
         title = "<b>Acc: {:.1f}%, T5: {:.1f}%, T10: {:.1f}%, T20: {:.1f}%, " \
                 "MR: {:.1f}%, K: {:.1f}%, " \
                 "G: {:.1f}%</b>"\
@@ -413,7 +413,7 @@ class Evaluation:
         import plotly.offline
         import plotly.graph_objs as go
 
-        file_name = os.path.join(save_to_folder, _get_file_name(self.classifier, "feature_importance", "html"))
+        file_name = os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier, "feature_importance", "html"))
 
         data = [
             go.Bar(
@@ -1026,7 +1026,7 @@ def plot_learning_curve(classifier, X, y, measurements=[0.1, 0.325, 0.55, 0.775,
 
     plt.legend(loc="best")
 
-    file_name = _get_file_name(classifier, "learning_curve", "png")
+    file_name = _get_file_name("", classifier, "learning_curve", "png")
     if not os.path.exists(save_to_folder):
         os.mkdir(save_to_folder)
     plt.savefig(os.path.join(save_to_folder, file_name))

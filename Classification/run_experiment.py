@@ -184,19 +184,37 @@ def create_datasets():
 # Selected classifiers #
 knn = KNeighborsClassifier(n_jobs=CLF_CPUS, n_neighbors=50, weights="distance", p=1)
 rf = RandomForestClassifier(random_state=SEED, n_jobs=CLF_CPUS, n_estimators=150, class_weight=None, max_features=0.4)
-lgbm = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
+lgbm_cmb = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
                    n_estimators=281, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
                    colsample_bytree=0.85, scale_pos_weight=1, silent=True)
-
-voter = VotingClassifier(estimators=[('knn', knn),('rf', rf),('lgbm', lgbm)], voting="soft")
-voter_weighted = VotingClassifier(estimators=[('knn', knn),('rf', rf),('lgbm', lgbm)], voting="soft", weights=[1, 1, 1.5])
-linear_stacker = StackingCVClassifier(classifiers=[rf, knn, lgbm], use_probas=True, random_state=SEED, n_folds=5,
-                                      meta_classifier=LogisticRegression(random_state=SEED, n_jobs=CLF_CPUS,
-                                                                         max_iter=5000, solver="liblinear",
-                                                                         multi_class="ovr"))
-non_linear_stacker = StackingCVClassifier(classifiers=[rf, knn, lgbm], use_probas=True, random_state=SEED, n_folds=5,
-                                          use_features_in_secondary=True,
-                                          meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
+stacker_cmb = StackingCVClassifier(classifiers=[rf, knn, lgbm_cmb], use_probas=True, random_state=SEED, n_folds=5,
+                                   use_features_in_secondary=True,
+                                   meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
+                                                                             nthread=CLF_CPUS, num_leaves=128,
+                                                                             learning_rate=0.05, n_estimators=281,
+                                                                             min_child_weight=13, min_child_samples=1,
+                                                                             min_split_gain=0, subsample=1,
+                                                                             colsample_bytree=0.85, scale_pos_weight=1,
+                                                                             silent=True))
+lgbm_tamc = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
+                   n_estimators=281, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
+                   colsample_bytree=0.85, scale_pos_weight=1, silent=True)
+stacker_tamc = StackingCVClassifier(classifiers=[rf, knn, lgbm_tamc],
+                                    use_probas=True, random_state=SEED, n_folds=5,
+                                    use_features_in_secondary=True,
+                                    meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
+                                                                             nthread=CLF_CPUS, num_leaves=128,
+                                                                             learning_rate=0.05, n_estimators=281,
+                                                                             min_child_weight=13, min_child_samples=1,
+                                                                             min_split_gain=0, subsample=1,
+                                                                             colsample_bytree=0.85, scale_pos_weight=1,
+                                                                             silent=True))
+lgbm_cl = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
+                             n_estimators=281, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
+                             colsample_bytree=0.85, scale_pos_weight=1, silent=True)
+stacker_cl = StackingCVClassifier(classifiers=[rf, knn, lgbm_cl],use_probas=True, random_state=SEED, n_folds=5,
+                                  use_features_in_secondary=True,
+                                  meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
                                                                              nthread=CLF_CPUS, num_leaves=128,
                                                                              learning_rate=0.05, n_estimators=281,
                                                                              min_child_weight=13, min_child_samples=1,
@@ -205,74 +223,80 @@ non_linear_stacker = StackingCVClassifier(classifiers=[rf, knn, lgbm], use_proba
                                                                              silent=True))
 
 
-selected_classifiers = [
+classifiers_cmb = [
     Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", knn)]),
     Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", rf)]),
-    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", lgbm)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", lgbm_cmb)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", stacker_cmb)]),
 ]
 
-stacking = [
-    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", non_linear_stacker)]),
+classifiers_tamc = [
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", knn)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", rf)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", lgbm_tamc)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", stacker_tamc)]),
 ]
 
-stacking_carolan = [
-    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH, remove_outliers=False, remove_poor_quality=False)), ("scaler", MinMaxScaler()), ("clf", non_linear_stacker)]),
+classifiers_cl = [
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", knn)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", rf)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH)), ("scaler", MinMaxScaler()), ("clf", lgbm_cl)]),
+    Pipeline([("preprocessor", prep.BlobPreprocessor(validation_data=VALIDATION_DATASET_PATH, remove_outliers=False, remove_poor_quality=False)), ("scaler", MinMaxScaler()), ("clf", stacker_cl)]),
 ]
+
+selected_classifiers = dict()
+selected_classifiers[CMB_PATH] = classifiers_cmb
+selected_classifiers[TERWILLIGER_PATH] = classifiers_tamc
+selected_classifiers[CAROLAN_PATH] = classifiers_cl
 
 # Classifier settings #
 grid = {
-    # GaussianNB():
-    # [{}],
-    #
-    # DecisionTreeClassifier(random_state=SEED):
-    # [{"max_features": [None, 10, 15, 16, 17, 18, 19, 20],
-    #   "max_depth": [None, 5, 8, 10, 12, 15],
-    #   "criterion": ["gini", "entropy"],
-    #   "class_weight": [None, "balanced"]}],
-    #
-    # KNeighborsClassifier(n_jobs=CLF_CPUS):
-    # [{"n_neighbors": [10, 20, 30, 40, 50], # 50
-    #   "weights": ["distance"],
-    #   "p": [1]}],
-    #
-    # RandomForestClassifier(random_state=SEED, n_jobs=CLF_CPUS):
-    # [{"n_estimators": [150],
-    #  "max_features": ["auto", 0.3, 0.4, 0.5], # 0.4
-    #  "class_weight": ["balanced", None]}], # None
-    #
-    # LogisticRegression(random_state=SEED, class_weight="balanced", max_iter=5000, n_jobs=CLF_CPUS,
-    #                    solver="liblinear", multi_class="ovr"):
-    # [{"C": [10000],
-    #   "intercept_scaling": [2]}],
-    #
-    # SVC(probability=True, random_state=SEED, cache_size=10000, max_iter=5000):
-    # [{"C": [1, 10, 100],
-    #   "gamma": [1, 10, 100],
-    #   "class_weight": ["balanced"]}],
-    #
-    # SGDClassifier(random_state=SEED, n_iter=100, n_jobs=CLF_CPUS):
-    # [{"alpha": [0.000005],
-    #   "class_weight": ["balanced", None]}],
-    #
-    # lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS):
-    # [{
-    #     "num_leaves": [64, 128, 256], #128
-    #     "min_child_weight": [1, 3, 5, 7, 9, 11, 12, 13, 14, 15], # 13
-    #     "min_child_samples": [1],
-    #     "min_split_gain": [0],
-    #     "subsample": [0.8, 0.9, 1.0], #1
-    #     "colsample_bytree": [0.8, 0.85, 0.9, 1.0], #0.85
-    #     "scale_pos_weight": [1],
-    #     "learning_rate": [0.1], # 0.05
-    #     "silent": [True],
-    #     "n_estimators": [131] # 281
-    # }],
-    # StackingCVClassifier(classifiers=[rf, knn, lgbm], random_state=SEED, n_folds=5, use_probas=False,
-    #                      meta_classifier=RandomForestClassifier(random_state=SEED, n_jobs=CLF_CPUS, n_estimators=100)):
-    # [{
-    #     "meta-randomforestclassifier__max_features": ["auto", 0.3],
-    #     "meta-randomforestclassifier__class_weight": ["balanced", None],
-    # }],
+    GaussianNB():
+    [{}],
+
+    DecisionTreeClassifier(random_state=SEED):
+    [{"max_features": [None, 10, 15, 16, 17, 18, 19, 20],
+      "max_depth": [None, 5, 8, 10, 12, 15],
+      "criterion": ["gini", "entropy"],
+      "class_weight": [None, "balanced"]}],
+
+    KNeighborsClassifier(n_jobs=CLF_CPUS):
+    [{"n_neighbors": [10, 20, 30, 40, 50], # 50
+      "weights": ["distance"],
+      "p": [1]}],
+
+    RandomForestClassifier(random_state=SEED, n_jobs=CLF_CPUS):
+    [{"n_estimators": [150],
+     "max_features": ["auto", 0.3, 0.4, 0.5], # 0.4
+     "class_weight": ["balanced", None]}], # None
+
+    LogisticRegression(random_state=SEED, class_weight="balanced", max_iter=5000, n_jobs=CLF_CPUS,
+                       solver="liblinear", multi_class="ovr"):
+    [{"C": [10000],
+      "intercept_scaling": [2]}],
+
+    SVC(probability=True, random_state=SEED, cache_size=10000, max_iter=5000):
+    [{"C": [1, 10, 100],
+      "gamma": [1, 10, 100],
+      "class_weight": ["balanced"]}],
+
+    SGDClassifier(random_state=SEED, n_iter=100, n_jobs=CLF_CPUS):
+    [{"alpha": [0.000005],
+      "class_weight": ["balanced", None]}],
+
+    lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS):
+    [{
+        "num_leaves": [64, 128, 256], #128
+        "min_child_weight": [1, 3, 5, 7, 9, 11, 12, 13, 14, 15], # 13
+        "min_child_samples": [1],
+        "min_split_gain": [0],
+        "subsample": [0.8, 0.9, 1.0], #1
+        "colsample_bytree": [0.8, 0.85, 0.9, 1.0], #0.85
+        "scale_pos_weight": [1],
+        "learning_rate": [0.1], # 0.05
+        "silent": [True],
+        "n_estimators": [131] # 281
+    }],
 }
 
 preprocessor = {
@@ -308,22 +332,9 @@ if __name__ == '__main__':
                 training_data = util.load_model(dataset_path)
                 X, y = training_data.prepare_for_classification(CLASS_ATTRIBUTE, [CLASS_ATTRIBUTE])
 
-                ev.cross_validate(selected_classifiers, X, y, os.path.basename(dataset_path), training_data,
+                ev.cross_validate(selected_classifiers[dataset_path], X, y,
+                                  os.path.basename(dataset_path), training_data,
                                   seed=SEED, cv_folds=10)
-        elif opt in ("-g", "--stacked_generalization"):
-            for dataset_path in [CMB_PATH, TERWILLIGER_PATH]:
-                training_data = util.load_model(dataset_path)
-                X, y = training_data.prepare_for_classification(CLASS_ATTRIBUTE, [CLASS_ATTRIBUTE])
-
-                ev.cross_validate(stacking, X, y, os.path.basename(dataset_path), training_data,
-                                  seed=SEED, cv_folds=10)
-            for dataset_path in [CAROLAN_PATH]:
-                training_data = util.load_model(dataset_path)
-                X, y = training_data.prepare_for_classification(CLASS_ATTRIBUTE, [CLASS_ATTRIBUTE])
-
-                ev.cross_validate(stacking_carolan, X, y, os.path.basename(dataset_path), training_data,
-                                  seed=SEED, cv_folds=10)
-            sys.exit()
         elif opt in ("-m", "--model_selection"):
             for dataset_path in [CMB_PATH]:
                 training_data = util.load_model(dataset_path)
@@ -335,7 +346,7 @@ if __name__ == '__main__':
                                   seed=SEED, jobs=GRID_CPUS, repeats=2, folds=5, outer_cv=10)
             sys.exit()
         elif opt in ("-s", "--early_stopping"):
-            for dataset_path in [CMB_PATH]:
+            for dataset_path in [CMB_PATH, TERWILLIGER_PATH, CAROLAN_PATH]:
                 training_data = util.load_model(dataset_path)
                 X, y = training_data.prepare_for_classification(CLASS_ATTRIBUTE, [CLASS_ATTRIBUTE])
                 early_lgbm = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128,
