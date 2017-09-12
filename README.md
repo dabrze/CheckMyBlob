@@ -124,7 +124,7 @@ examples for GOL (glycerol) to 114 for 3DR
 The `tamc.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
-[tamc.csv](https://onedrive.live.com/embed?cid=389519B65EF435AE&resid=389519B65EF435AE%212375&authkey=ANxAHbmyw7zRVrc)
+[tamc.csv](https://onedrive.live.com/download?cid=389519B65EF435AE&resid=389519B65EF435AE%212375&authkey=ANxAHbmyw7zRVrc)
 
 ### CL
 
@@ -140,7 +140,7 @@ ligand counts ranging from 42,622 examples for SO4 to 16 for
 SPO (spheroidene). The `cl.pkl` file is included int he repository. The
 csv version of the data set can be downloaded using the link below:
 
-[cl.csv](https://onedrive.live.com/embed?cid=389519B65EF435AE&resid=389519B65EF435AE%212374&authkey=AAjWc9RVe7YP5V8)
+[cl.csv](https://onedrive.live.com/download?cid=389519B65EF435AE&resid=389519B65EF435AE%212374&authkey=AAjWc9RVe7YP5V8)
 
 ## Running the experiments
 
