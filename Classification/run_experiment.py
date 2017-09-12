@@ -10,12 +10,8 @@ import logging
 import evaluation as ev
 import preprocessing as prep
 
-from classifiers import SamplingClassifier
-from subsecting_rfe import SubsectingRFE
-
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
-from sklearn.multiclass import OutputCodeClassifier, OneVsRestClassifier
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import MultinomialNB, GaussianNB
@@ -24,7 +20,6 @@ from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn import metrics
 from mlxtend.classifier import StackingCVClassifier
-import imblearn.over_sampling as imbos
 import lightgbm as lgb
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
@@ -298,6 +293,9 @@ scaler = {
 if __name__ == '__main__':
     try:
         opts, args = getopt.getopt(sys.argv[1:], "cmesg")
+        if len(opts) == 0:
+            print('run_experiment.py [-c -m -e -s -g]')
+            sys.exit(2)
     except getopt.GetoptError:
         print('run_experiment.py [-c -m -e -s -g]')
         sys.exit(2)

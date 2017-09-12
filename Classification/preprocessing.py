@@ -123,7 +123,8 @@ class DatasetCleaner:
     ANY_NUCLEOTYDE = ["N"]
     UNLABELED = ["BLOB", "", "?"]
     PEPTIDES_DNA_RNA = {'ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE', 'LEU', 'LYS', 'MET',
-                        'MSE', 'PHE', 'PRO', 'SEC', 'SER', 'THR', 'TRP', 'TYR', 'VAL', 'DA', 'DG', 'DT', 'DC',
+                        'MSE', 'PHE', 'PRO', 'SEC', 'SER', 'THR', 'TRP', 'TYR', 'VAL',
+                        'DA', 'DG', 'DT', 'DC', 'DU',
                         'A', 'G', 'T', 'C', 'U', }
     WATER = ["HOH", "H20", "WAT"]
     IGNORED_RES_NAMES = set().union(UNKNOWN_LIGANDS, ANY_NUCLEOTYDE, UNLABELED, PEPTIDES_DNA_RNA, WATER)

@@ -261,7 +261,8 @@ class Evaluation:
                                    index=self.y_true.index,
                                    columns=["y_pred", "y_true", "y_pred_prob", "y_true_prob",
                                             "prob_diff", "is_correct", "rank", "resolution", "rscc"])
-        predictions.to_csv(os.path.join(save_to_folder, _get_file_name(self.classifier, "predictions", "csv")))
+        predictions.to_csv(os.path.join(save_to_folder, _get_file_name(self.dataset_name, self.classifier,
+                                                                       "predictions", "csv")))
 
     def save_model(self, save_to_folder=os.path.join(os.path.dirname(__file__), "ExperimentResults")):
         util.save_model(self.classifier, os.path.join(save_to_folder, _get_file_name(self.classifier, "model", "pkl")))
@@ -1079,7 +1080,7 @@ def _print_evaluation_header(pipeline):
     logging.info("--------------------------------------------------------------------------------")
 
 
-def _get_file_name(classifier, name, file_type):
+def _get_file_name(dataset, classifier, name, file_type):
     classifier_name = type(classifier).__name__
     if classifier_name == "Pipeline":
         classifier_name = type(classifier.steps[-1][1]).__name__
@@ -1087,8 +1088,8 @@ def _get_file_name(classifier, name, file_type):
     else:
         pipeline_name = "clf"
 
-    return "{0}_{1}_{2}_{3}.{4}".format(classifier_name,
-                                        pipeline_name,
-                                        name,
-                                        time.strftime("%Y%m%d_%H%M%S", time.localtime()),
-                                        file_type)
+    if len(dataset) > 4 and dataset[-4] == ".":
+        dataset = dataset[:-4]
+
+    return "{0}_{1}_{2}_{3}_{4}.{5}".format(dataset, classifier_name, pipeline_name, name,
+                                            time.strftime("%Y%m%d_%H%M%S", time.localtime()), file_type)
