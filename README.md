@@ -1,12 +1,65 @@
 # CheckMyBlob
 
-Machine learning experiments for CheckMyBlob.
+Machine learning experiments for the CheckMyBlob ligand identification
+pipeline as described in *"Automatic recognition of ligands in electron
+density by machine learning methods"* by Kowiel, M. *et al.*
+
+## Amazon virtual machine
+
+The easiest way to reproduce the experiments is using the publicly
+available Amazon virtual machine (AMI) prepared for this study. The
+machine has all the necessary libraries, scripts, and data sets
+pre-installed.
+
+To re-run the final experiments simply on the prepared AMI:
+1. Request a machine on [Amazon](https://aws.amazon.com/console/)
+(we used an r4.8xlarge),
+2. While searching for the AMI, use the following AMI ID:
+```
+```
+3. Log in to the instance,
+4. Go to the `Classification` directory:
+```
+cd work/CheckMyBlob/Classification
+```
+5. Run the classifier evaluation:
+```
+python run_experiments.py -e
+```
+
+Since the evaluation will take many hours, it's best to run python
+through a terminal multiplexer, like
+[screen](https://help.ubuntu.com/community/Screen).
+
+Other tasks, such as recreating data sets or parameter tuning, can also
+be performed on the the machine, as described below.
 
 ## Requirements
 
+Experiments and data sets were primarily prepared for Python 2. The code
+should be compatible with Python 3, however, the `*.pkl` serialized and
+compressed dataset objects have to be recreated in order to work in
+Python 3 (pickle incompatibilities between python versions).
+
+The scripts require the following libraries:
+- scikit-learn
+- numpy
+- pandas
+- scipy
+- seaborn
+- matplotlib
+- mlxtend
+- plotly
+- lightgbm
+
 ## Ligand data sets
 
-To reproduce the experiments, ligand data sets (as well as validation files already included in the repository) should be placed in the Data folder. Due to file size limits enforced by GitHub the ligand data sets could not be included directly in this repository and have to be downloaded from an external server. The descriptions and links to the datasets are described below.
+To reproduce the experiments, ligand data sets (as well as validation
+files already included in the repository) should be placed in the Data
+folder. Due to file size limits enforced by GitHub the ligand data sets
+could not be included directly in this repository and have to be
+downloaded from an external server. The descriptions and links to
+the datasets are described below.
 
 ### All ligands detected in the PDB
 

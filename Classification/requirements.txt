@@ -4,8 +4,6 @@ pandas
 scipy
 seaborn
 matplotlib
-imbalanced-learn
 mlxtend
 plotly
-#lightgbm
-#xgboost
+lightgbm
