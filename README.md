@@ -54,37 +54,95 @@ The scripts require the following libraries:
 
 ## Ligand data sets
 
-To reproduce the experiments, ligand data sets (as well as validation
-files already included in the repository) should be placed in the Data
-folder. Due to file size limits enforced by GitHub the ligand data sets
-could not be included directly in this repository and have to be
-downloaded from an external server. The descriptions and links to
-the datasets are described below.
+To reproduce the experiments, ligand data sets and validation
+reports should be placed in the Data folder. Due to file size limits
+enforced by GitHub the ligand data sets are only included in a binary
+serialized version (`*.pkl` files). CSV versions of the data sets as
+ well as the "master" data set containing descriptions of all ligands
+ detected in the PDB have to be downloaded from an external server.
+ The descriptions and links to the data sets are described below.
 
 ### All ligands detected in the PDB
 
-The "master" data set containing all ligands queried and detected as described in the Kowiel et al. paper "Automatic recognition of ligands in electron density by machine learning methods" can be downloaded from:
+The "master" data set containing all ligands queried and detected as
+described in the Kowiel et al. paper "Automatic recognition of ligands
+in electron density by machine learning methods" can be downloaded from:
 
-[all_summary.7z]()
+[all_summary.7z](https://onedrive.live.com/download?cid=389519B65EF435AE&resid=389519B65EF435AE%212377&authkey=AAlLFjYr9_ushHs)
 
-The file is compressed using 7zip to allow for faster downloads. The compressed file weighs around 1.1 GB, whereas the uncompressed CSV will take close to 3.0 GB of disk space. The all_summary.csv file can be used to reproduce the filtered ligand data sets (CMB, TAMC, CL), as source to create data sets based on other filtering criteria (e.g. ligand subsets of your choice), or on its own a as source of knowledge about all ligands to we were capable of detecting automatically on the entire PDB as of May 1st, 2017.
+The file is compressed using 7zip to allow for faster downloads. The
+compressed file weighs around 1.1 GB, whereas the uncompressed CSV will
+ take close to 3.0 GB of disk space. The all_summary.csv file can be
+ used to reproduce the filtered ligand data sets (CMB, TAMC, CL),
+ as a source to create data sets based on other filtering criteria
+ (e.g. ligand subsets of your choice), or on its own a as source of
+ knowledge about all ligands that CheckMyBlob was capable of detecting
+ automatically on the entire PDB as of May 1st, 2017.
 
 ### CMB
 
-[cmb.csv]()
-[cmb.pkl]()
+CMB was designed for the CheckMyBlob study. It contains only structures
+from X-ray diffraction experiments determined to at least 4.0 Å
+resolution. Entries with R factor above 0.3 or
+ligands below 0.3 occupancy (according to wwPDB validation reports)
+were rejected. Only ligands with at least 2 non-H atoms were
+considered and structures with low ligand
+map correlation coefficients (RSCC < 0.6) were removed. Apart from
+taking into account quality factors, we removed from the experimental
+data set all moieties that are not considered proper ligands.
+These included: unknown species, water molecules, standard amino acids,
+and selected nucleotides. Moreover, connected ligands (as per the
+naming convention in the PDB)
+were labeled as alphabetically ordered strings of hetero-compound codes
+(e.g., NAG-NAG-NAG-NAG). Finally, the data set was limited
+to 200 most popular ligands. The resulting data set consisted of
+227,885 examples with individual ligand counts ranging from
+50,522 examples for SO4 (sulfate ion) to 109 for A2G
+(n-acetyl-2-deoxy-2-amino-galactose). More details concerning data
+selection can be found in the paper of Kowiel *et al.*
+
+
+The `cmb.pkl` file is included int he repository, whereas the
+csv version of the data set can be downloaded using the link below:
+
+[cmb.csv](https://onedrive.live.com/download?cid=389519B65EF435AE&resid=389519B65EF435AE%212376&authkey=AHzE_pFDQnadMSM)
 
 ### TAMC
 
-[tamc.csv]()
-[tamc.pkl]()
+The TAMC data set attempts to repeat the experimental setup from
+Terwilliger *et al.* described in "Ligand identification using
+electron-density map correlations".
+It consists of ligands from X-ray diffraction experiments with 6–150
+non-H atoms. Connected PDB ligands were labeled as single
+alphabetically ordered strings of hetero-compound codes, whereas
+unknown species, water molecules, standard amino acids, and nucleotides
+were excluded. Finally, the data set was limited to 200 most
+popular ligands. The resulting data set consisted of 161,190
+examples with individual ligand counts ranging from 36,466
+examples for GOL (glycerol) to 114 for 3DR
+(1',2'-dideoxyribofuranose-5'-phosphate).
+The `tamc.pkl` file is included int he repository, whereas the
+csv version of the data set can be downloaded using the link below:
+
+[tamc.csv](https://onedrive.live.com/embed?cid=389519B65EF435AE&resid=389519B65EF435AE%212375&authkey=ANxAHbmyw7zRVrc)
 
 ### CL
 
-[cl.csv]()
-[cl.pkl]()
+The CL data set repeats the setup used in the study of Carolan & Lamzin
+titled "Automated identification of crystallographic ligands using
+sparse-density representations".
+It consists of ligands from X-ray diffraction experiments
+with 1.0–2.5 Å resolution. Adjacent PDB ligands were not connected.
+Ligands were labeled according to the PDB naming convention.
+The data set was limited to the 82 ligand types listed by Carolan &
+Lamzin. The resulting data set consists of 121,360 examples with
+ligand counts ranging from 42,622 examples for SO4 to 16 for
+SPO (spheroidene). The `cl.pkl` file is included int he repository. The
+csv version of the data set can be downloaded using the link below:
 
-## Running the experimetns
+[cl.csv](https://onedrive.live.com/embed?cid=389519B65EF435AE&resid=389519B65EF435AE%212374&authkey=AAjWc9RVe7YP5V8)
+
+## Running the experiments
 
 The experiments can be reproduced simply by running the
 `run_experiments.py` script with appropriate parameters described below.
@@ -97,26 +155,21 @@ To recreate the experimental data sets (CMB, TAMC, CL) the
 
 ### Evaluating selected classifiers
 
-To evaluate simple classifiers (k-NN, Random Forest, Gradient Boosting Machines):
+To evaluate the classifiers (k-NN, Random Forest, Gradient Boosting
+Machines, Stacking):
 ```
 python run_experiments.py -e
 ```
 
-
-
-To enable easier parallelization of scripts, stacked generalization is run through a separate parameter:
-```
-python run_experiments.py -g
-```
-
-Th
-
 ### Classifier tuning
 
+Beware, this can take weeks:
 ```
 python run_experiments.py -m
 ```
 
 ## Contact
 
-If you have trouble reproducing the experiments or have any comments/suggestions, feel free to write at **dariusz.brzezinski (at) cs.put.poznan.pl**
+If you have trouble reproducing the experiments or have any
+comments/suggestions, feel free to write at
+**dariusz.brzezinski (at) cs.put.poznan.pl**
