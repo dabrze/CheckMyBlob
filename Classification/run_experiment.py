@@ -197,14 +197,14 @@ stacker_cmb = StackingCVClassifier(classifiers=[rf, knn, lgbm_cmb], use_probas=T
                                                                              colsample_bytree=0.85, scale_pos_weight=1,
                                                                              silent=True))
 lgbm_tamc = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
-                   n_estimators=281, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
+                   n_estimators=270, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
                    colsample_bytree=0.85, scale_pos_weight=1, silent=True)
 stacker_tamc = StackingCVClassifier(classifiers=[rf, knn, lgbm_tamc],
                                     use_probas=True, random_state=SEED, n_folds=5,
                                     use_features_in_secondary=True,
                                     meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
                                                                              nthread=CLF_CPUS, num_leaves=128,
-                                                                             learning_rate=0.05, n_estimators=281,
+                                                                             learning_rate=0.05, n_estimators=270,
                                                                              min_child_weight=13, min_child_samples=1,
                                                                              min_split_gain=0, subsample=1,
                                                                              colsample_bytree=0.85, scale_pos_weight=1,
@@ -295,7 +295,7 @@ grid = {
         "scale_pos_weight": [1],
         "learning_rate": [0.1], # 0.05
         "silent": [True],
-        "n_estimators": [131] # 281
+        "n_estimators": [131] # 280
     }],
 }
 
