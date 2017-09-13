@@ -210,13 +210,13 @@ stacker_tamc = StackingCVClassifier(classifiers=[rf, knn, lgbm_tamc],
                                                                              colsample_bytree=0.85, scale_pos_weight=1,
                                                                              silent=True))
 lgbm_cl = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
-                             n_estimators=281, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
+                             n_estimators=243, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
                              colsample_bytree=0.85, scale_pos_weight=1, silent=True)
 stacker_cl = StackingCVClassifier(classifiers=[rf, knn, lgbm_cl],use_probas=True, random_state=SEED, n_folds=5,
                                   use_features_in_secondary=True,
                                   meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
                                                                              nthread=CLF_CPUS, num_leaves=128,
-                                                                             learning_rate=0.05, n_estimators=281,
+                                                                             learning_rate=0.05, n_estimators=243,
                                                                              min_child_weight=13, min_child_samples=1,
                                                                              min_split_gain=0, subsample=1,
                                                                              colsample_bytree=0.85, scale_pos_weight=1,
@@ -251,15 +251,6 @@ selected_classifiers[CAROLAN_PATH] = classifiers_cl
 
 # Classifier settings #
 grid = {
-    GaussianNB():
-    [{}],
-
-    DecisionTreeClassifier(random_state=SEED):
-    [{"max_features": [None, 10, 15, 16, 17, 18, 19, 20],
-      "max_depth": [None, 5, 8, 10, 12, 15],
-      "criterion": ["gini", "entropy"],
-      "class_weight": [None, "balanced"]}],
-
     KNeighborsClassifier(n_jobs=CLF_CPUS):
     [{"n_neighbors": [10, 20, 30, 40, 50], # 50
       "weights": ["distance"],
@@ -269,20 +260,6 @@ grid = {
     [{"n_estimators": [150],
      "max_features": ["auto", 0.3, 0.4, 0.5], # 0.4
      "class_weight": ["balanced", None]}], # None
-
-    LogisticRegression(random_state=SEED, class_weight="balanced", max_iter=5000, n_jobs=CLF_CPUS,
-                       solver="liblinear", multi_class="ovr"):
-    [{"C": [10000],
-      "intercept_scaling": [2]}],
-
-    SVC(probability=True, random_state=SEED, cache_size=10000, max_iter=5000):
-    [{"C": [1, 10, 100],
-      "gamma": [1, 10, 100],
-      "class_weight": ["balanced"]}],
-
-    SGDClassifier(random_state=SEED, n_iter=100, n_jobs=CLF_CPUS):
-    [{"alpha": [0.000005],
-      "class_weight": ["balanced", None]}],
 
     lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS):
     [{
