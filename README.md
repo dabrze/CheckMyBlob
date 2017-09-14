@@ -31,8 +31,10 @@ Since the evaluation will take many hours, it's best to run python
 through a terminal multiplexer, like
 [screen](https://help.ubuntu.com/community/Screen).
 
-Other tasks, such as recreating data sets or parameter tuning, can also
-be performed on the the machine, as described below.
+The machine is setup to run the experiments out of the box. However,
+other tasks, such as recreating data sets or parameter tuning, can also
+be performed on the the machine, although additional files may need
+to be downloaded as described below.
 
 ## Requirements
 
@@ -188,6 +190,32 @@ to use in Gradient Boosting Machines. To re-run early stopping, type:
 ```
 python run_experiments.py -s
 ```
+
+## Detailed results
+
+The repository contains all the experimental results reported in the
+Kowiel *et al.* paper in the `CheckMyBlob/Results/` folder. The source
+of Table 1 can be found in `Summary.xlsx`.
+
+## Reproducing data figures
+
+To reproduce data figures from the Kowiel *et al.* paper, go to the
+`CheckMyBlob/Figures/` folder and run the following commands:
+
+```
+python accuracy.py
+python labels.py
+python plot_importances.py
+```
+
+For the scripts to work, the detailed experimental results have to be
+present in the `CheckMyBlob/Results/` folder. Therefore, if you want to
+reproduce the figures on the Amazon AMI, you will have to upload the
+experimental results to the machine (the machine was prepared to re-run
+experiments and does not contain any result files to avoid confusion).
+The results can be easily uploaded to the AMI by updating the
+repository on the machine by running `git pull` in the `CheckMyBlob/`
+folder.
 
 ## Contact
 
