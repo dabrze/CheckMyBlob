@@ -1,0 +1,142 @@
+#https://pymolwiki.org/index.php/PLoS
+#https://pymolwiki.org/index.php/Color_Values#greens
+
+load pymol_data\3wh1.pdb, data
+load pymol_data\3wh1_2FoFc.cover.ccp4, map2fofc
+load pymol_data\3wh1_FoFc.cover.ccp4, mapfofc
+
+select mole, chain A and resi 301-304
+symexp sym, data, (mole), 4
+
+zoom mole
+orient mole
+set field_of_view, 40
+
+set_view (\
+    -0.306814641,    0.728243053,   -0.612798274,\
+    -0.671580791,   -0.621882200,   -0.402781695,\
+    -0.674411178,    0.287965089,    0.679877937,\
+     0.000334128,    0.000001743,  -48.634334564,\
+    26.791656494,   14.983529091,    4.480569839,\
+    27.358060837,   69.933609009,  -20.000000000 )
+
+hide everything
+show sticks
+show spheres
+
+# hide mainchain
+hide sticks, data and resi 1-250
+hide spheres, data and resi 1-250
+hide sticks, sym0300-100 and resi 1-250
+hide spheres, sym0300-100 and resi 1-250
+
+#hide spheres, data and not (chain A and resi 301-304 around 3)
+#hide spheres, sym0300-100 and not (chain A and resi 301-304 around 3)
+hide spheres, data and not (chain A and resi 301-304)
+hide spheres, sym0300-100 and not (chain A and resi 301-304)
+
+# carbon color white/grey 
+#util.cbaw
+# carbon color yellow 
+util.cbay
+
+# show distance
+#distance (data and resid 57 and chain B and n;OD1), (sym05000000 and resid 90 and chain B and n;ND1)
+#distance (data and resid 57 and chain B and n;OD2), (sym05000000 and resid 90 and chain B and n;ND1)
+
+# increase the sampling rate of the map
+map_double map2fofc, -1    
+map_double mapfofc, -1
+
+# carve - odleglosc od 
+#isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
+#color marine, mesh2fofc 
+
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.8 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.6 
+
+color lime, meshfofc_plus  
+color red, meshfofc_minus  
+
+# makes meshes thinner for ray-tracing
+#set mesh_radius, 0.010
+#set mesh_width, 0.12  
+set mesh_radius, 0.008
+set mesh_width, 0.12  
+
+# default bond and stick
+#set stick_radius, .20
+#set sphere_scale, .20
+#set sphere_scale, .15, elem H
+
+# try for mesh
+set stick_radius, .14
+set sphere_scale, .14
+set sphere_scale, .08, elem H
+
+set bg_rgb=[1, 1, 1]
+set stick_quality, 50
+set sphere_quality, 4
+
+# 1 - with borders
+set ray_trace_mode, 0 
+set ray_texture, 2
+set antialias, 3
+
+# turns off raytrace fog--optional
+set ray_trace_fog, 0 
+# turns off depth cueing--optional
+set depth_cue, 0 
+# turns off ray-tracing shadows
+set ray_shadows, off 
+
+#set ray_shadow_decay_factor, 0.1
+#set ray_shadow_decay_range, 2
+#set depth_cue, 0
+
+# higher values of direct will lighten the image
+set direct =0.5
+
+hide labels
+
+set_view (\
+    -0.306814641,    0.728243053,   -0.612798274,\
+    -0.671580791,   -0.621882200,   -0.402781695,\
+    -0.674411178,    0.287965089,    0.679877937,\
+     0.000334128,    0.000001743,  -48.634334564,\
+    26.791656494,   14.983529091,    4.480569839,\
+    27.358060837,   69.933609009,  -20.000000000 )
+
+ray 2048,1572 
+# output final image
+png pymol_data\3wh1_NAG_NAG_NAG_NAG_301_304_FoFc28.png 
+
+hide sticks, data
+hide spheres, data
+run pymol_data\draw_3wh1_spheres.py
+
+set_view (\
+    -0.306814641,    0.728243053,   -0.612798274,\
+    -0.671580791,   -0.621882200,   -0.402781695,\
+    -0.674411178,    0.287965089,    0.679877937,\
+     0.000334128,    0.000001743,  -48.634334564,\
+    26.791656494,   14.983529091,    4.480569839,\
+    27.358060837,   69.933609009,  -20.000000000 )
+
+ray 2048,1572
+# output final image
+png pymol_data\3wh1_NAG_NAG_NAG_NAG_301_304_FoFc28_skel.png 
+
+run pymol_data\draw_3wh1_bonds.py
+
+set_view (\
+    -0.306814641,    0.728243053,   -0.612798274,\
+    -0.671580791,   -0.621882200,   -0.402781695,\
+    -0.674411178,    0.287965089,    0.679877937,\
+     0.000334128,    0.000001743,  -48.634334564,\
+    26.791656494,   14.983529091,    4.480569839,\
+    27.358060837,   69.933609009,  -20.000000000 )
+
+ray 2048,1572
+# output final image
+png pymol_data\3wh1_NAG_NAG_NAG_NAG_301_304_FoFc28_skel_bonds.png 

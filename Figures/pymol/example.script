@@ -1,0 +1,84 @@
+
+load 1a28.pdb, data
+load 1a28_2FoFc.cover.ccp4, map2fofc
+load 1a28_FoFc.cover.ccp4, mapfofc
+
+
+select mole, chain A and resi 1
+symexp sym, data, (mole), 4
+
+zoom mole
+orient mole
+set field_of_view, 40
+
+set_view (\
+     0.070406578,   -0.757559597,    0.648955524,\
+     0.202831373,    0.647846699,    0.734265327,\
+    -0.976677179,    0.079930373,    0.199271053,\
+     0.000000000,    0.000000000,  -25.501394272,\
+    22.833827972,   10.284043312,   60.212257385,\
+    22.319379807,   28.683416367,  -40.000000000 )
+
+set_view (\
+     0.068256676,   -0.512952745,    0.855698407,\
+     0.357263684,    0.813379765,    0.459091872,\
+    -0.931501150,    0.274372339,    0.238781035,\
+    -0.000000647,    0.000000360,  -17.696163177,\
+    22.801376343,   10.247325897,   60.202293396,\
+    15.587117195,   19.805213928,  -40.000000000 )
+    
+hide everything
+show sticks
+show spheres
+
+#distance (data and resid 57 and chain B and n;OD1), (sym05000000 and resid 90 and chain B and n;ND1)
+#distance (data and resid 57 and chain B and n;OD2), (sym05000000 and resid 90 and chain B and n;ND1)
+
+# increase the sampling rate of the map
+map_double map2fofc, -1    
+map_double mapfofc, -1
+# carve - odleglosc od 
+isomesh mesh2fofc, map2fofc, 1.5, mole, carve=4.7 
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=4.7 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=4.7 
+
+color marine, mesh2fofc  
+color green, meshfofc_plus  
+color red, meshfofc_minus  
+
+# makes meshes thinner for ray-tracing
+set mesh_radius, 0.010
+set mesh_width, 0.12  
+
+set stick_radius, .20
+set sphere_scale, .20
+set sphere_scale, .15, elem H
+set bg_rgb=[1, 1, 1]
+set stick_quality, 50
+set sphere_quality, 4
+
+# 1 - with borders
+set ray_trace_mode, 0 
+set ray_texture, 2
+set antialias, 3
+
+# turns off raytrace fog--optional
+set ray_trace_fog, 0 
+# turns off depth cueing--optional
+set depth_cue, 0 
+# turns off ray-tracing shadows
+set ray_shadows, off 
+
+#set ray_shadow_decay_factor, 0.1
+#set ray_shadow_decay_range, 2
+#set depth_cue, 0
+
+
+ray 2048,1572 
+# output final image
+png figure1.png 
+
+hide mole
+ray 2048,1572
+# output final image
+png figure2.png
