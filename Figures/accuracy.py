@@ -3,6 +3,8 @@ import os
 
 import numpy as np
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
+
 from matplotlib.ticker import FixedLocator, FixedFormatter
 
 import pandas as pd
@@ -151,7 +153,8 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
         ax.set_xlim(low[column]-1.5*step[column], high[column]+1.5*step[column])
     else:
         ax.set_xlim(low[column]-1.0*step[column], high[column]+2.0*step[column])
-
+    ax.set_ylim(0, 1)
+    
     xticks= np.arange(low[column]-1*step[column], high[column]+1*step[column]+0.0001, step[column])
     xticks_names = list(xticks)
     
