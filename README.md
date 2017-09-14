@@ -152,20 +152,41 @@ The experiments can be reproduced simply by running the
 To recreate the experimental data sets (CMB, TAMC, CL) the
 `all_summary.csv` data set along with validation data sets (
 `non_xray_pdbs.csv`, `twilight-2017-01-11`, `validation_all.csv`) have
+to be present in the `CheckMyBlob/Data/` folder. Once all the source
+data are available, run the following command:
+```
+python run_experiments.py -c
+```
+
+As a result, `*.pkl` and `*.csv` files will appear in the
+`CheckMyBlob/Data/` folder.
 
 ### Evaluating selected classifiers
 
 To evaluate the classifiers (k-NN, Random Forest, Gradient Boosting
-Machines, Stacking):
+Machines, Stacking) with pre-tuned parameters, simply run:
 ```
 python run_experiments.py -e
 ```
 
+By default, experimental results (predictions, feature importance,
+confusion matrices, summaries) will appear in the
+`CheckMyBlob/Classification/ExperimentResults/` folder. The main
+summaries can be found in the `ExperimentResults.csv` file in the
+aforementioned folder.
+
 ### Classifier tuning
 
-Beware, this can take weeks:
+To re-run parameter tuning, run the following command:
 ```
 python run_experiments.py -m
+```
+Beware, this can take weeks.
+
+Additionally, early stopping was used to determine the number of trees
+to use in Gradient Boosting Machines. To re-run early stopping, type:
+```
+python run_experiments.py -s
 ```
 
 ## Contact
