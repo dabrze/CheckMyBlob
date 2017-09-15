@@ -217,6 +217,11 @@ The results can be easily uploaded to the AMI by updating the
 repository on the machine by running `git pull` in the `CheckMyBlob/`
 folder.
 
+Figures depicting ligands can be reproduced using
+[PyMOL](https://pymol.org/). The data and scripts required to 
+reproduce these images are available in the 
+`CheckMyBlob/Figures/pymol` directory.
+
 ## Contact
 
 If you have trouble reproducing the experiments or have any
