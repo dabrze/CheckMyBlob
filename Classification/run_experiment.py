@@ -35,6 +35,7 @@ DATASET_PATH = os.path.join(DATA_FOLDER, "all_summary.csv")
 VALIDATION_DATASET_PATH = os.path.join(DATA_FOLDER, "validation_all.csv")
 NONXRAY_LIST_PATH = os.path.join(DATA_FOLDER, "non_xray_pdbs.csv")
 TWIGHLIGHT_PATH = os.path.join(DATA_FOLDER, "twilight-2017-01-11.tsv")
+EDSTATS_DATASET_PATH = os.path.join(DATA_FOLDER, "edstats_all.csv")
 CMB_PATH = os.path.join(DATA_FOLDER, "cmb.pkl")
 TERWILLIGER_PATH = os.path.join(DATA_FOLDER, "tamc.pkl")
 CAROLAN_PATH = os.path.join(DATA_FOLDER, "cl.pkl")
@@ -94,6 +95,9 @@ def get_cmb_data():
         select_attributes=SELECTION + [CLASS_ATTRIBUTE],
         resolution_range=(0.0, 4.0),
         non_xray_pdb_list=NONXRAY_LIST_PATH,
+        edstats_data=EDSTATS_DATASET_PATH,
+        min_ZOa=1,
+        max_ZDa=6
     )
 
     return training_data

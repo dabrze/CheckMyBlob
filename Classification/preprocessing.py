@@ -193,7 +193,7 @@ class DatasetCleaner:
                  blob_coverage_threshold=0.1, res_coverage_threshold=0.2, twilight_data=None, combine_ligands=True,
                  remove_symmetry_ligands=True, ligand_selection=None, discretize_add_noise=False,
                  discretize_round_noise=False, min_electron_pct=0.5, nonH_atom_range=None, resolution_range=(0,4),
-                 non_xray_pdb_list=None):
+                 non_xray_pdb_list=None, edstats_data=None, min_ZOa=None, max_ZDa=None):
         """
         Initializes a new preprocessor object with the specified settings.
         """
@@ -227,6 +227,9 @@ class DatasetCleaner:
         self.nonH_atom_range = nonH_atom_range
         self.resolution_range = resolution_range
         self.non_xray_pdb_list = non_xray_pdb_list
+        self.edstats_data = edstats_data
+        self.min_ZOa = min_ZOa
+        self.max_ZDa = max_ZDa
 
         self.clean()
 
@@ -562,6 +565,26 @@ class DatasetCleaner:
                                  os.path.basename(self.twilight_data))
                     self.data_frame = self.data_frame[~self.data_frame.title.isin(poor_quality.title)]
 
+            if self.edstats_data is not None:
+                edstats_df = read_edstats_data(self.edstats_data)
+                edstats_df = edstats_df.drop_duplicates(subset="title", keep=False)
+
+                joined_data = self.data_frame.merge(edstats_df, on="title", how="left")
+                poor_ZOa = joined_data.ZOa < self.min_ZOa
+                poor_ZDa = joined_data.ZDa >= self.max_ZDa
+                poor_quality = joined_data[poor_ZOa | poor_ZDa]
+
+                poor_ZOa_num = np.sum(poor_ZOa)
+                poor_ZDa_num = np.sum(poor_ZDa)
+                poor_quality_num = poor_quality.shape[0]
+
+                if poor_quality_num > 0:
+                    logging.info("Removing %d examples with ZOa < %s (%d) "
+                                 "or ZDa >= %s (%d)",
+                                 poor_quality_num, self.min_ZOa, poor_ZOa_num,
+                                 self.max_ZDa, poor_ZDa_num)
+                    self.data_frame = self.data_frame[~self.data_frame.title.isin(poor_quality.title)]
+
         # minimal number of examples/maximum number of classes
         if min_examples_per_class is not None:
             logging.info("Limiting dataset to classes with at least %d examples", min_examples_per_class)
@@ -720,6 +743,14 @@ def read_twilight_data(path):
     twilight_data.loc[:, "res_id"] = twilight_data.ResNr.str[1:].str.strip()
     twilight_data.loc[:, "title"] = twilight_data.PDBID.str.cat([twilight_data.LigNm, twilight_data.res_id,
                                                                  twilight_data.chain_id], sep=" ")
+
+    return twilight_data
+
+
+def read_edstats_data(path):
+    twilight_data = pd.read_csv(path, sep=",", header=0, na_values=["n/a"],
+                                keep_default_na=False, engine="c",
+                                low_memory=False)
 
     return twilight_data
 
