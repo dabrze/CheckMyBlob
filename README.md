@@ -89,7 +89,7 @@ resolution. Entries with R factor above 0.3 or
 ligands below 0.3 occupancy (according to wwPDB validation reports)
 were rejected. Only ligands with at least 2 non-H atoms were
 considered and structures with low ligand
-map correlation coefficients (RSCC < 0.6) were removed. Apart from
+map correlation coefficients (RSCC < 0.6, RSZO <= 1, RSZD > 6.0) were removed. Apart from
 taking into account quality factors, we removed from the experimental
 data set all moieties that are not considered proper ligands.
 These included: unknown species, water molecules, standard amino acids,
