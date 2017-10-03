@@ -15,7 +15,7 @@ To re-run the final experiments simply on the prepared AMI:
 1. Request a machine on [Amazon](https://aws.amazon.com/console/)
 (we used an r4.8xlarge),
 2. While searching for the AMI, use the following AMI ID
-`ami-27103242` or lookup CheckMyBlob
+`ami-8fe5c8ea` or lookup CheckMyBlob AMI
 
 3. Log in to the instance,
 4. Go to the `Classification` directory:
