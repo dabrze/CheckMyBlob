@@ -1,0 +1,105 @@
+#https://pymolwiki.org/index.php/PLoS
+#https://pymolwiki.org/index.php/Color_Values#greens
+
+load pymol_data\4rk3_TRS.pdb, data
+load pymol_data\4rk3_2FoFc.cover.ccp4, map2fofc
+load pymol_data\4rk3_FoFc.cover.ccp4, mapfofc
+
+   
+select mole, chain B and resi 1
+symexp sym, data, (mole), 4
+
+zoom mole
+orient mole
+set field_of_view, 40
+
+
+hide everything
+show sticks
+show spheres
+
+# hide mainchain
+hide sticks, data and chain A and resi 1-400
+hide spheres, data and chain A and resi 1-400
+hide sticks, data and chain A and resi 402-1320
+hide spheres, data and chain A and resi 402-1320
+
+hide spheres, data and not (chain B and resi 1)
+
+# carbon color white/grey 
+#util.cbaw
+# carbon color yellow 
+util.cbay
+
+
+# increase the sampling rate of the map
+map_double map2fofc, -1    
+map_double mapfofc, -1
+
+# carve - odleglosc od 
+#isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
+#color marine, mesh2fofc 
+
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.8 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=2.2 
+
+color lime, meshfofc_plus  
+color red, meshfofc_minus  
+
+# makes meshes thinner for ray-tracing
+#set mesh_radius, 0.010
+#set mesh_width, 0.12  
+set mesh_radius, 0.008
+set mesh_width, 0.12  
+
+# default bond and stick
+#set stick_radius, .20
+#set sphere_scale, .20
+#set sphere_scale, .15, elem H
+
+# try for mesh
+set stick_radius, .14
+set sphere_scale, .14
+set sphere_scale, .08, elem H
+
+set bg_rgb=[1, 1, 1]
+set stick_quality, 50
+set sphere_quality, 4
+
+# 1 - with borders
+set ray_trace_mode, 0 
+set ray_texture, 2
+set antialias, 3
+
+# turns off raytrace fog--optional
+set ray_trace_fog, 0 
+# turns off depth cueing--optional
+set depth_cue, 0 
+# turns off ray-tracing shadows
+set ray_shadows, off 
+
+#set ray_shadow_decay_factor, 0.1
+#set ray_shadow_decay_range, 2
+#set depth_cue, 0
+
+# higher values of direct will lighten the image
+set direct =0.5
+
+hide labels
+
+set_view (\
+     0.542954147,    0.434956819,    0.718330681,\
+    -0.834001780,    0.179315403,    0.521807373,\
+     0.098157234,   -0.882411718,    0.460113108,\
+    -0.000127161,    0.000377935,   -8.153386116,\
+    28.098510742,   24.923751831,   57.448261261,\
+     5.085862160,   11.085860252,  -40.000000000 )
+
+#ray 2048,1572 
+# output final image
+#png pymol_data\4rk3_A_TRS_401_2.png 
+
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.1 
+ray 2048,1572 
+# output final image
+png pymol_data\4rk3_A_TRS_401_2_red11.png 
