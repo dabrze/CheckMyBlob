@@ -27,9 +27,9 @@ hide spheres, data and chain A and resi 402-1320
 hide spheres, data and not (chain B and resi 1)
 
 # carbon color white/grey 
-#util.cbaw
+util.cbaw
 # carbon color yellow 
-util.cbay
+#util.cbay
 
 
 # increase the sampling rate of the map
@@ -86,6 +86,7 @@ set ray_shadows, off
 set direct =0.5
 
 hide labels
+
 
 set_view (\
      0.542954147,    0.434956819,    0.718330681,\
