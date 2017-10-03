@@ -1,5 +1,5 @@
 
-for x in "3wh1" "4b9a" "4j4z" "4y1u" "4iun" "3mb5" "1ogv" "5n0h"; do
+for x in "3wh1" "4b9a" "4j4z" "4y1u" "4iun" "3mb5" "1ogv" "5n0h" "4rk3" "2pdt"; do
 echo "Run $x"
 pdb="$x.pdb"
 mtz="$x""_refmac.mtz"
