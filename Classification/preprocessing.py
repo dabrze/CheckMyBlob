@@ -466,8 +466,8 @@ class DatasetCleaner:
         if nonH_atom_range is not None:
             min_atoms = nonH_atom_range[0]
             max_atoms = nonH_atom_range[1]
-            poor_atom_count = (self.data_frame.local_res_atom_non_h_count < min_atoms) | \
-                              (self.data_frame.local_res_atom_non_h_count > max_atoms)
+            poor_atom_count = (self.data_frame.dict_atom_non_h_count < min_atoms) | \
+                              (self.data_frame.dict_atom_non_h_count > max_atoms)
             poor_atom_count_num = np.sum(poor_atom_count)
 
             if poor_atom_count_num > 0:
@@ -501,9 +501,7 @@ class DatasetCleaner:
         self.data_frame = self.data_frame[~ignored_ligands]
 
         if self.combine_ligands:
-            self.data_frame.loc[:, self.class_attribute] = self.data_frame.res_coverage.str[1:-1].apply(
-                lambda x: self._detect_polyligand(x)
-            )
+            self.data_frame.loc[:, self.class_attribute] = self.data_frame.apply(self._detect_polyligand, axis=1)
 
         if self.remove_symmetry_ligands:
             self.data_frame.loc[:, "is_symmetry_ligand"] = self.data_frame.res_coverage.str[1:-1].apply(
@@ -680,8 +678,10 @@ class DatasetCleaner:
         return len(new_res_dict) == 1 and len(res_coverage_dict) > 1
 
     @staticmethod
-    def _detect_polyligand(res_coverage_col, coverage_threshold=POLY_THRESHOLD, ignored_res=IGNORED_RES_NAMES):
-        from operator import itemgetter
+    def _detect_polyligand(row, coverage_threshold=POLY_THRESHOLD,
+                           ignored_res=IGNORED_RES_NAMES):
+        res_coverage_col = row["res_coverage"][1:-1]
+        res_name = row["res_name"]
 
         res_coverage_dict = DatasetCleaner._combine_symmetries(json.loads(res_coverage_col))
         sorted_keys = sorted(((k.split(":")[0], v) for k, v in res_coverage_dict.items()
@@ -690,12 +690,10 @@ class DatasetCleaner:
         if len(sorted_keys) == 1:
             return sorted_keys[0][0]
         else:
-            res_name = "_".join((k for k, v in sorted_keys if v >= coverage_threshold))
+            new_res_name = "_".join((k for k, v in sorted_keys if (v >=
+                                  coverage_threshold or k == res_name)))
 
-            if res_name == "":
-                res_name = max(sorted_keys, key=itemgetter(1))[0]
-
-            return res_name
+            return new_res_name
 
 
 def read_dataset(path):
