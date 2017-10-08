@@ -501,7 +501,17 @@ class DatasetCleaner:
         self.data_frame = self.data_frame[~ignored_ligands]
 
         if self.combine_ligands:
-            self.data_frame.loc[:, self.class_attribute] = self.data_frame.apply(self._detect_polyligand, axis=1)
+            logging.info("Creating ligand complexes")
+            res_names = self.data_frame.loc[:, self.class_attribute].unique()
+            self.data_frame.loc[:, self.class_attribute] = self.data_frame.apply(self._detect_polyligand, axis=1,
+                                                                                 args=(res_names, self.POLY_THRESHOLD,
+                                                                                       self.IGNORED_RES_NAMES))
+            mislabeled_ligands = self.data_frame[self.class_attribute] == "_DELETE_"
+            mislabeled_ligands_num = np.sum(mislabeled_ligands)
+
+            if mislabeled_ligands_num > 0:
+                logging.info("Removing %d poorly covered ligand complexes", mislabeled_ligands_num)
+                self.data_frame = self.data_frame.drop(self.data_frame[mislabeled_ligands].index)
 
         if self.remove_symmetry_ligands:
             self.data_frame.loc[:, "is_symmetry_ligand"] = self.data_frame.res_coverage.str[1:-1].apply(
@@ -678,10 +688,10 @@ class DatasetCleaner:
         return len(new_res_dict) == 1 and len(res_coverage_dict) > 1
 
     @staticmethod
-    def _detect_polyligand(row, coverage_threshold=POLY_THRESHOLD,
-                           ignored_res=IGNORED_RES_NAMES):
+    def _detect_polyligand(row, res_names, coverage_threshold, ignored_res):
+        from operator import itemgetter
+
         res_coverage_col = row["res_coverage"][1:-1]
-        res_name = row["res_name"]
 
         res_coverage_dict = DatasetCleaner._combine_symmetries(json.loads(res_coverage_col))
         sorted_keys = sorted(((k.split(":")[0], v) for k, v in res_coverage_dict.items()
@@ -690,8 +700,13 @@ class DatasetCleaner:
         if len(sorted_keys) == 1:
             return sorted_keys[0][0]
         else:
-            new_res_name = "_".join((k for k, v in sorted_keys if (v >=
-                                  coverage_threshold or k == res_name)))
+            new_res_name = "_".join((k for k, v in sorted_keys if (v >= coverage_threshold)))
+
+            if new_res_name == "":
+                new_res_name = max(sorted_keys, key=itemgetter(1))[0]
+
+            if "_" not in new_res_name and new_res_name not in res_names:
+                new_res_name = "_DELETE_"
 
             return new_res_name
 

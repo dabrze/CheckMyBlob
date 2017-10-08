@@ -189,26 +189,26 @@ def create_datasets():
 knn = KNeighborsClassifier(n_jobs=CLF_CPUS, n_neighbors=50, weights="distance", p=1)
 rf = RandomForestClassifier(random_state=SEED, n_jobs=CLF_CPUS, n_estimators=150, class_weight=None, max_features=0.4)
 lgbm_cmb = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
-                   n_estimators=280, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
+                   n_estimators=278, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
                    colsample_bytree=0.85, scale_pos_weight=1, silent=True)
 stacker_cmb = StackingCVClassifier(classifiers=[rf, knn, lgbm_cmb], use_probas=True, random_state=SEED, n_folds=5,
                                    use_features_in_secondary=True,
                                    meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
                                                                              nthread=CLF_CPUS, num_leaves=128,
-                                                                             learning_rate=0.05, n_estimators=280,
+                                                                             learning_rate=0.05, n_estimators=278,
                                                                              min_child_weight=13, min_child_samples=1,
                                                                              min_split_gain=0, subsample=1,
                                                                              colsample_bytree=0.85, scale_pos_weight=1,
                                                                              silent=True))
 lgbm_tamc = lgb.LGBMClassifier(objective="multiclass", seed=SEED, nthread=CLF_CPUS, num_leaves=128, learning_rate=0.05,
-                   n_estimators=270, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
+                   n_estimators=267, min_child_weight=13, min_child_samples=1, min_split_gain=0, subsample=1,
                    colsample_bytree=0.85, scale_pos_weight=1, silent=True)
 stacker_tamc = StackingCVClassifier(classifiers=[rf, knn, lgbm_tamc],
                                     use_probas=True, random_state=SEED, n_folds=5,
                                     use_features_in_secondary=True,
                                     meta_classifier=lgb.LGBMClassifier(objective="multiclass", seed=SEED,
                                                                              nthread=CLF_CPUS, num_leaves=128,
-                                                                             learning_rate=0.05, n_estimators=270,
+                                                                             learning_rate=0.05, n_estimators=267,
                                                                              min_child_weight=13, min_child_samples=1,
                                                                              min_split_gain=0, subsample=1,
                                                                              colsample_bytree=0.85, scale_pos_weight=1,

@@ -98,8 +98,8 @@ naming convention in the PDB)
 were labeled as alphabetically ordered strings of hetero-compound codes
 (e.g., NAG-NAG-NAG-NAG). Finally, the data set was limited
 to 200 most popular ligands. The resulting data set consisted of
-219,428 examples with individual ligand counts ranging from
-48,449 examples for SO4 (sulfate ion) to 107 for A2G
+219,986 examples with individual ligand counts ranging from
+48,490 examples for SO4 (sulfate ion) to 106 for A2G
 (n-acetyl-2-deoxy-2-amino-galactose). More details concerning data
 selection can be found in the paper of Kowiel *et al.*
 
@@ -119,10 +119,10 @@ non-H atoms. Connected PDB ligands were labeled as single
 alphabetically ordered strings of hetero-compound codes, whereas
 unknown species, water molecules, standard amino acids, and nucleotides
 were excluded. Finally, the data set was limited to 200 most
-popular ligands. The resulting data set consisted of 161,190
-examples with individual ligand counts ranging from 36,421
-examples for GOL (glycerol) to 115 for 3DR
-(1',2'-dideoxyribofuranose-5'-phosphate).
+popular ligands. The resulting data set consisted of 161,758
+examples with individual ligand counts ranging from 36,535
+examples for GOL (glycerol) to 114 for LMG
+(1,2-distearoyl-monogalactosyl-diglyceride).
 The `tamc.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
