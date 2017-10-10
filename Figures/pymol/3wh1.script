@@ -10,7 +10,7 @@ symexp sym, data, (mole), 4
 
 zoom mole
 orient mole
-set field_of_view, 40
+set field_of_view, 20
 
 set_view (\
     -0.306814641,    0.728243053,   -0.612798274,\
