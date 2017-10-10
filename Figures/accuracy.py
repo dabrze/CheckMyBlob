@@ -192,7 +192,7 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
 
     #ax.set_yticks(np.arange(0.0, 0.801, step[column]))
 
-    plt.legend([p_cmb, p_tamc, p_cl], ['CMB', 'TAMC', 'CL'])
+    plt.legend([p_cmb, p_tamc, p_cl], ['Stacking on $\it{CMB}$ dataset', 'Stacking on $\it{TAMC}$ dataset', 'Stacking on $\it{CL}$ dataset'])
 
     plt.tight_layout()
     fig.savefig('accuracy_vs_%s.png' % column, dpi=300)

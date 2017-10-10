@@ -162,7 +162,7 @@ ax.set_yticklabels(names, rotation=0)
 plt.xlabel('Feature importance')
 #plt.ylabel('Feature')
 
-plt.legend([p1, p2], ['Designed for CheckMyBlob', 'Used in previous studies'])
+plt.legend([p1, p2], ['Designed for CheckMyBlob', 'Also used in previous studies'])
 
 plt.tight_layout()
 fig_name = 'importances_cmb_gbm.png'
