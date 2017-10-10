@@ -165,6 +165,12 @@ plt.xlabel('Feature importance')
 plt.legend([p1, p2], ['Designed for CheckMyBlob', 'Also used in previous studies'])
 
 plt.tight_layout()
-fig_name = 'importances_cmb_gbm.png'
-
+fig_name = 'Fig3.png'
 fig.savefig(fig_name, dpi=300)
+
+fig_name = 'Fig3.svg'
+fig.savefig(fig_name, dpi=300)
+
+fig_name = 'Fig3.eps'
+fig.savefig(fig_name, rasterize=False, dpi=300)
+
