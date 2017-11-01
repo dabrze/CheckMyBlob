@@ -15,7 +15,7 @@ To re-run the final experiments simply on the prepared AMI:
 1. Request a machine on [Amazon](https://aws.amazon.com/console/)
 (we used an r4.8xlarge),
 2. While searching for the AMI, use the following AMI ID
-`ami-c8be93ad` or lookup CheckMyBlob AMI
+`ami-c8be93ad` or lookup CheckMyBlob AMI in the `us-east-2` (Ohio) region
 
 3. Log in to the instance,
 4. Go to the `Classification` directory:
@@ -33,8 +33,8 @@ through a terminal multiplexer, like
 
 The machine is setup to run the experiments out of the box. However,
 other tasks, such as recreating data sets or parameter tuning, can also
-be performed on the the machine, although additional files may need
-to be downloaded as described below.
+be performed on the machine, although additional files may need
+to be downloaded, as described below.
 
 ## Requirements
 
@@ -193,7 +193,7 @@ python run_experiments.py -s
 
 ## Detailed results
 
-The repository contains all the experimental results reported in the
+This repository contains all the experimental results reported in the
 Kowiel *et al.* paper in the `CheckMyBlob/Results/` folder. The source
 of Table 1 can be found in `Summary.xlsx`.
 
