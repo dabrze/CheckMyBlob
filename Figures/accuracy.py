@@ -114,6 +114,7 @@ def get_stats(directory, wildcard, group_by_column='resolution', low=1.0, high=4
     print stats
     return stats
 
+filename = {'resolution': 'Fig4_a.png', 'rscc': 'Fig4_b.png', 'non_h_atoms': 'Fig4_c.png'}
 low = {'resolution': 1.0, 'rscc':0.7, 'non_h_atoms': 5}
 high = {'resolution': 4.0, 'rscc':0.9, 'non_h_atoms': 50}
 step ={'resolution': 0.1, 'rscc':0.1, 'non_h_atoms': 5}
@@ -192,7 +193,9 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
 
     #ax.set_yticks(np.arange(0.0, 0.801, step[column]))
 
-    plt.legend([p_cmb, p_tamc, p_cl], ['CMB', 'TAMC', 'CL'])
+    plt.legend([p_cmb, p_tamc, p_cl], ['Stacking on $\it{CMB}$ dataset', 'Stacking on $\it{TAMC}$ dataset', 'Stacking on $\it{CL}$ dataset'])
 
     plt.tight_layout()
-    fig.savefig('accuracy_vs_%s.png' % column, dpi=300)
+    fig.savefig(filename[column], dpi=300)
+    fig.savefig(filename[column].replace('png', 'svg'), dpi=300)
+    fig.savefig(filename[column].replace('png', 'eps'), rasterize=False, dpi=300)

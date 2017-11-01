@@ -19,7 +19,7 @@ data_cmb = util.DatasetStatistics(cmb_model.data_frame, cmb_model.data_frame.loc
 data_tamc = util.DatasetStatistics(tamc_model.data_frame, tamc_model.data_frame.loc[:, cmb_model.class_attribute]).classes.to_dict()
 data_cl = util.DatasetStatistics(cl_model.data_frame, cl_model.data_frame.loc[:, cmb_model.class_attribute]).classes.to_dict()
 
-filenames = ['labels_cmb2.png', 'labels_tamc.png', 'labels_cl.png']
+filenames = ['SFig2_a.png', 'SFig2_b.png', 'SFig2_c.png']
 datasets =  [data_cmb, data_tamc, data_cl]
 colors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 y_ranges = [55000, 40000, 45000]
@@ -64,3 +64,5 @@ for filename, data, color in zip(filenames, datasets, colors):
     # or 
     #plt.tight_layout()
     fig.savefig(filename, dpi=300)
+    fig.savefig(filename.replace('png', 'svg'), dpi=300)
+    fig.savefig(filename.replace('png', 'svg'), rasterize=False, dpi=300)
