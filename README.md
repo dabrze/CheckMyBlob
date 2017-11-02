@@ -126,7 +126,7 @@ examples for GOL (glycerol) to 114 for LMG
 The `tamc.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
-[tamc.csv](https://zenodo.org/record/1040851/files/tamc.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040851.svg)](https://doi.org/10.5281/zenodo.1040851)
+<a href="https://zenodo.org/record/1040851/files/tamc.csv" style="vertical-align: text-bottom">tamc.csv</a> [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040851.svg)](https://doi.org/10.5281/zenodo.1040851)
 
 ### CL
 
