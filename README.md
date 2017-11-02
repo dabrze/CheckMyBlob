@@ -70,7 +70,7 @@ The "master" data set containing all ligands queried and detected as
 described in the Kowiel et al. paper "Automatic recognition of ligands
 in electron density by machine learning methods" can be downloaded from:
 
-[all_summary.7z](https://zenodo.org/record/1040778/files/all_summary.7z) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040778.svg)](https://doi.org/10.5281/zenodo.1040778)
+[all_summary.7z](https://zenodo.org/record/1040778/files/all_summary.7z) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040778.svg | vertical-align=text-bottom)](https://doi.org/10.5281/zenodo.1040778)
 
 The file is compressed using 7zip to allow for faster downloads. The
 compressed file weighs around 1.1 GB, whereas the uncompressed CSV will
@@ -107,7 +107,7 @@ selection can be found in the paper of Kowiel *et al.*
 The `cmb.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
-[cmb.csv](https://zenodo.org/record/1040843/files/cmb.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040843.svg)](https://doi.org/10.5281/zenodo.1040843)
+[cmb.csv](https://zenodo.org/record/1040843/files/cmb.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040843.svg | vertical-align=text-bottom)](https://doi.org/10.5281/zenodo.1040843)
 
 ### TAMC
 
@@ -126,7 +126,7 @@ examples for GOL (glycerol) to 114 for LMG
 The `tamc.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
-[tamc.csv](https://zenodo.org/record/1040851/files/tamc.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040851.svg)](https://doi.org/10.5281/zenodo.1040851)
+[tamc.csv](https://zenodo.org/record/1040851/files/tamc.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040851.svg | vertical-align=text-bottom)](https://doi.org/10.5281/zenodo.1040851)
 
 ### CL
 
@@ -142,7 +142,7 @@ ligand counts ranging from 42,622 examples for SO4 to 16 for
 SPO (spheroidene). The `cl.pkl` file is included int he repository. The
 csv version of the data set can be downloaded using the link below:
 
-[cl.csv](https://zenodo.org/record/1040857/files/cl.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040857.svg)](https://doi.org/10.5281/zenodo.1040857)
+[cl.csv](https://zenodo.org/record/1040857/files/cl.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040857.svg | vertical-align=text-bottom)](https://doi.org/10.5281/zenodo.1040857)
 
 ## Running the experiments
 
