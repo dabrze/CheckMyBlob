@@ -80,6 +80,26 @@ compressed file weighs around 1.1 GB, whereas the uncompressed CSV will
  (e.g. ligand subsets of your choice), or on its own a as source of
  knowledge about all ligands that CheckMyBlob was capable of detecting
  automatically on the entire PDB as of May 1st, 2017.
+ 
+ For machine learning applications, please read the code in
+ `run_experiments.py` and `preprocessing.py`, to see examples describing how
+ to preprocess the data. In particular, the following attributes should not be used during model training or testing: "pdb_code", "res_id", "chain_id",
+ "local_res_atom_count", "local_res_atom_non_h_count",
+ "local_res_atom_non_h_occupancy_sum", "local_res_atom_non_h_electron_sum",
+ "local_res_atom_non_h_electron_occupancy_sum", "local_res_atom_C_count",
+ "local_res_atom_N_count", "local_res_atom_O_count",
+ "local_res_atom_S_count", "dict_atom_non_h_count",
+ "dict_atom_non_h_electron_sum", "dict_atom_C_count", "dict_atom_N_count",
+ "dict_atom_O_count", "dict_atom_S_count", "fo_col", "fc_col", "weight_col",
+ "grid_space", "solvent_radius", "solvent_opening_radius",
+ "part_step_FoFc_std_min", "part_step_FoFc_std_max",
+ "part_step_FoFc_std_step", "local_volume", "res_coverage", "blob_coverage",
+ "blob_volume_coverage", "blob_volume_coverage_second",
+ "res_volume_coverage", "res_volume_coverage_second", "skeleton_data",
+ "resolution_max_limit", "part_step_FoFc_std_min", "part_step_FoFc_std_max",
+ "part_step_FoFc_std_step".
+
+The target attribute for classification is: `res_name`.
 
 ### CMB
 
@@ -103,11 +123,12 @@ to 200 most popular ligands. The resulting data set consisted of
 (n-acetyl-2-deoxy-2-amino-galactose). More details concerning data
 selection can be found in the paper of Kowiel *et al.*
 
-
 The `cmb.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
 [cmb.csv](https://zenodo.org/record/1040843/files/cmb.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040843.svg)](https://doi.org/10.5281/zenodo.1040843)
+
+For machine learning (classification) purposes, the target attribute is: `res_name`.
 
 ### TAMC
 
@@ -128,6 +149,8 @@ csv version of the data set can be downloaded using the link below:
 
 [tamc.csv](https://zenodo.org/record/1040851/files/tamc.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040851.svg)](https://doi.org/10.5281/zenodo.1040851)
 
+For machine learning (classification) purposes, the target attribute is: `res_name`.
+
 ### CL
 
 The CL data set repeats the setup used in the study of Carolan & Lamzin
@@ -143,6 +166,8 @@ SPO (spheroidene). The `cl.pkl` file is included int he repository. The
 csv version of the data set can be downloaded using the link below:
 
 [cl.csv](https://zenodo.org/record/1040857/files/cl.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040857.svg)](https://doi.org/10.5281/zenodo.1040857)
+
+For machine learning (classification) purposes, the target attribute is: `res_name`.
 
 ## Running the experiments
 
