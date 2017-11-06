@@ -54,12 +54,12 @@ $PDB_REPOSITORY/structures/all/pdb
 $PDB_REPOSITORY/structures/all/mmCIF
 $PDB_REPOSITORY/structures/all/structure_factors
 ```
-The naming convention of the files should follow that of the pDB archive, that is:
+The naming convention of the files should follow that of the PDB archive, that is:
  - pdb*xxxx*.ent (PDB files),
  - *xxxx*.cif (mmCIF files),
  - r*xxxx*sf.ent (CIF structure factor files).
 
-7. Edit `config.py` and provide proper paths to the files
+7. Edit `GatherData/config.py` and provide proper paths to the above files
 
 8. If you have downloaded the files from the PDB you can convert the structure
 factors in CIF format (available as rXXXXsf.ent files in the PDB archive) to MTZ format
