@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ARGS=()
+BIN=${1}
+shift
+for var in "$@"; do
+  # Ignore known bad arguments
+  [ "$var" != '-fstack-protector-strong' ] && \
+  [ "$var" != '-Wdate-time' ]  && ARGS+=("$var")
+done
+${BIN} "${ARGS[@]}"
