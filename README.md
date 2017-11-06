@@ -247,6 +247,13 @@ Figures depicting ligands can be reproduced using
 reproduce these images are available in the 
 `CheckMyBlob/Figures/pymol` directory.
 
+## Reproducing PDB file processing
+
+To process PDB files as described in the article, follow the steps described
+in the `GatherData` folder. This requires additional software and fairly
+setup procedures, that is why we also provided the classification ready data sets
+described above.
+
 ## Contact
 
 If you have trouble reproducing the experiments or have any

@@ -1,6 +1,6 @@
 # Calculating the blob features for prediction
 
-To detect blobs in PDB files and calculate their descriptors, follow the steps listed below.
+To remove the non main/side-chain models from PDB files, re-refine them using REFMAC, detect and label blobs, and calculate their descriptors, follow the steps listed below.
 
 1. Install CCP4. Due to the licensing issues, we cannot distribute CCP4 alongside our code; please
 install it manually. You can get CCP4 at http://www.ccp4.ac.uk/download/index.php. In the following
