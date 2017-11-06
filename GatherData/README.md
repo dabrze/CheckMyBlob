@@ -80,6 +80,7 @@ We recommend using GNU parallel for running calculations for multiple files
 ```
 parallel python calculate.py {} < list_of_pdb_codes.txt
 ```
+where `list_of_pdb_codes.txt` is a file with PDB codes, each in a separate line.
 
 10. To convert the processed files to a format suitable for machine learning, run the following command:
 ```
