@@ -6,21 +6,19 @@ To detect blobs in PDB files and calculate their descriptors, follow the steps l
 install it manually. You can get CCP4 at http://www.ccp4.ac.uk/download/index.php. In the following
 steps we will denote the folder CCP4 was installed to as `$PATH_TO_CCP4 `.
 
-1. Go to the `GatherData` directory:
+1. Go to the `GatherData` directory in the CheckMyBlob repository:
 ```
-cd ~/work/CheckMyBlob/GatherData
+cd GatherData
 ```
 
-1. Install required packages using the following command (if you are using Anaconda
-as your python distribution, you can skip this step):
+1. Install required packages using the following command:
 ```
 pip install -r requirements.txt
 ```
 Installation may take a while, because the mmLib is compiling a monomer library
 during install.
-
- >If you skipped above step you will have to install the mmLib library (http://pymmlib.sourceforge.net/) manually.
- >We created a fork that is working with newer numpy and you can download it from here:
+ >If you skipped the above step you will have to install the mmLib library (http://pymmlib.sourceforge.net/) manually.
+ >We created a fork that is working with newer numpy version, which can download it from here:
  >https://github.com/hokinus/mmLib. After downloading and extracting the library into
  >a folder we denote as `$PATH_TO_MMLIB`, run the following commands:
  >```
@@ -28,8 +26,7 @@ during install.
  >python setup.py build
  >python setup.py install
  >```
-
-1. Compile the required libraries. You will need CCP4 to be setup correctly
+1. Compile the required libraries. You will need CCP4 to be set up correctly
 and source it (we assume that you use Bash).
 ```
 . $PATH_TO_CCP4/BINARY.setup
