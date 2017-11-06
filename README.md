@@ -252,7 +252,7 @@ reproduce these images are available in the
 To process PDB files as described in the article, follow the steps described
 in the `GatherData` folder. This requires additional software and a fairly
 complex setup procedure. That is why we also provided the classification ready 
-data sets (all_summary, cmd, cl, tamc) described above.
+data sets (all_summary, cmb, cl, tamc) described above.
 
 ## Contact
 
