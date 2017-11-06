@@ -43,6 +43,7 @@ We assume you have gcc-4.8 and g++ installed.
 # export CC="${PWD}/lib/gcc4_compat_wrapper gcc-4.8"
 cd lib/pyclipper
 python setup.py install
+cd ../../
 ```
 
 6. Download the desired coordinates and structure files from PDB. You can use only part
@@ -75,9 +76,9 @@ python calculate.py xxxx
 ```
 where `xxxx` stands for the selected PDB code.
 
- We recommend using GNU parallel for running calculations for multiple files
+We recommend using GNU parallel for running calculations for multiple files
 ```
-parallel ./calculate {} < list_of_pdb_codes.txt
+parallel python calculate.py {} < list_of_pdb_codes.txt
 ```
 
 10. To convert the processed files to a format suitable for machine learning, run the following command:
