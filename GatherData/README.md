@@ -16,10 +16,10 @@ as your python distribution, you will only need the last library from the list):
 ```
 pip install -r requirements.txt
 ```
-Installation may take a while, because the mmLib is compiling a monomer library
-during install.
- >If you skipped the above step you will have to install the mmLib library (http://pymmlib.sourceforge.net/) manually.
- >We created a fork that is working with newer numpy version, which can download it from here:
+Installation may take a while, because mmLib is compiling a monomer library
+during installation.
+ >If you skipped the above step, you will have to install the mmLib library (http://pymmlib.sourceforge.net/) manually.
+ >We created a fork that is working with newer numpy versions, which  you can download from:
  >https://github.com/hokinus/mmLib. After downloading and extracting the library into
  >a folder we denote as `$PATH_TO_MMLIB`, run the following commands:
  >```
@@ -36,18 +36,18 @@ source $PATH_TO_CCP4/bin/ccp4.setup-sh
 export LD_LIBRARY_PATH=$PATH_TO_CCP4/lib
 ```
 
-5. The code in this repository was tested with CCP4 7.0 and compiled with GCC 4.8. They will not work if compiled with GCC 5.
+5. The code in this repository was tested with CCP4 7.0 and compiled with GCC 4.8. It will not work if compiled with GCC 5.
 We assume you have gcc-4.8 and g++ installed.
 ```
-# Use this if your default compiler is different than GCC 4.8
-# export CC="${PWD}/lib/gcc4_compat_wrapper gcc-4.8"
+# Use the line below if your default compiler is different than GCC 4.8
+export CC="${PWD}/lib/gcc4_compat_wrapper gcc-4.8"
 cd lib/pyclipper
 python setup.py install
 cd ../../
 ```
 
-6. Download the desired coordinates and structure files from PDB. You can use only part
-of the repository, but the software assumes that the directory structure reflects
+6. Download the desired coordinates and structure files from the PDB. You can use only part
+of the repository, but the code assumes that the directory structure reflects
 how data is stored by the PDB. The files should be unzipped and you will have to have
 at least the following directories:
 ```
@@ -60,11 +60,11 @@ The naming convention of the files should follow that of the PDB archive, that i
  - *xxxx*.cif (mmCIF files),
  - r*xxxx*sf.ent (CIF structure factor files).
 
-7. Edit `GatherData/config.py` and provide proper paths to the above files
+7. Edit `config.py` and provide proper paths to the above files.
 
 8. If you have downloaded the files from the PDB you can convert the structure
 factors in CIF format (available as rXXXXsf.ent files in the PDB archive) to MTZ format
-by putting the CIF/ENT file with structure factors in the
+by putting the files with structure factors in the
 `$PDB_REPOSITORY/structures/all/structure_factors` folder and running:
 ```
 python cif2mtz.py
@@ -80,7 +80,7 @@ We recommend using GNU parallel for running calculations for multiple files
 ```
 parallel python calculate.py {} < list_of_pdb_codes.txt
 ```
-where `list_of_pdb_codes.txt` is a file with PDB codes, each in a separate line.
+where `list_of_pdb_codes.txt` is a file with several PDB codes, each in a separate line.
 
 10. To convert the processed files to a format suitable for machine learning, run the following command:
 ```

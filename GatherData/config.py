@@ -12,5 +12,5 @@ cif2mtz_in_dir = os.path.join(pdb_structures_dir, 'structure_factors')
 cif2mtz_out_dir = os.path.join(pdb_structures_dir, 'mtz')
 
 # path to ccp4 setup script
-ccp4_setup_path = '/usr/local/xtalprogs/setup.py'
+ccp4_setup_path = '/home/ubuntu/ccp4-7.0/bin/ccp4.setup-sh'
 
