@@ -6,12 +6,12 @@ To detect blobs in PDB files and calculate their descriptors, follow the steps l
 install it manually. You can get CCP4 at http://www.ccp4.ac.uk/download/index.php. In the following
 steps we will denote the folder CCP4 was installed to as `$PATH_TO_CCP4 `.
 
-1. Go to the `GatherData` directory in the CheckMyBlob repository:
+2. Go to the `GatherData` directory in the CheckMyBlob repository:
 ```
 cd GatherData
 ```
 
-1. Install required packages using the following command (if you are using Anaconda
+3. Install required packages using the following command (if you are using Anaconda
 as your python distribution, you will only need the last library from the list):
 ```
 pip install -r requirements.txt
@@ -27,7 +27,8 @@ during install.
  >python setup.py build
  >python setup.py install
  >```
-1. Compile the required libraries. You will need CCP4 to be set up correctly
+
+4. Compile the required libraries. You will need CCP4 to be set up correctly
 and source it (we assume that you use Bash).
 ```
 sh $PATH_TO_CCP4/BINARY.setup
@@ -35,7 +36,7 @@ source $PATH_TO_CCP4/bin/ccp4.setup-sh
 export LD_LIBRARY_PATH=$PATH_TO_CCP4/lib
 ```
 
-1. The code in this repository was tested with CCP4 7.0 and compiled with GCC 4.8. They will not work if compiled with GCC 5.
+5. The code in this repository was tested with CCP4 7.0 and compiled with GCC 4.8. They will not work if compiled with GCC 5.
 We assume you have gcc-4.8 and g++ installed.
 ```
 # Use this if your default compiler is different than GCC 4.8
@@ -44,7 +45,7 @@ cd lib/pyclipper
 python setup.py install
 ```
 
-1. Download the desired coordinates and structure files from PDB. You can use only part
+6. Download the desired coordinates and structure files from PDB. You can use only part
 of the repository, but the software assumes that the directory structure reflects
 how data is stored by the PDB. The files should be unzipped and you will have to have
 at least the following directories:
@@ -58,9 +59,9 @@ The naming convention of the files should follow that of the pDB archive, that i
  - *xxxx*.cif (mmCIF files),
  - r*xxxx*sf.ent (CIF structure factor files).
 
-1. Edit `config.py` and provide proper paths to the files
+7. Edit `config.py` and provide proper paths to the files
 
-1. If you have downloaded the files from the PDB you can convert the structure
+8. If you have downloaded the files from the PDB you can convert the structure
 factors in CIF format (available as rXXXXsf.ent files in the PDB archive) to MTZ format
 by putting the CIF/ENT file with structure factors in the
 `$PDB_REPOSITORY/structures/all/structure_factors` folder and running:
@@ -68,7 +69,7 @@ by putting the CIF/ENT file with structure factors in the
 python cif2mtz.py
 ```
 
-1. Run calculations for selected pdb files.
+9. Run calculations for selected pdb files.
 ```
 python calculate.py xxxx
 ```
@@ -79,7 +80,7 @@ where `xxxx` stands for the selected PDB code.
 parallel ./calculate {} < list_of_pdb_codes.txt
 ```
 
-1. To convert the processed files to a format suitable for machine learning, run the following command:
+10. To convert the processed files to a format suitable for machine learning, run the following command:
 ```
 python postrun.py
 ```
