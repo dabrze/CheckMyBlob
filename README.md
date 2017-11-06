@@ -2,7 +2,8 @@
 
 Machine learning experiments for the CheckMyBlob ligand identification
 pipeline as described in *"Automatic recognition of ligands in electron
-density by machine learning methods"* by Kowiel, M. *et al.*
+density by machine learning"* by Kowiel, M., Brzezinski, D., Porebski, P.J.,
+Jaskolski, M., and Minor, W.
 
 ## Amazon virtual machine
 
@@ -68,7 +69,7 @@ serialized version (`*.pkl` files). CSV versions of the data sets as
 
 The "master" data set containing all ligands queried and detected as
 described in the Kowiel et al. paper "Automatic recognition of ligands
-in electron density by machine learning methods" can be downloaded from:
+in electron density by machine learning" can be downloaded from:
 
 [all_summary.7z](https://zenodo.org/record/1040778/files/all_summary.7z) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040778.svg)](https://doi.org/10.5281/zenodo.1040778)
 
