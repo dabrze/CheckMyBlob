@@ -11,7 +11,8 @@ steps we will denote the folder CCP4 was installed to as `$PATH_TO_CCP4 `.
 cd GatherData
 ```
 
-1. Install required packages using the following command:
+1. Install required packages using the following command (if you are using Anaconda
+as your python distribution, you will only need the last library from the list):
 ```
 pip install -r requirements.txt
 ```
@@ -29,12 +30,13 @@ during install.
 1. Compile the required libraries. You will need CCP4 to be set up correctly
 and source it (we assume that you use Bash).
 ```
-. $PATH_TO_CCP4/BINARY.setup
+sh $PATH_TO_CCP4/BINARY.setup
 source $PATH_TO_CCP4/bin/ccp4.setup-sh
 export LD_LIBRARY_PATH=$PATH_TO_CCP4/lib
 ```
 
 1. The code in this repository was tested with CCP4 7.0 and compiled with GCC 4.8. They will not work if compiled with GCC 5.
+We assume you have gcc-4.8 and g++ installed.
 ```
 # Use this if your default compiler is different than GCC 4.8
 # export CC="${PWD}/lib/gcc4_compat_wrapper gcc-4.8"
