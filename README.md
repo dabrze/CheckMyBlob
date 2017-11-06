@@ -250,9 +250,9 @@ reproduce these images are available in the
 ## Reproducing PDB file processing
 
 To process PDB files as described in the article, follow the steps described
-in the `GatherData` folder. This requires additional software and fairly
-setup procedures, that is why we also provided the classification ready data sets
-described above.
+in the `GatherData` folder. This requires additional software and a fairly
+complex setup procedure. That is why we also provided the classification ready 
+data sets (all_summary, cmd, cl, tamc) described above.
 
 ## Contact
 
