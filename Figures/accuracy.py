@@ -9,6 +9,24 @@ from matplotlib.ticker import FixedLocator, FixedFormatter
 
 import pandas as pd
 
+SCALE = 1
+#plt.rcParams['font.family'] = 'serif'
+#plt.rcParams['font.serif'] = 'Ubuntu'
+#plt.rcParams['font.monospace'] = 'Ubuntu Mono'
+plt.rcParams['font.size'] = SCALE*6
+plt.rcParams['axes.labelsize'] = SCALE*6
+#plt.rcParams['axes.labelweight'] = 'bold'
+plt.rcParams['axes.titlesize'] = SCALE*7
+plt.rcParams['xtick.labelsize'] = SCALE*5
+plt.rcParams['ytick.labelsize'] = SCALE*5
+plt.rcParams['legend.fontsize'] = SCALE*6
+plt.rcParams['figure.titlesize'] = SCALE*7
+plt.rcParams['lines.markersize'] = 2.0  #6.0
+plt.rcParams['lines.linewidth'] = 0.75
+X_SIZE = SCALE*4.75
+Y_SIZE = SCALE*2
+DPI = 600
+
 def read_file(path, separator=',', index_col=0, dtype={'is_correct': np.bool}):
     print "reading", path
     return pd.read_csv(path, header=0, index_col=index_col, sep=separator, keep_default_na=False, na_values=[''], dtype=dtype)
@@ -125,6 +143,8 @@ digits = {'resolution': 2, 'rscc': 2, 'non_h_atoms': 1}
 bins = {'resolution': None, 'rscc': None, 
         'non_h_atoms': range(low['non_h_atoms']-step['non_h_atoms'], high['non_h_atoms']+3*step['non_h_atoms'],step['non_h_atoms'])}
 
+delete_x_ticks = {'resolution': True, 'rscc': False, 'non_h_atoms': False}
+
 for column in ['resolution', 'rscc', 'non_h_atoms']:
     cmb = get_stats('../Results', 'cmb_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
     tamc = get_stats('../Results', 'tamc_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
@@ -132,7 +152,7 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
 
     colors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 
-    fig = plt.figure(figsize=(16,6))
+    fig = plt.figure(figsize=(X_SIZE, Y_SIZE))
     ax = fig.add_subplot(111)
 
     ax2 = ax.twinx()
@@ -164,19 +184,24 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
     print len(xticks), len(xticks_names), len(xticks_minor)
 
     if bins[column] is not None:
-        xticks_names = [u"(%.1f\u2013%.1f]" % (xt, xt+step[column]) for xt in xticks]
+        xticks_names = [u"(%.0f\u2013%.0f]" % (xt, xt+step[column]) for xt in xticks]
     
     if left_lte[column]:
         xticks_names[0] = u"< %.1f" % (low[column]) #\u2264
         if bins[column] is not None:
-            xticks_names[0] = u"\u2264 %.1f" % (low[column]) #\u2264
+            xticks_names[0] = u"\u2264 %.0f" % (low[column]) #\u2264
     else:
         xticks_names[0] = u"\u2264 %.1f" % (low[column]-step[column]) #\u2264
     
     if right_lte[column]:
         xticks_names[-1] = u"> %.1f" % (high[column]) #\u2265
         if bins[column] is not None:
-            xticks_names[-1] = u"> %.1f" % (high[column]+step[column]) #\u2264
+            xticks_names[-1] = u"> %.0f" % (high[column]+step[column]) #\u2264
+
+    if delete_x_ticks[column]:
+       for i_tick, x_name in enumerate(xticks_names):
+           if i_tick != 0 and i_tick != len(xticks_names)-1 and i_tick % 2 == 1:
+               xticks_names[i_tick] = ''
 
     ax.set_ylabel('Accuracy')
     ax.set_xlabel(column_name[column])
@@ -196,6 +221,6 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
     plt.legend([p_cmb, p_tamc, p_cl], ['Stacking on $\it{CMB}$ dataset', 'Stacking on $\it{TAMC}$ dataset', 'Stacking on $\it{CL}$ dataset'])
 
     plt.tight_layout()
-    fig.savefig(filename[column], dpi=300)
-    fig.savefig(filename[column].replace('png', 'svg'), dpi=300)
-    fig.savefig(filename[column].replace('png', 'eps'), rasterize=False, dpi=300)
+    fig.savefig(filename[column], dpi=DPI)
+    fig.savefig(filename[column].replace('png', 'svg'), dpi=DPI)
+    fig.savefig(filename[column].replace('png', 'eps'), rasterize=False, dpi=DPI)
