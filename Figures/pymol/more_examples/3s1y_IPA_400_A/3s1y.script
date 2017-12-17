@@ -1,0 +1,103 @@
+#https://pymolwiki.org/index.php/PLoS
+#https://pymolwiki.org/index.php/Color_Values#greens
+
+load pymol_data\3s1y_IPA_400_A\3s1y.pdb, data
+load pymol_data\3s1y_IPA_400_A\3s1y_2FoFc.cover.ccp4, map2fofc
+load pymol_data\3s1y_IPA_400_A\3s1y_FoFc.cover.ccp4, mapfofc
+
+   
+select mole, chain A and resi 400
+#symexp sym, data, (mole), 4
+
+zoom mole
+orient mole
+set field_of_view, 40
+
+
+hide everything
+show sticks
+show spheres
+
+# hide mainchain
+hide sticks, data and resi 1-399
+hide spheres, data and resi 1-399
+hide sticks, data and resi 401-9999
+hide spheres, data and resi 401-9999
+
+hide spheres, data and not (chain A and resi 400)
+
+# carbon color white/grey 
+#util.cbaw
+# carbon color yellow 
+util.cbay
+
+
+# increase the sampling rate of the map
+map_double map2fofc, -1    
+map_double mapfofc, -1
+
+# carve - odleglosc od 
+#isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
+#color marine, mesh2fofc 
+
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.8 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=2.2 
+
+color lime, meshfofc_plus  
+color red, meshfofc_minus  
+
+# makes meshes thinner for ray-tracing
+#set mesh_radius, 0.010
+#set mesh_width, 0.12  
+set mesh_radius, 0.008
+set mesh_width, 0.12  
+
+# default bond and stick
+#set stick_radius, .20
+#set sphere_scale, .20
+#set sphere_scale, .15, elem H
+
+# try for mesh
+set stick_radius, .14
+set sphere_scale, .14
+set sphere_scale, .08, elem H
+
+set bg_rgb=[1, 1, 1]
+set stick_quality, 50
+set sphere_quality, 4
+
+# 1 - with borders
+set ray_trace_mode, 0 
+set ray_texture, 2
+set antialias, 3
+
+# turns off raytrace fog--optional
+set ray_trace_fog, 0 
+# turns off depth cueing--optional
+set depth_cue, 0 
+# turns off ray-tracing shadows
+set ray_shadows, off 
+
+#set ray_shadow_decay_factor, 0.1
+#set ray_shadow_decay_range, 2
+#set depth_cue, 0
+
+# higher values of direct will lighten the image
+set direct =0.5
+
+hide labels
+set field_of_view, 10
+set ray_opaque_background, off
+
+set_view (\
+    -0.685040176,   -0.543454170,   -0.485157520,\
+     0.208245650,   -0.784254134,    0.584447503,\
+    -0.698109090,    0.299337208,    0.650417209,\
+    -0.000049160,   -0.000011753,  -21.587903976,\
+    -0.635835648,   14.139426231,   17.870834351,\
+    18.587856293,   24.587854385,  -10.000000000 )
+    
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.1 
+ray 2048,1572 
+# output final image
+png pymol_data\3s1y_IPA_400_A\3s1y_IPA_400_A.png 
