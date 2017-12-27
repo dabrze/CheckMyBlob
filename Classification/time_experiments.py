@@ -6,6 +6,9 @@ import logging
 import subprocess
 import threading
 import time
+import csv
+
+import pandas as pd
 from sklearn.externals import joblib
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
@@ -15,8 +18,7 @@ DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Dat
 RESULTS_FOLDER = os.path.join(os.path.join(os.path.dirname(__file__), '..', 'Results'))
 CAROLAN_PATH = os.path.join(DATA_FOLDER, "cl.pkl")
 MAPS_PATH = os.path.join(DATA_FOLDER, "TimeExperimentMaps")
-COORDINATES_FILE = os.path.join(DATA_FOLDER, "TimeExperimentMaps", "sample.csv")
-RESULTS_PATH = os.path.join(RESULTS_FOLDER, "TimeComparison.csv")
+COORDINATES_FILE = os.path.join(MAPS_PATH, "sample.csv")
 
 
 class Command(object):
@@ -97,15 +99,47 @@ def run_cmb(pdb, timeout):
     return 0
 
 
+def write_result(pdb, method, time, save_to_folder=RESULTS_FOLDER, file_name="TimeComparison.csv"):
+    if not os.path.exists(save_to_folder):
+        os.mkdir(save_to_folder)
+    file_path = os.path.join(save_to_folder, file_name)
+
+    if os.path.isfile(file_path):
+        write_header = False
+        mode = "a"
+    else:
+        write_header = True
+        mode = "w"
+
+    with open(file_path, mode) as f:
+        writer = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC, lineterminator='\n')
+
+        if write_header:
+            header = ["pdb",
+                      "method",
+                      "time"]
+            writer.writerow(header)
+
+        row = [pdb, method, time]
+        writer.writerow(row)
+
+
 def measure_time(pdb, x, y, z, timeout=3600):
-    print(run_warp(pdb, x, y, z, timeout))
-    print(run_phenix(pdb, timeout))
-    print(run_cmb(pdb, timeout))
+    t = run_warp(pdb, x, y, z, timeout)
+    write_result(pdb, "cl", t)
+
+    t = run_phenix(pdb, timeout)
+    write_result(pdb, "tamc", t)
+
+    t = run_cmb(pdb, timeout)
+    write_result(pdb, "cmb", t)
 
 
 if __name__ == '__main__':
     data = joblib.load(CAROLAN_PATH)
-    sample = data.data_frame.sample(n=30, random_state=SEED).index.values
+    sample = data.data_frame.sample(n=30, random_state=SEED).index.str[0:4].values
+    coordinates = pd.read_csv(COORDINATES_FILE, index_col=0)
 
     for pdb in sample:
-        print pdb
+        c = coordinates[coordinates.pdb == pdb]
+        measure_time(pdb, float(c.x), float(c.y), float(c.z))
