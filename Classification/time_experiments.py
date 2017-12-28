@@ -120,8 +120,8 @@ def write_result(pdb, method, time, save_to_folder=RESULTS_FOLDER, file_name="Ti
 
 
 def measure_time(pdb, x, y, z, timeout=3600):
-    # t = run_warp(pdb, x, y, z, timeout)
-    # write_result(pdb, "cl", t)
+    t = run_warp(pdb, x, y, z, timeout)
+    write_result(pdb, "cl", t)
 
     t = run_phenix(pdb, timeout)
     write_result(pdb, "tamc", t)
@@ -138,6 +138,6 @@ if __name__ == '__main__':
     sample = [x for x in sample if x not in warp_errors]
     coordinates = pd.read_csv(COORDINATES_FILE, index_col=0)
 
-    for pdb in ["4rxg"]:
+    for pdb in sample:
         c = coordinates[coordinates.pdb == pdb]
         measure_time(pdb, float(c.x), float(c.y), float(c.z))

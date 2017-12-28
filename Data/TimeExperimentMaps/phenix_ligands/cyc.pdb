@@ -3,131 +3,55 @@ REMARK  99   - a module of PHENIX version 1.12-2829-
 REMARK  99   - file written: Thu Dec 28 12:17:29 2017
 REMARK  99
 FORMUL   1  CYC    C33 N4 O6 
-HETATM    1  CHA CYC A   1      -2.348   0.022  -0.098  1.00 20.00      A    C  
-HETATM    2  N A CYC A   1      -0.444  -1.511  -0.052  1.00 20.00      A    N  
-HETATM    3  C1A CYC A   1      -1.732  -1.233  -0.274  1.00 20.00      A    C  
-HETATM    4  C2A CYC A   1      -2.372  -2.415  -0.717  1.00 20.00      A    C  
-HETATM    5  C3A CYC A   1      -1.422  -3.389  -0.747  1.00 20.00      A    C  
-HETATM    6  C4A CYC A   1      -0.212  -2.795  -0.322  1.00 20.00      A    C  
-HETATM    7  CMA CYC A   1      -1.623  -4.826  -1.154  1.00 20.00      A    C  
-HETATM    8  CAA CYC A   1      -3.825  -2.566  -1.085  1.00 20.00      A    C  
-HETATM    9  CBA CYC A   1      -4.645  -2.838   0.178  1.00 20.00      A    C  
-HETATM   10  CGA CYC A   1      -6.099  -2.989  -0.190  1.00 20.00      A    C  
-HETATM   11  O1A CYC A   1      -6.444  -2.889  -1.344  1.00 20.00      A    O  
-HETATM   12  O2A CYC A   1      -7.011  -3.234   0.764  1.00 20.00      A    O  
-HETATM   13  CHB CYC A   1       1.037  -3.453  -0.205  1.00 20.00      A    C  
-HETATM   14  N B CYC A   1       2.082  -1.543   0.964  1.00 20.00      A    N  
-HETATM   15  C1B CYC A   1       2.083  -2.835   0.445  1.00 20.00      A    C  
-HETATM   16  C2B CYC A   1       3.351  -3.397   0.707  1.00 20.00      A    C  
-HETATM   17  C3B CYC A   1       4.084  -2.460   1.366  1.00 20.00      A    C  
-HETATM   18  C4B CYC A   1       3.286  -1.310   1.520  1.00 20.00      A    C  
-HETATM   19  CMB CYC A   1       3.809  -4.782   0.327  1.00 20.00      A    C  
-HETATM   20  CAB CYC A   1       5.503  -2.623   1.846  1.00 20.00      A    C  
-HETATM   21  CBB CYC A   1       6.465  -2.076   0.789  1.00 20.00      A    C  
-HETATM   22  O B CYC A   1       3.627  -0.275   2.068  1.00 20.00      A    O  
-HETATM   23  N C CYC A   1       2.198   1.441  -1.275  1.00 20.00      A    N  
-HETATM   24  C1C CYC A   1       3.297   1.044  -1.928  1.00 20.00      A    C  
-HETATM   25  C2C CYC A   1       4.486   1.846  -1.450  1.00 20.00      A    C  
-HETATM   26  C3C CYC A   1       3.895   2.797  -0.390  1.00 20.00      A    C  
-HETATM   27  C4C CYC A   1       2.425   2.442  -0.368  1.00 20.00      A    C  
-HETATM   28  CMC CYC A   1       5.535   0.927  -0.820  1.00 20.00      A    C  
-HETATM   29  CAC CYC A   1       4.090   4.255  -0.808  1.00 20.00      A    C  
-HETATM   30  CBC CYC A   1       5.583   4.590  -0.812  1.00 20.00      A    C  
-HETATM   31  O C CYC A   1       3.334   0.174  -2.772  1.00 20.00      A    O  
-HETATM   32  CHD CYC A   1       1.490   3.017   0.415  1.00 20.00      A    C  
-HETATM   33  N D CYC A   1      -0.209   1.258   0.021  1.00 20.00      A    N  
-HETATM   34  C1D CYC A   1       0.171   2.504   0.437  1.00 20.00      A    C  
-HETATM   35  C2D CYC A   1      -0.963   3.184   0.887  1.00 20.00      A    C  
-HETATM   36  C3D CYC A   1      -2.046   2.344   0.744  1.00 20.00      A    C  
-HETATM   37  C4D CYC A   1      -1.578   1.137   0.203  1.00 20.00      A    C  
-HETATM   38  CMD CYC A   1      -0.996   4.588   1.433  1.00 20.00      A    C  
-HETATM   39  CAD CYC A   1      -3.474   2.663   1.105  1.00 20.00      A    C  
-HETATM   40  CBD CYC A   1      -4.178   3.283  -0.104  1.00 20.00      A    C  
-HETATM   41  CGD CYC A   1      -5.606   3.602   0.257  1.00 20.00      A    C  
-HETATM   42  O1D CYC A   1      -6.018   3.360   1.367  1.00 20.00      A    O  
-HETATM   43  O2D CYC A   1      -6.420   4.157  -0.655  1.00 20.00      A    O  
-CONECT    1   37
-CONECT    1    3
-CONECT    1    3
-CONECT    2    3
-CONECT    2    6
-CONECT    2    6
-CONECT    3    2    4
-CONECT    3    1
-CONECT    3    1
-CONECT    4    3    8
-CONECT    4    5
-CONECT    4    5
-CONECT    5    6    7
-CONECT    5    4
-CONECT    5    4
-CONECT    6    5   13
-CONECT    6    2
-CONECT    6    2
-CONECT    7    5
-CONECT    8    4    9
-CONECT    9    8   10
-CONECT   10    9   12
-CONECT   10   11
-CONECT   10   11
-CONECT   11   10
-CONECT   11   10
-CONECT   12   10
-CONECT   13    6
-CONECT   13   15
-CONECT   13   15
-CONECT   14   15   18
-CONECT   15   14   16
-CONECT   15   13
-CONECT   15   13
-CONECT   16   15   19
-CONECT   16   17
-CONECT   16   17
-CONECT   17   18   20
-CONECT   17   16
-CONECT   17   16
-CONECT   18   14   17
-CONECT   18   22
-CONECT   18   22
-CONECT   19   16
-CONECT   20   17   21
-CONECT   21   20
-CONECT   22   18
-CONECT   22   18
-CONECT   23   24   27
-CONECT   24   23   25
-CONECT   24   31
-CONECT   24   31
-CONECT   25   24   26   28
-CONECT   26   25   27   29
-CONECT   27   23   26
-CONECT   27   32
-CONECT   27   32
-CONECT   28   25
-CONECT   29   26   30
-CONECT   30   29
-CONECT   31   24
-CONECT   31   24
-CONECT   32   34
-CONECT   32   27
-CONECT   32   27
-CONECT   33   34   37
-CONECT   34   32
-CONECT   34   33   35
-CONECT   35   38
-CONECT   35   34   36
-CONECT   36   39
-CONECT   36   35   37
-CONECT   37    1
-CONECT   37   33   36
-CONECT   38   35
-CONECT   39   36   40
-CONECT   40   39   41
-CONECT   41   40   43
-CONECT   41   42
-CONECT   41   42
-CONECT   42   41
-CONECT   42   41
-CONECT   43   41
+CRYST1  186.807  186.807   59.822  90.00  90.00 120.00 H 3 2     
+ORIGX1      1.000000  0.000000  0.000000        0.00000
+ORIGX2      0.000000  1.000000  0.000000        0.00000
+ORIGX3      0.000000  0.000000  1.000000        0.00000
+SCALE1      0.005353  0.003091  0.000000        0.00000
+SCALE2      0.000000  0.006181  0.000000        0.00000
+SCALE3      0.000000  0.000000  0.016716        0.00000
+ATOM   2517  CHA CYC A 484      21.911 -32.507  16.887  1.00 11.98           C  
+ATOM   2518  NA  CYC A 484      22.796 -30.335  17.589  1.00 11.23           N  
+ATOM   2519  C1A CYC A 484      21.868 -31.161  17.030  1.00 11.30           C  
+ATOM   2520  C2A CYC A 484      20.742 -30.369  16.523  1.00 12.51           C  
+ATOM   2521  C3A CYC A 484      21.104 -29.029  16.865  1.00 12.58           C  
+ATOM   2522  C4A CYC A 484      22.405 -29.037  17.524  1.00 12.12           C  
+ATOM   2523  CMA CYC A 484      20.236 -27.840  16.559  1.00 13.90           C  
+ATOM   2524  CAA CYC A 484      19.507 -30.873  15.824  1.00 14.42           C  
+ATOM   2525  CBA CYC A 484      19.332 -30.469  14.432  1.00 14.97           C  
+ATOM   2526  CGA CYC A 484      20.473 -31.041  13.645  1.00 14.76           C  
+ATOM   2527  O1A CYC A 484      21.324 -30.208  13.301  1.00 16.95           O  
+ATOM   2528  O2A CYC A 484      20.524 -32.261  13.380  1.00 15.98           O  
+ATOM   2529  CHB CYC A 484      23.234 -27.940  18.054  1.00 12.19           C  
+ATOM   2530  NB  CYC A 484      22.734 -26.239  16.436  1.00 13.58           N  
+ATOM   2531  C1B CYC A 484      23.370 -26.655  17.539  1.00 12.86           C  
+ATOM   2532  C2B CYC A 484      24.170 -25.604  18.083  1.00 13.34           C  
+ATOM   2533  C3B CYC A 484      23.998 -24.458  17.276  1.00 14.61           C  
+ATOM   2534  C4B CYC A 484      23.084 -24.970  16.308  1.00 14.95           C  
+ATOM   2535  CMB CYC A 484      25.000 -25.716  19.277  1.00 14.55           C  
+ATOM   2536  CAB CYC A 484      24.581 -23.074  17.401  1.00 16.28           C  
+ATOM   2537  CBB CYC A 484      25.340 -22.633  16.131  1.00 16.80           C  
+ATOM   2538  OB  CYC A 484      22.635 -24.162  15.304  1.00 15.28           O  
+ATOM   2539  NC  CYC A 484      25.473 -36.689  20.517  1.00 11.42           N  
+ATOM   2540  C1C CYC A 484      26.254 -37.398  21.296  1.00 11.46           C  
+ATOM   2541  C2C CYC A 484      27.590 -36.721  21.654  1.00 11.21           C  
+ATOM   2542  C3C CYC A 484      27.221 -35.325  21.370  1.00 11.11           C  
+ATOM   2543  C4C CYC A 484      26.085 -35.477  20.359  1.00 10.72           C  
+ATOM   2544  CMC CYC A 484      28.134 -37.089  23.041  1.00 13.96           C  
+ATOM   2545  CAC CYC A 484      28.323 -34.263  21.050  1.00 11.10           C  
+ATOM   2546  CBC CYC A 484      28.882 -33.536  22.179  1.00 11.47           C  
+ATOM   2547  OC  CYC A 484      25.995 -38.596  21.793  1.00 12.15           O  
+ATOM   2548  CHD CYC A 484      25.613 -34.508  19.493  1.00 11.79           C  
+ATOM   2549  ND  CYC A 484      23.885 -33.279  18.276  1.00 11.86           N  
+ATOM   2550  C1D CYC A 484      24.476 -34.507  18.554  1.00 11.21           C  
+ATOM   2551  C2D CYC A 484      23.793 -35.534  17.839  1.00 11.59           C  
+ATOM   2552  C3D CYC A 484      22.705 -34.889  17.099  1.00 11.47           C  
+ATOM   2553  C4D CYC A 484      22.829 -33.482  17.419  1.00 11.45           C  
+ATOM   2554  CMD CYC A 484      24.088 -37.021  17.832  1.00 13.00           C  
+ATOM   2555  CAD CYC A 484      21.684 -35.530  16.217  1.00 13.26           C  
+ATOM   2556  CBD CYC A 484      20.406 -35.730  16.843  1.00 14.33           C  
+ATOM   2557  CGD CYC A 484      19.380 -36.399  15.954  1.00 17.56           C  
+ATOM   2558  O1D CYC A 484      18.424 -36.949  16.428  1.00 19.20           O  
+ATOM   2559  O2D CYC A 484      19.468 -36.425  14.650  1.00 18.88           O  
 END
 
