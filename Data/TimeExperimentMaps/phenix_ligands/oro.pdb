@@ -1,0 +1,39 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:30 2017
+REMARK  99
+FORMUL   1  ORO    C5 N2 O4 
+HETATM    1  N1  ORO A   1       1.126   0.005   0.042  1.00 20.00      A    N  
+HETATM    2  C2  ORO A   1       1.193  -0.001  -1.299  1.00 20.00      A    C  
+HETATM    3  O2  ORO A   1       2.284  -0.001  -1.836  1.00 20.00      A    O  
+HETATM    4  N3  ORO A   1       0.088  -0.000  -2.063  1.00 20.00      A    N  
+HETATM    5  C4  ORO A   1      -1.135  -0.000  -1.495  1.00 20.00      A    C  
+HETATM    6  O4  ORO A   1      -2.138   0.000  -2.184  1.00 20.00      A    O  
+HETATM    7  C5  ORO A   1      -1.236  -0.000  -0.030  1.00 20.00      A    C  
+HETATM    8  C6  ORO A   1      -0.087  -0.000   0.695  1.00 20.00      A    C  
+HETATM    9  C7  ORO A   1      -0.139  -0.000   2.177  1.00 20.00      A    C  
+HETATM   10  O71 ORO A   1      -1.211  -0.000   2.746  1.00 20.00      A    O  
+HETATM   11  O72 ORO A   1       1.002  -0.000   2.891  1.00 20.00      A    O  
+CONECT    1    2    8
+CONECT    2    1    4
+CONECT    2    3
+CONECT    2    3
+CONECT    3    2
+CONECT    3    2
+CONECT    4    2    5
+CONECT    5    4    7
+CONECT    5    6
+CONECT    5    6
+CONECT    6    5
+CONECT    6    5
+CONECT    7    5    8
+CONECT    8    9
+CONECT    8    1    7
+CONECT    9    8   11
+CONECT    9   10
+CONECT    9   10
+CONECT   10    9
+CONECT   10    9
+CONECT   11    9
+END
+

@@ -1,0 +1,191 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:30 2017
+REMARK  99
+FORMUL   1  HEA    C49 N4 O6 FE 
+HETATM    1 FE   HEA A   1      -2.035  -0.778  -0.637  1.00 20.00      A   FE  
+HETATM    2  CHA HEA A   1      -4.034   1.531   0.174  1.00 20.00      A    C  
+HETATM    3  CHB HEA A   1      -3.161  -2.681   1.619  1.00 20.00      A    C  
+HETATM    4  CHC HEA A   1      -0.115  -3.119  -1.540  1.00 20.00      A    C  
+HETATM    5  CHD HEA A   1      -1.091   1.037  -3.048  1.00 20.00      A    C  
+HETATM    6  NA  HEA A   1      -3.725  -0.878   0.114  1.00 20.00      A    N  
+HETATM    7  C1A HEA A   1      -4.533   0.233   0.308  1.00 20.00      A    C  
+HETATM    8  C2A HEA A   1      -5.745  -0.339   0.671  1.00 20.00      A    C  
+HETATM    9  C3A HEA A   1      -5.496  -1.674   1.065  1.00 20.00      A    C  
+HETATM   10  C4A HEA A   1      -4.102  -1.870   0.988  1.00 20.00      A    C  
+HETATM   11  CMA HEA A   1      -6.496  -2.665   1.477  1.00 20.00      A    C  
+HETATM   12  OMA HEA A   1      -6.148  -3.783   1.793  1.00 20.00      A    O  
+HETATM   13  CAA HEA A   1      -7.089   0.343   0.649  1.00 20.00      A    C  
+HETATM   14  CBA HEA A   1      -7.290   1.115   1.955  1.00 20.00      A    C  
+HETATM   15  CGA HEA A   1      -8.634   1.797   1.933  1.00 20.00      A    C  
+HETATM   16  O1A HEA A   1      -9.356   1.677   0.972  1.00 20.00      A    O  
+HETATM   17  O2A HEA A   1      -9.028   2.537   2.981  1.00 20.00      A    O  
+HETATM   18  NB  HEA A   1      -1.186  -2.079   0.357  1.00 20.00      A    N  
+HETATM   19  C1B HEA A   1      -1.770  -2.700   1.397  1.00 20.00      A    C  
+HETATM   20  C2B HEA A   1      -0.660  -3.417   2.016  1.00 20.00      A    C  
+HETATM   21  C3B HEA A   1       0.285  -3.566   1.026  1.00 20.00      A    C  
+HETATM   22  C4B HEA A   1      -0.280  -2.928  -0.160  1.00 20.00      A    C  
+HETATM   23  CMB HEA A   1      -0.567  -3.895   3.442  1.00 20.00      A    C  
+HETATM   24  NC  HEA A   1      -1.441  -1.243  -2.328  1.00 20.00      A    N  
+HETATM   25  C1C HEA A   1      -0.688  -2.379  -2.580  1.00 20.00      A    C  
+HETATM   26  C2C HEA A   1      -0.680  -2.427  -3.967  1.00 20.00      A    C  
+HETATM   27  C3C HEA A   1      -1.043  -1.151  -4.451  1.00 20.00      A    C  
+HETATM   28  C4C HEA A   1      -1.210  -0.321  -3.328  1.00 20.00      A    C  
+HETATM   29  CMC HEA A   1      -0.343  -3.630  -4.809  1.00 20.00      A    C  
+HETATM   30  CAC HEA A   1      -1.214  -0.763  -5.863  1.00 20.00      A    C  
+HETATM   31  CBC HEA A   1      -0.267  -1.050  -6.750  1.00 20.00      A    C  
+HETATM   32  ND  HEA A   1      -1.856   1.053  -0.752  1.00 20.00      A    N  
+HETATM   33  C1D HEA A   1      -1.285   1.669  -1.801  1.00 20.00      A    C  
+HETATM   34  C2D HEA A   1      -1.115   3.034  -1.321  1.00 20.00      A    C  
+HETATM   35  C3D HEA A   1      -2.040   3.191  -0.310  1.00 20.00      A    C  
+HETATM   36  C4D HEA A   1      -2.737   1.914  -0.215  1.00 20.00      A    C  
+HETATM   37  CMD HEA A   1      -0.132   4.061  -1.823  1.00 20.00      A    C  
+HETATM   38  CAD HEA A   1      -2.281   4.425   0.522  1.00 20.00      A    C  
+HETATM   39  CBD HEA A   1      -3.421   5.239  -0.092  1.00 20.00      A    C  
+HETATM   40  CGD HEA A   1      -3.662   6.472   0.740  1.00 20.00      A    C  
+HETATM   41  O1D HEA A   1      -2.990   6.679   1.723  1.00 20.00      A    O  
+HETATM   42  O2D HEA A   1      -4.623   7.342   0.389  1.00 20.00      A    O  
+HETATM   43  C11 HEA A   1       1.625  -4.247   1.142  1.00 20.00      A    C  
+HETATM   44  O11 HEA A   1       1.733  -5.260   0.140  1.00 20.00      A    O  
+HETATM   45  C12 HEA A   1       2.739  -3.216   0.947  1.00 20.00      A    C  
+HETATM   46  C13 HEA A   1       4.096  -3.880   1.187  1.00 20.00      A    C  
+HETATM   47  C14 HEA A   1       5.193  -2.865   0.995  1.00 20.00      A    C  
+HETATM   48  C15 HEA A   1       6.015  -2.595   1.979  1.00 20.00      A    C  
+HETATM   49  C16 HEA A   1       7.191  -1.680   1.749  1.00 20.00      A    C  
+HETATM   50  C17 HEA A   1       6.815  -0.254   2.155  1.00 20.00      A    C  
+HETATM   51  C18 HEA A   1       7.991   0.660   1.925  1.00 20.00      A    C  
+HETATM   52  C19 HEA A   1       7.876   1.683   1.115  1.00 20.00      A    C  
+HETATM   53  C20 HEA A   1       9.006   2.672   0.986  1.00 20.00      A    C  
+HETATM   54  C21 HEA A   1       9.884   2.290  -0.208  1.00 20.00      A    C  
+HETATM   55  C22 HEA A   1      11.014   3.279  -0.337  1.00 20.00      A    C  
+HETATM   56  C23 HEA A   1      12.253   2.881  -0.189  1.00 20.00      A    C  
+HETATM   57  C24 HEA A   1      12.543   1.465   0.237  1.00 20.00      A    C  
+HETATM   58  C25 HEA A   1      13.388   3.839  -0.444  1.00 20.00      A    C  
+HETATM   59  C26 HEA A   1       5.785  -3.198   3.341  1.00 20.00      A    C  
+HETATM   60  C27 HEA A   1       6.615   1.871   0.312  1.00 20.00      A    C  
+CONECT    1    6   18   24   32
+CONECT    2   36
+CONECT    2    7
+CONECT    2    7
+CONECT    3   19
+CONECT    3   10
+CONECT    3   10
+CONECT    4   25
+CONECT    4   22
+CONECT    4   22
+CONECT    5   28
+CONECT    5   33
+CONECT    5   33
+CONECT    6    1
+CONECT    6    7   10
+CONECT    7    6    8
+CONECT    7    2
+CONECT    7    2
+CONECT    8   13
+CONECT    8    7    9
+CONECT    9   11
+CONECT    9    8   10
+CONECT   10    6    9
+CONECT   10    3
+CONECT   10    3
+CONECT   11    9
+CONECT   11   12
+CONECT   11   12
+CONECT   12   11
+CONECT   12   11
+CONECT   13    8   14
+CONECT   14   13   15
+CONECT   15   14   17
+CONECT   15   16
+CONECT   15   16
+CONECT   16   15
+CONECT   16   15
+CONECT   17   15
+CONECT   18    1   22
+CONECT   18   19
+CONECT   18   19
+CONECT   19    3   20
+CONECT   19   18
+CONECT   19   18
+CONECT   20   19   23
+CONECT   20   21
+CONECT   20   21
+CONECT   21   22   43
+CONECT   21   20
+CONECT   21   20
+CONECT   22   18   21
+CONECT   22    4
+CONECT   22    4
+CONECT   23   20
+CONECT   24    1
+CONECT   24   25   28
+CONECT   25    4
+CONECT   25   24   26
+CONECT   26   29
+CONECT   26   25   27
+CONECT   27   30
+CONECT   27   26   28
+CONECT   28    5
+CONECT   28   24   27
+CONECT   29   26
+CONECT   30   27
+CONECT   30   31
+CONECT   30   31
+CONECT   31   30
+CONECT   31   30
+CONECT   32    1   33
+CONECT   32   36
+CONECT   32   36
+CONECT   33   32   34
+CONECT   33    5
+CONECT   33    5
+CONECT   34   33   37
+CONECT   34   35
+CONECT   34   35
+CONECT   35   36   38
+CONECT   35   34
+CONECT   35   34
+CONECT   36    2   35
+CONECT   36   32
+CONECT   36   32
+CONECT   37   34
+CONECT   38   35   39
+CONECT   39   38   40
+CONECT   40   39   42
+CONECT   40   41
+CONECT   40   41
+CONECT   41   40
+CONECT   41   40
+CONECT   42   40
+CONECT   43   21   44   45
+CONECT   44   43
+CONECT   45   43   46
+CONECT   46   45   47
+CONECT   47   46
+CONECT   47   48
+CONECT   47   48
+CONECT   48   49   59
+CONECT   48   47
+CONECT   48   47
+CONECT   49   48   50
+CONECT   50   49   51
+CONECT   51   50
+CONECT   51   52
+CONECT   51   52
+CONECT   52   53   60
+CONECT   52   51
+CONECT   52   51
+CONECT   53   52   54
+CONECT   54   53   55
+CONECT   55   54
+CONECT   55   56
+CONECT   55   56
+CONECT   56   57   58
+CONECT   56   55
+CONECT   56   55
+CONECT   57   56
+CONECT   58   56
+CONECT   59   48
+CONECT   60   52
+END
+

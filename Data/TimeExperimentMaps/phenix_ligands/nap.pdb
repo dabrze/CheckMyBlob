@@ -1,0 +1,119 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:28 2017
+REMARK  99
+FORMUL   1  NAP    C21 N7 O17 P3 
+HETATM    1  AP  NAP A   1      -0.035  -0.972   0.719  1.00 20.00      A    P  
+HETATM    2  AO1 NAP A   1       0.490  -0.256   1.903  1.00 20.00      A    O  
+HETATM    3  AO2 NAP A   1      -0.725  -2.349   1.187  1.00 20.00      A    O  
+HETATM    4 AO5* NAP A   1      -1.126  -0.051  -0.026  1.00 20.00      A    O  
+HETATM    5 AC5* NAP A   1      -2.109   0.297   0.952  1.00 20.00      A    C  
+HETATM    6 AC4* NAP A   1      -3.181   1.177   0.307  1.00 20.00      A    C  
+HETATM    7 AO4* NAP A   1      -3.920   0.416  -0.663  1.00 20.00      A    O  
+HETATM    8 AC3* NAP A   1      -4.181   1.655   1.377  1.00 20.00      A    C  
+HETATM    9 AO3* NAP A   1      -4.196   3.082   1.456  1.00 20.00      A    O  
+HETATM   10 AC2* NAP A   1      -5.550   1.124   0.876  1.00 20.00      A    C  
+HETATM   11 AO2* NAP A   1      -6.576   2.099   1.071  1.00 20.00      A    O  
+HETATM   12 AC1* NAP A   1      -5.279   0.901  -0.633  1.00 20.00      A    C  
+HETATM   13  AN9 NAP A   1      -6.196  -0.101  -1.183  1.00 20.00      A    N  
+HETATM   14  AC8 NAP A   1      -5.978  -1.445  -1.249  1.00 20.00      A    C  
+HETATM   15  AN7 NAP A   1      -7.000  -2.036  -1.795  1.00 20.00      A    N  
+HETATM   16  AC5 NAP A   1      -7.938  -1.111  -2.114  1.00 20.00      A    C  
+HETATM   17  AC6 NAP A   1      -9.210  -1.158  -2.708  1.00 20.00      A    C  
+HETATM   18  AN6 NAP A   1      -9.759  -2.363  -3.112  1.00 20.00      A    N  
+HETATM   19  AN1 NAP A   1      -9.874  -0.019  -2.874  1.00 20.00      A    N  
+HETATM   20  AC2 NAP A   1      -9.358   1.135  -2.492  1.00 20.00      A    C  
+HETATM   21  AN3 NAP A   1      -8.171   1.227  -1.931  1.00 20.00      A    N  
+HETATM   22  AC4 NAP A   1      -7.435   0.141  -1.720  1.00 20.00      A    C  
+HETATM   23  O3  NAP A   1       1.175  -1.294  -0.293  1.00 20.00      A    O  
+HETATM   24  NP  NAP A   1       2.390  -1.858   0.599  1.00 20.00      A    P  
+HETATM   25  NO1 NAP A   1       2.142  -3.348   0.925  1.00 20.00      A    O  
+HETATM   26  NO2 NAP A   1       2.481  -1.051   1.914  1.00 20.00      A    O-1
+HETATM   27 NO5* NAP A   1       3.770  -1.710  -0.218  1.00 20.00      A    O  
+HETATM   28 NC5* NAP A   1       4.818  -2.114   0.665  1.00 20.00      A    C  
+HETATM   29 NC4* NAP A   1       6.164  -1.997  -0.053  1.00 20.00      A    C  
+HETATM   30 NO4* NAP A   1       6.466  -0.613  -0.332  1.00 20.00      A    O  
+HETATM   31 NC3* NAP A   1       7.310  -2.474   0.866  1.00 20.00      A    C  
+HETATM   32 NO3* NAP A   1       7.670  -3.822   0.559  1.00 20.00      A    O  
+HETATM   33 NC2* NAP A   1       8.478  -1.513   0.540  1.00 20.00      A    C  
+HETATM   34 NO2* NAP A   1       9.595  -2.239   0.025  1.00 20.00      A    O  
+HETATM   35 NC1* NAP A   1       7.895  -0.568  -0.534  1.00 20.00      A    C  
+HETATM   36  NN1 NAP A   1       8.395   0.795  -0.341  1.00 20.00      A    N+1
+HETATM   37  NC2 NAP A   1       9.364   1.237  -1.116  1.00 20.00      A    C  
+HETATM   38  NC3 NAP A   1       9.869   2.527  -0.955  1.00 20.00      A    C  
+HETATM   39  NC7 NAP A   1      10.961   3.021  -1.820  1.00 20.00      A    C  
+HETATM   40  NO7 NAP A   1      11.430   2.299  -2.678  1.00 20.00      A    O  
+HETATM   41  NN7 NAP A   1      11.437   4.272  -1.658  1.00 20.00      A    N  
+HETATM   42  NC4 NAP A   1       9.320   3.349   0.037  1.00 20.00      A    C  
+HETATM   43  NC5 NAP A   1       8.300   2.840   0.821  1.00 20.00      A    C  
+HETATM   44  NC6 NAP A   1       7.859   1.547   0.601  1.00 20.00      A    C  
+HETATM   45 AP2* NAP A   1      -7.765   1.370   1.875  1.00 20.00      A    P  
+HETATM   46 AOP1 NAP A   1      -7.226   0.774   3.119  1.00 20.00      A    O  
+HETATM   47 AOP2 NAP A   1      -8.903   2.447   2.246  1.00 20.00      A    O  
+HETATM   48 AOP3 NAP A   1      -8.402   0.211   0.957  1.00 20.00      A    O  
+CONECT    1    3    4   23
+CONECT    1    2
+CONECT    1    2
+CONECT    2    1
+CONECT    2    1
+CONECT    3    1
+CONECT    4    1    5
+CONECT    5    4    6
+CONECT    6    5    7    8
+CONECT    7    6   12
+CONECT    8    6    9   10
+CONECT    9    8
+CONECT   10    8   11   12
+CONECT   11   10   45
+CONECT   12    7   10   13
+CONECT   13   12
+CONECT   13   14   22
+CONECT   14   13   15
+CONECT   15   14   16
+CONECT   16   15   17   22
+CONECT   17   18
+CONECT   17   16   19
+CONECT   18   17
+CONECT   19   17   20
+CONECT   20   19   21
+CONECT   21   20   22
+CONECT   22   13   16   21
+CONECT   23    1   24
+CONECT   24   23   26   27
+CONECT   24   25
+CONECT   24   25
+CONECT   25   24
+CONECT   25   24
+CONECT   26   24
+CONECT   27   24   28
+CONECT   28   27   29
+CONECT   29   28   30   31
+CONECT   30   29   35
+CONECT   31   29   32   33
+CONECT   32   31
+CONECT   33   31   34   35
+CONECT   34   33
+CONECT   35   30   33   36
+CONECT   36   35
+CONECT   36   37   44
+CONECT   37   36   38
+CONECT   38   39
+CONECT   38   37   42
+CONECT   39   38   41
+CONECT   39   40
+CONECT   39   40
+CONECT   40   39
+CONECT   40   39
+CONECT   41   39
+CONECT   42   38   43
+CONECT   43   42   44
+CONECT   44   36   43
+CONECT   45   11   47   48
+CONECT   45   46
+CONECT   45   46
+CONECT   46   45
+CONECT   46   45
+CONECT   47   45
+CONECT   48   45
+END
+

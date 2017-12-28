@@ -1,0 +1,95 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:30 2017
+REMARK  99
+FORMUL   1  UPG    C15 N2 O17 P2 
+HETATM    1  N1  UPG A   1       4.871  -1.188   0.165  1.00 20.00      A    N  
+HETATM    2  C2  UPG A   1       5.434  -2.195   0.857  1.00 20.00      A    C  
+HETATM    3  N3  UPG A   1       5.677  -3.384   0.274  1.00 20.00      A    N  
+HETATM    4  C4  UPG A   1       5.358  -3.583  -1.021  1.00 20.00      A    C  
+HETATM    5  C5  UPG A   1       4.766  -2.532  -1.760  1.00 20.00      A    C  
+HETATM    6  C6  UPG A   1       4.533  -1.350  -1.151  1.00 20.00      A    C  
+HETATM    7  O2  UPG A   1       5.726  -2.030   2.026  1.00 20.00      A    O  
+HETATM    8  O4  UPG A   1       5.579  -4.658  -1.549  1.00 20.00      A    O  
+HETATM    9 C1'A UPG A   1       4.613   0.093   0.828  1.00 20.00      A    C  
+HETATM   10 C2'A UPG A   1       5.477   1.216   0.201  1.00 20.00      A    C  
+HETATM   11 O2'A UPG A   1       6.766   1.271   0.814  1.00 20.00      A    O  
+HETATM   12 C3'A UPG A   1       4.653   2.484   0.534  1.00 20.00      A    C  
+HETATM   13 C4'A UPG A   1       3.231   1.951   0.799  1.00 20.00      A    C  
+HETATM   14 O4'A UPG A   1       3.260   0.530   0.580  1.00 20.00      A    O  
+HETATM   15 O3'A UPG A   1       5.171   3.126   1.700  1.00 20.00      A    O  
+HETATM   16 C5'A UPG A   1       2.242   2.606  -0.167  1.00 20.00      A    C  
+HETATM   17 O5'A UPG A   1       0.913   2.195   0.161  1.00 20.00      A    O  
+HETATM   18  PA  UPG A   1      -0.385   2.693  -0.651  1.00 20.00      A    P  
+HETATM   19  O1A UPG A   1      -0.213   2.389  -2.090  1.00 20.00      A    O  
+HETATM   20  O2A UPG A   1      -0.563   4.281  -0.456  1.00 20.00      A    O  
+HETATM   21  O3A UPG A   1      -1.691   1.934  -0.095  1.00 20.00      A    O  
+HETATM   22  PB  UPG A   1      -3.161   1.656  -0.689  1.00 20.00      A    P  
+HETATM   23  O1B UPG A   1      -3.049   1.210  -2.095  1.00 20.00      A    O  
+HETATM   24  O2B UPG A   1      -4.031   3.009  -0.623  1.00 20.00      A    O  
+HETATM   25  O3B UPG A   1      -3.884   0.511   0.182  1.00 20.00      A    O  
+HETATM   26  C1' UPG A   1      -5.161  -0.034  -0.156  1.00 20.00      A    C  
+HETATM   27  C2' UPG A   1      -5.883  -0.473   1.120  1.00 20.00      A    C  
+HETATM   28  C3' UPG A   1      -5.071  -1.579   1.803  1.00 20.00      A    C  
+HETATM   29  C4' UPG A   1      -4.877  -2.736   0.818  1.00 20.00      A    C  
+HETATM   30  C5' UPG A   1      -4.194  -2.210  -0.447  1.00 20.00      A    C  
+HETATM   31  C6' UPG A   1      -4.051  -3.348  -1.460  1.00 20.00      A    C  
+HETATM   32  O2' UPG A   1      -6.009   0.642   2.005  1.00 20.00      A    O  
+HETATM   33  O3' UPG A   1      -5.774  -2.045   2.956  1.00 20.00      A    O  
+HETATM   34  O4' UPG A   1      -4.060  -3.742   1.419  1.00 20.00      A    O  
+HETATM   35  O5' UPG A   1      -4.985  -1.164  -1.014  1.00 20.00      A    O  
+HETATM   36  O6' UPG A   1      -3.310  -2.887  -2.592  1.00 20.00      A    O  
+CONECT    1    2    6    9
+CONECT    2    1    3
+CONECT    2    7
+CONECT    2    7
+CONECT    3    2    4
+CONECT    4    3    5
+CONECT    4    8
+CONECT    4    8
+CONECT    5    4
+CONECT    5    6
+CONECT    5    6
+CONECT    6    1
+CONECT    6    5
+CONECT    6    5
+CONECT    7    2
+CONECT    7    2
+CONECT    8    4
+CONECT    8    4
+CONECT    9    1   10   14
+CONECT   10    9   11   12
+CONECT   11   10
+CONECT   12   10   13   15
+CONECT   13   12   14   16
+CONECT   14    9   13
+CONECT   15   12
+CONECT   16   13   17
+CONECT   17   16   18
+CONECT   18   17   20   21
+CONECT   18   19
+CONECT   18   19
+CONECT   19   18
+CONECT   19   18
+CONECT   20   18
+CONECT   21   18   22
+CONECT   22   21   24   25
+CONECT   22   23
+CONECT   22   23
+CONECT   23   22
+CONECT   23   22
+CONECT   24   22
+CONECT   25   22   26
+CONECT   26   25   27   35
+CONECT   27   26   28   32
+CONECT   28   27   29   33
+CONECT   29   28   30   34
+CONECT   30   29   31   35
+CONECT   31   30   36
+CONECT   32   27
+CONECT   33   28
+CONECT   34   29
+CONECT   35   26   30
+CONECT   36   31
+END
+

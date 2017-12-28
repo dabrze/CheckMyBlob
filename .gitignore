@@ -114,3 +114,4 @@ ENV/
 /Data/tamc.csv
 /Classification/.idea/inspectionProfiles/Project_Default.xml
 /Results/~$Summary.xlsx
+*.eff

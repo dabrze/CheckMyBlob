@@ -1,0 +1,139 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:28 2017
+REMARK  99
+FORMUL   1  FAD    C27 N9 O15 P2 
+HETATM    1  AP  FAD A   1      -1.648  -0.629  -3.229  1.00 20.00      A    P  
+HETATM    2  AO1 FAD A   1      -3.035  -1.088  -2.992  1.00 20.00      A    O  
+HETATM    3  AO2 FAD A   1      -0.678  -1.906  -3.378  1.00 20.00      A    O  
+HETATM    4 AO5* FAD A   1      -1.595   0.245  -4.580  1.00 20.00      A    O  
+HETATM    5 AC5* FAD A   1      -2.036  -0.605  -5.640  1.00 20.00      A    C  
+HETATM    6 AC4* FAD A   1      -2.009   0.169  -6.959  1.00 20.00      A    C  
+HETATM    7 AO4* FAD A   1      -0.665   0.583  -7.256  1.00 20.00      A    O  
+HETATM    8 AC3* FAD A   1      -2.476  -0.741  -8.111  1.00 20.00      A    C  
+HETATM    9 AO3* FAD A   1      -3.639  -0.203  -8.744  1.00 20.00      A    O  
+HETATM   10 AC2* FAD A   1      -1.277  -0.748  -9.095  1.00 20.00      A    C  
+HETATM   11 AO2* FAD A   1      -1.728  -0.672 -10.449  1.00 20.00      A    O  
+HETATM   12 AC1* FAD A   1      -0.518   0.541  -8.692  1.00 20.00      A    C  
+HETATM   13  AN9 FAD A   1       0.895   0.449  -9.063  1.00 20.00      A    N  
+HETATM   14  AC8 FAD A   1       1.889  -0.118  -8.322  1.00 20.00      A    C  
+HETATM   15  AN7 FAD A   1       3.023  -0.024  -8.953  1.00 20.00      A    N  
+HETATM   16  AC5 FAD A   1       2.830   0.606 -10.136  1.00 20.00      A    C  
+HETATM   17  AC6 FAD A   1       3.663   0.979 -11.205  1.00 20.00      A    C  
+HETATM   18  AN6 FAD A   1       5.018   0.698 -11.178  1.00 20.00      A    N  
+HETATM   19  AN1 FAD A   1       3.119   1.607 -12.242  1.00 20.00      A    N  
+HETATM   20  AC2 FAD A   1       1.827   1.878 -12.277  1.00 20.00      A    C  
+HETATM   21  AN3 FAD A   1       1.010   1.549 -11.299  1.00 20.00      A    N  
+HETATM   22  AC4 FAD A   1       1.462   0.914 -10.223  1.00 20.00      A    C  
+HETATM   23  N1  FAD A   1      -1.933   0.360   8.321  1.00 20.00      A    N  
+HETATM   24  C2  FAD A   1      -2.802   1.033   9.070  1.00 20.00      A    C  
+HETATM   25  O2  FAD A   1      -3.970   1.043   8.721  1.00 20.00      A    O  
+HETATM   26  N3  FAD A   1      -2.474   1.701  10.185  1.00 20.00      A    N  
+HETATM   27  C4  FAD A   1      -1.197   1.734  10.634  1.00 20.00      A    C  
+HETATM   28  O4  FAD A   1      -0.897   2.340  11.644  1.00 20.00      A    O  
+HETATM   29  C4A FAD A   1      -0.184   1.003   9.842  1.00 20.00      A    C  
+HETATM   30  N5  FAD A   1       1.078   0.968  10.185  1.00 20.00      A    N  
+HETATM   31  C5A FAD A   1       1.969   0.295   9.446  1.00 20.00      A    C  
+HETATM   32  C6  FAD A   1       3.324   0.270   9.833  1.00 20.00      A    C  
+HETATM   33  C7  FAD A   1       4.232  -0.412   9.082  1.00 20.00      A    C  
+HETATM   34  C7M FAD A   1       5.679  -0.434   9.502  1.00 20.00      A    C  
+HETATM   35  C8  FAD A   1       3.841  -1.085   7.930  1.00 20.00      A    C  
+HETATM   36  C8M FAD A   1       4.866  -1.832   7.116  1.00 20.00      A    C  
+HETATM   37  C9  FAD A   1       2.523  -1.082   7.529  1.00 20.00      A    C  
+HETATM   38  C9A FAD A   1       1.572  -0.393   8.278  1.00 20.00      A    C  
+HETATM   39  N10 FAD A   1       0.253  -0.382   7.877  1.00 20.00      A    N  
+HETATM   40  C10 FAD A   1      -0.649   0.301   8.634  1.00 20.00      A    C  
+HETATM   41  C1* FAD A   1      -0.168  -1.093   6.668  1.00 20.00      A    C  
+HETATM   42  C2* FAD A   1      -0.070  -0.153   5.464  1.00 20.00      A    C  
+HETATM   43  O2* FAD A   1      -0.919   0.977   5.673  1.00 20.00      A    O  
+HETATM   44  C3* FAD A   1      -0.511  -0.895   4.201  1.00 20.00      A    C  
+HETATM   45  O3* FAD A   1       0.337  -2.026   3.992  1.00 20.00      A    O  
+HETATM   46  C4* FAD A   1      -0.413   0.044   2.997  1.00 20.00      A    C  
+HETATM   47  O4* FAD A   1      -1.262   1.174   3.206  1.00 20.00      A    O  
+HETATM   48  C5* FAD A   1      -0.854  -0.697   1.734  1.00 20.00      A    C  
+HETATM   49  O5* FAD A   1      -0.763   0.179   0.610  1.00 20.00      A    O  
+HETATM   50  P   FAD A   1      -1.239  -0.662  -0.677  1.00 20.00      A    P  
+HETATM   51  O1P FAD A   1      -0.354  -1.835  -0.853  1.00 20.00      A    O  
+HETATM   52  O2P FAD A   1      -2.754  -1.160  -0.462  1.00 20.00      A    O  
+HETATM   53  O3P FAD A   1      -1.161   0.270  -1.987  1.00 20.00      A    O  
+CONECT    1    3    4   53
+CONECT    1    2
+CONECT    1    2
+CONECT    2    1
+CONECT    2    1
+CONECT    3    1
+CONECT    4    1    5
+CONECT    5    4    6
+CONECT    6    5    7    8
+CONECT    7    6   12
+CONECT    8    6    9   10
+CONECT    9    8
+CONECT   10    8   11   12
+CONECT   11   10
+CONECT   12    7   10   13
+CONECT   13   12
+CONECT   13   14   22
+CONECT   14   13   15
+CONECT   15   14   16
+CONECT   16   15   17   22
+CONECT   17   18
+CONECT   17   16   19
+CONECT   18   17
+CONECT   19   17   20
+CONECT   20   19   21
+CONECT   21   20   22
+CONECT   22   13   16   21
+CONECT   23   24
+CONECT   23   40
+CONECT   23   40
+CONECT   24   23   26
+CONECT   24   25
+CONECT   24   25
+CONECT   25   24
+CONECT   25   24
+CONECT   26   24   27
+CONECT   27   26   29
+CONECT   27   28
+CONECT   27   28
+CONECT   28   27
+CONECT   28   27
+CONECT   29   27   40
+CONECT   29   30
+CONECT   29   30
+CONECT   30   31
+CONECT   30   29
+CONECT   30   29
+CONECT   31   30
+CONECT   31   32   38
+CONECT   32   31   33
+CONECT   33   34
+CONECT   33   32   35
+CONECT   34   33
+CONECT   35   36
+CONECT   35   33   37
+CONECT   36   35
+CONECT   37   35   38
+CONECT   38   39
+CONECT   38   31   37
+CONECT   39   38   40   41
+CONECT   40   29   39
+CONECT   40   23
+CONECT   40   23
+CONECT   41   39   42
+CONECT   42   41   43   44
+CONECT   43   42
+CONECT   44   42   45   46
+CONECT   45   44
+CONECT   46   44   47   48
+CONECT   47   46
+CONECT   48   46   49
+CONECT   49   48   50
+CONECT   50   49   52   53
+CONECT   50   51
+CONECT   50   51
+CONECT   51   50
+CONECT   51   50
+CONECT   52   50
+CONECT   53    1   50
+END
+

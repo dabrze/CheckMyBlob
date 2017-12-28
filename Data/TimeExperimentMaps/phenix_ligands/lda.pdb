@@ -1,0 +1,39 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:28 2017
+REMARK  99
+FORMUL   1  LDA    C14 N O 
+HETATM    1  N1  LDA A   1      -5.913  -0.090  -0.003  1.00 20.00      A    N+1
+HETATM    2  O1  LDA A   1      -5.994  -0.859   1.239  1.00 20.00      A    O-1
+HETATM    3  CM1 LDA A   1      -7.087   0.786  -0.114  1.00 20.00      A    C  
+HETATM    4  CM2 LDA A   1      -5.878  -1.010  -1.147  1.00 20.00      A    C  
+HETATM    5  C1  LDA A   1      -4.692   0.727   0.006  1.00 20.00      A    C  
+HETATM    6  C2  LDA A   1      -3.466  -0.188  -0.003  1.00 20.00      A    C  
+HETATM    7  C3  LDA A   1      -2.194   0.663   0.006  1.00 20.00      A    C  
+HETATM    8  C4  LDA A   1      -0.968  -0.252  -0.004  1.00 20.00      A    C  
+HETATM    9  C5  LDA A   1       0.304   0.598   0.006  1.00 20.00      A    C  
+HETATM   10  C6  LDA A   1       1.530  -0.317  -0.004  1.00 20.00      A    C  
+HETATM   11  C7  LDA A   1       2.801   0.534   0.005  1.00 20.00      A    C  
+HETATM   12  C8  LDA A   1       4.027  -0.381  -0.004  1.00 20.00      A    C  
+HETATM   13  C9  LDA A   1       5.299   0.470   0.005  1.00 20.00      A    C  
+HETATM   14  C10 LDA A   1       6.525  -0.446  -0.005  1.00 20.00      A    C  
+HETATM   15  C11 LDA A   1       7.797   0.405   0.005  1.00 20.00      A    C  
+HETATM   16  C12 LDA A   1       9.023  -0.510  -0.005  1.00 20.00      A    C  
+CONECT    1    2    3    4    5
+CONECT    2    1
+CONECT    3    1
+CONECT    4    1
+CONECT    5    1    6
+CONECT    6    5    7
+CONECT    7    6    8
+CONECT    8    7    9
+CONECT    9    8   10
+CONECT   10    9   11
+CONECT   11   10   12
+CONECT   12   11   13
+CONECT   13   12   14
+CONECT   14   13   15
+CONECT   15   14   16
+CONECT   16   15
+END
+

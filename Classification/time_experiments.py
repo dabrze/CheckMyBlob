@@ -59,7 +59,7 @@ def run_warp(pdb, x, y, z, timeout):
     cmd = "$warpbin/auto_ligand.sh "
     cmd += "datafile {0}/{1}_refmac.mtz ".format(MAPS_PATH, pdb)
     cmd += "protein {0}/{1}_cut.pdb ".format(MAPS_PATH, pdb)
-    cmd += "ligand /home/student/work/ccp4/arp_warp_7.6/share/all_ligands.pdb "
+    cmd += "ligand {0}/arp_ligands/all_ligands.pdb ".format(MAPS_PATH)
     cmd += "search_position {0} {1} {2}".format(x, y, z)
     logging.info(cmd)
 
@@ -71,13 +71,8 @@ def run_phenix(pdb, timeout):
     conf += """
     mtz_in = "{0}/{1}_refmac.mtz"
     mtz_type = F *diffmap
-    input_labels = "DELFWT PHDELWT"xcvvcxv
-    ligand_list = SO4 GOL HEM PEG MPD FAD NAD PG4 NAP ADP MES TRS FMN "1PE" EPE \\
-                  PLP SF4 ATP IMD CIT COA GSH AMP P6G LDA H4B NCO MLI SIA TLA \\
-                  SAM DIO AKG ACO PYR PLM BTB OLA TPP CYC POP CLA CHD BCL DTT \\
-                  NHE PEP ADN PGO RET HED MYR F3S THP BTN CMP "2PE" ADE "5GP" \\
-                  IPH CXS C2E B3P MLT TYD UPG CAM HEA A3P CDL TAM ORO PGA "2GP" \\
-                  HC4 MTE U10 "017" STU PHQ FPP SPO
+    input_labels = "DELFWT PHDELWT"
+    ligand_dir = {0}/phenix_ligands/
     model = "{0}/{1}_cut.pdb"
     output_dir = "{0}"
     job_title = "{1}"
@@ -125,21 +120,24 @@ def write_result(pdb, method, time, save_to_folder=RESULTS_FOLDER, file_name="Ti
 
 
 def measure_time(pdb, x, y, z, timeout=3600):
-    t = run_warp(pdb, x, y, z, timeout)
-    write_result(pdb, "cl", t)
+    # t = run_warp(pdb, x, y, z, timeout)
+    # write_result(pdb, "cl", t)
 
     t = run_phenix(pdb, timeout)
     write_result(pdb, "tamc", t)
-
-    t = run_cmb(pdb, timeout)
-    write_result(pdb, "cmb", t)
+    #
+    # t = run_cmb(pdb, timeout)
+    # write_result(pdb, "cmb", t)
 
 
 if __name__ == '__main__':
+    warp_errors = ["4m8u", "4pn9", "4cgs"]
+
     data = joblib.load(CAROLAN_PATH)
-    sample = data.data_frame.sample(n=30, random_state=SEED).index.str[0:4].values
+    sample = data.data_frame.sample(n=33, random_state=SEED).index.str[0:4].values
+    sample = [x for x in sample if x not in warp_errors]
     coordinates = pd.read_csv(COORDINATES_FILE, index_col=0)
 
-    for pdb in sample:
+    for pdb in ["4rxg"]:
         c = coordinates[coordinates.pdb == pdb]
         measure_time(pdb, float(c.x), float(c.y), float(c.z))

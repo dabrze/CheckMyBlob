@@ -1,0 +1,187 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:30 2017
+REMARK  99
+FORMUL   1  U10    C59 O4 
+HETATM    1  C1  U10 A   1       0.451  -2.012 -16.522  1.00 20.00      A    C  
+HETATM    2  C2  U10 A   1       1.710  -1.528 -17.127  1.00 20.00      A    C  
+HETATM    3  C3  U10 A   1       1.856  -0.105 -17.488  1.00 20.00      A    C  
+HETATM    4  C4  U10 A   1       0.832   0.753 -17.274  1.00 20.00      A    C  
+HETATM    5  C5  U10 A   1      -0.423   0.263 -16.675  1.00 20.00      A    C  
+HETATM    6  C6  U10 A   1      -0.561  -1.163 -16.310  1.00 20.00      A    C  
+HETATM    7  C1M U10 A   1       0.305  -3.464 -16.148  1.00 20.00      A    C  
+HETATM    8  C3M U10 A   1       4.012   0.270 -17.018  1.00 20.00      A    C  
+HETATM    9  C4M U10 A   1       0.081   2.293 -18.713  1.00 20.00      A    C  
+HETATM   10  C7  U10 A   1      -1.845  -1.662 -15.698  1.00 20.00      A    C  
+HETATM   11  C8  U10 A   1      -1.765  -1.545 -14.198  1.00 20.00      A    C  
+HETATM   12  C9  U10 A   1      -2.710  -0.923 -13.538  1.00 20.00      A    C  
+HETATM   13  C10 U10 A   1      -3.952  -0.461 -14.255  1.00 20.00      A    C  
+HETATM   14  C11 U10 A   1      -2.554  -0.668 -12.061  1.00 20.00      A    C  
+HETATM   15  C12 U10 A   1      -1.868   0.681 -11.845  1.00 20.00      A    C  
+HETATM   16  C13 U10 A   1      -1.712   0.936 -10.368  1.00 20.00      A    C  
+HETATM   17  C14 U10 A   1      -0.538   1.242  -9.876  1.00 20.00      A    C  
+HETATM   18  C15 U10 A   1       0.624   1.494 -10.802  1.00 20.00      A    C  
+HETATM   19  C16 U10 A   1      -0.348   1.342  -8.384  1.00 20.00      A    C  
+HETATM   20  C17 U10 A   1       0.059  -0.023  -7.829  1.00 20.00      A    C  
+HETATM   21  C18 U10 A   1       0.248   0.076  -6.338  1.00 20.00      A    C  
+HETATM   22  C19 U10 A   1      -0.381  -0.750  -5.541  1.00 20.00      A    C  
+HETATM   23  C20 U10 A   1      -1.381  -1.726  -6.105  1.00 20.00      A    C  
+HETATM   24  C21 U10 A   1      -0.105  -0.726  -4.059  1.00 20.00      A    C  
+HETATM   25  C22 U10 A   1      -1.062   0.254  -3.379  1.00 20.00      A    C  
+HETATM   26  C23 U10 A   1      -0.786   0.279  -1.897  1.00 20.00      A    C  
+HETATM   27  C24 U10 A   1      -0.379   1.384  -1.325  1.00 20.00      A    C  
+HETATM   28  C25 U10 A   1      -0.028   2.584  -2.167  1.00 20.00      A    C  
+HETATM   29  C26 U10 A   1      -0.261   1.457   0.175  1.00 20.00      A    C  
+HETATM   30  C27 U10 A   1       1.143   1.022   0.597  1.00 20.00      A    C  
+HETATM   31  C28 U10 A   1       1.261   1.095   2.098  1.00 20.00      A    C  
+HETATM   32  C29 U10 A   1       1.690   0.057   2.772  1.00 20.00      A    C  
+HETATM   33  C30 U10 A   1       2.227  -1.146   2.042  1.00 20.00      A    C  
+HETATM   34  C31 U10 A   1       1.647   0.066   4.279  1.00 20.00      A    C  
+HETATM   35  C32 U10 A   1       0.307  -0.500   4.754  1.00 20.00      A    C  
+HETATM   36  C33 U10 A   1       0.264  -0.490   6.260  1.00 20.00      A    C  
+HETATM   37  C34 U10 A   1      -0.688   0.157   6.884  1.00 20.00      A    C  
+HETATM   38  C35 U10 A   1      -1.636   1.034   6.107  1.00 20.00      A    C  
+HETATM   39  C36 U10 A   1      -0.834   0.027   8.378  1.00 20.00      A    C  
+HETATM   40  C37 U10 A   1       0.001   1.106   9.069  1.00 20.00      A    C  
+HETATM   41  C38 U10 A   1      -0.145   0.975  10.563  1.00 20.00      A    C  
+HETATM   42  C39 U10 A   1       0.913   0.791  11.311  1.00 20.00      A    C  
+HETATM   43  C40 U10 A   1       2.254   0.538  10.671  1.00 20.00      A    C  
+HETATM   44  C41 U10 A   1       0.791   0.833  12.813  1.00 20.00      A    C  
+HETATM   45  C42 U10 A   1       0.490  -0.570  13.340  1.00 20.00      A    C  
+HETATM   46  C43 U10 A   1       0.368  -0.528  14.841  1.00 20.00      A    C  
+HETATM   47  C44 U10 A   1      -0.734  -0.932  15.420  1.00 20.00      A    C  
+HETATM   48  C45 U10 A   1      -1.941  -1.275  14.586  1.00 20.00      A    C  
+HETATM   49  C46 U10 A   1      -0.797  -1.054  16.921  1.00 20.00      A    C  
+HETATM   50  C47 U10 A   1      -1.269   0.271  17.521  1.00 20.00      A    C  
+HETATM   51  C48 U10 A   1      -1.332   0.149  19.022  1.00 20.00      A    C  
+HETATM   52  C49 U10 A   1      -0.718   1.026  19.776  1.00 20.00      A    C  
+HETATM   53  C50 U10 A   1      -0.084   2.243  19.153  1.00 20.00      A    C  
+HETATM   54  C51 U10 A   1      -0.647   0.819  21.267  1.00 20.00      A    C  
+HETATM   55  C52 U10 A   1       0.613   0.022  21.612  1.00 20.00      A    C  
+HETATM   56  C53 U10 A   1       0.684  -0.184  23.103  1.00 20.00      A    C  
+HETATM   57  C54 U10 A   1       0.795  -1.394  23.591  1.00 20.00      A    C  
+HETATM   58  C55 U10 A   1       0.693  -1.619  25.078  1.00 20.00      A    C  
+HETATM   59  C56 U10 A   1       1.026  -2.562  22.666  1.00 20.00      A    C  
+HETATM   60  O2  U10 A   1       2.628  -2.300 -17.318  1.00 20.00      A    O  
+HETATM   61  O3  U10 A   1       3.014   0.341 -18.039  1.00 20.00      A    O  
+HETATM   62  O4  U10 A   1       0.960   2.062 -17.610  1.00 20.00      A    O  
+HETATM   63  O5  U10 A   1      -1.344   1.031 -16.482  1.00 20.00      A    O  
+CONECT    1    2    7
+CONECT    1    6
+CONECT    1    6
+CONECT    2    1    3
+CONECT    2   60
+CONECT    2   60
+CONECT    3    2   61
+CONECT    3    4
+CONECT    3    4
+CONECT    4    5   62
+CONECT    4    3
+CONECT    4    3
+CONECT    5    4    6
+CONECT    5   63
+CONECT    5   63
+CONECT    6    5   10
+CONECT    6    1
+CONECT    6    1
+CONECT    7    1
+CONECT    8   61
+CONECT    9   62
+CONECT   10    6   11
+CONECT   11   10
+CONECT   11   12
+CONECT   11   12
+CONECT   12   13   14
+CONECT   12   11
+CONECT   12   11
+CONECT   13   12
+CONECT   14   12   15
+CONECT   15   14   16
+CONECT   16   15
+CONECT   16   17
+CONECT   16   17
+CONECT   17   18   19
+CONECT   17   16
+CONECT   17   16
+CONECT   18   17
+CONECT   19   17   20
+CONECT   20   19   21
+CONECT   21   20
+CONECT   21   22
+CONECT   21   22
+CONECT   22   23   24
+CONECT   22   21
+CONECT   22   21
+CONECT   23   22
+CONECT   24   22   25
+CONECT   25   24   26
+CONECT   26   25
+CONECT   26   27
+CONECT   26   27
+CONECT   27   28   29
+CONECT   27   26
+CONECT   27   26
+CONECT   28   27
+CONECT   29   27   30
+CONECT   30   29   31
+CONECT   31   30
+CONECT   31   32
+CONECT   31   32
+CONECT   32   33   34
+CONECT   32   31
+CONECT   32   31
+CONECT   33   32
+CONECT   34   32   35
+CONECT   35   34   36
+CONECT   36   35
+CONECT   36   37
+CONECT   36   37
+CONECT   37   38   39
+CONECT   37   36
+CONECT   37   36
+CONECT   38   37
+CONECT   39   37   40
+CONECT   40   39   41
+CONECT   41   40
+CONECT   41   42
+CONECT   41   42
+CONECT   42   43   44
+CONECT   42   41
+CONECT   42   41
+CONECT   43   42
+CONECT   44   42   45
+CONECT   45   44   46
+CONECT   46   45
+CONECT   46   47
+CONECT   46   47
+CONECT   47   48   49
+CONECT   47   46
+CONECT   47   46
+CONECT   48   47
+CONECT   49   47   50
+CONECT   50   49   51
+CONECT   51   50
+CONECT   51   52
+CONECT   51   52
+CONECT   52   53   54
+CONECT   52   51
+CONECT   52   51
+CONECT   53   52
+CONECT   54   52   55
+CONECT   55   54   56
+CONECT   56   55
+CONECT   56   57
+CONECT   56   57
+CONECT   57   58   59
+CONECT   57   56
+CONECT   57   56
+CONECT   58   57
+CONECT   59   57
+CONECT   60    2
+CONECT   60    2
+CONECT   61    3    8
+CONECT   62    4    9
+CONECT   63    5
+CONECT   63    5
+END
+
