@@ -43,6 +43,28 @@ def print_line(line, file):
     print >> file, line
 
 
+def single_file(code):
+    data_dir = os.path.join(config.pdb_out_data_dir, 'checkmyblob', 'all')
+    output_file_name = os.path.join(data_dir, code + '.csv')
+    print_header = True
+
+    for f_name in glob.iglob(os.path.join(data_dir, code + '_results.txt')):
+        with open(f_name, 'r') as result_file, open(output_file_name, 'w') as output_file:
+            for line in result_file.read().splitlines():
+                line = line.strip()
+                if len(line) > 0:
+                    result = parse_result_line(line)
+
+                    if len(result) == MAGIC_COLUMS_CONUT:
+                        if print_header:
+                            print_header_for_excel(result, output_file)
+                            print_header = False
+                        if 'res_name' in result:
+                            print_line_for_excel(result, output_file)
+
+    return output_file_name
+
+
 def postrun():
     start = datetime.datetime.now()
     logger = logging.getLogger('postrun')
@@ -147,5 +169,6 @@ def postrun():
     #if TRAIN_SYSTEM is True:
     #    prepare_classifier(input_pdb_data_path, graphs_dir, grouping_path)
     print('Postrun time: %s s' % (datetime.datetime.now()-start).total_seconds())
-# RUN
-postrun()
+
+if __name__ == '__main__':
+    postrun()
