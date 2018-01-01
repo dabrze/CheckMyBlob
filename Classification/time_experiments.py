@@ -159,8 +159,8 @@ def measure_time(pdb, x, y, z, timeout=3600):
     t = run_warp(pdb, x, y, z, timeout)
     write_result(pdb, "cl", t)
 
-    # t = run_phenix(pdb, timeout)
-    # write_result(pdb, "tamc", t)
+    t = run_phenix(pdb, timeout)
+    write_result(pdb, "tamc", t)
 
     t = run_cmb(pdb, timeout)
     write_result(pdb, "cmb", t)
