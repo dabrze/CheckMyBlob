@@ -1,0 +1,47 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:28 2017
+REMARK  99
+FORMUL   1  H4B    C9 N5 O3 
+HETATM    1  N1  H4B A   1      -1.207   0.564  -2.216  1.00 20.00      A    N  
+HETATM    2  C2  H4B A   1      -0.213   0.636  -3.075  1.00 20.00      A    C  
+HETATM    3  N2  H4B A   1      -0.406   1.285  -4.269  1.00 20.00      A    N  
+HETATM    4  N3  H4B A   1       1.000   0.082  -2.809  1.00 20.00      A    N  
+HETATM    5  C4  H4B A   1       1.211  -0.562  -1.641  1.00 20.00      A    C  
+HETATM    6  O4  H4B A   1       2.297  -1.064  -1.392  1.00 20.00      A    O  
+HETATM    7  C4A H4B A   1       0.158  -0.642  -0.723  1.00 20.00      A    C  
+HETATM    8  C8A H4B A   1      -1.059  -0.059  -1.041  1.00 20.00      A    C  
+HETATM    9  N5  H4B A   1       0.326  -1.306   0.512  1.00 20.00      A    N  
+HETATM   10  N8  H4B A   1      -2.112  -0.125  -0.142  1.00 20.00      A    N  
+HETATM   11  C6  H4B A   1      -0.662  -1.066   1.575  1.00 20.00      A    C  
+HETATM   12  C7  H4B A   1      -2.061  -1.113   0.944  1.00 20.00      A    C  
+HETATM   13  C9  H4B A   1      -0.423   0.308   2.202  1.00 20.00      A    C  
+HETATM   14  O9  H4B A   1      -1.396   0.542   3.223  1.00 20.00      A    O  
+HETATM   15  C10 H4B A   1       0.978   0.353   2.814  1.00 20.00      A    C  
+HETATM   16  C11 H4B A   1       1.217   1.728   3.441  1.00 20.00      A    C  
+HETATM   17  O10 H4B A   1       1.951   0.119   1.793  1.00 20.00      A    O  
+CONECT    1    2    8
+CONECT    2    3
+CONECT    2    1    4
+CONECT    3    2
+CONECT    4    2    5
+CONECT    5    4    7
+CONECT    5    6
+CONECT    5    6
+CONECT    6    5
+CONECT    6    5
+CONECT    7    9
+CONECT    7    5    8
+CONECT    8   10
+CONECT    8    1    7
+CONECT    9    7   11
+CONECT   10    8   12
+CONECT   11    9   12   13
+CONECT   12   10   11
+CONECT   13   11   14   15
+CONECT   14   13
+CONECT   15   13   16   17
+CONECT   16   15
+CONECT   17   15
+END
+

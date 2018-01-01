@@ -1,0 +1,71 @@
+REMARK  99 electronic Ligand Builder and Optimisation Workbench (eLBOW)
+REMARK  99   - a module of PHENIX version 1.12-2829-
+REMARK  99   - file written: Thu Dec 28 12:17:29 2017
+REMARK  99
+FORMUL   1  TYD    C10 N2 O11 P2 
+HETATM    1  PA  TYD A   1      -0.143  -0.002  -2.900  1.00 20.00      A    P  
+HETATM    2  O1A TYD A   1       0.633   1.210  -2.558  1.00 20.00      A    O  
+HETATM    3  O2A TYD A   1      -1.473   0.421  -3.703  1.00 20.00      A    O  
+HETATM    4  O3A TYD A   1       0.752  -0.972  -3.821  1.00 20.00      A    O  
+HETATM    5  PB  TYD A   1       1.126  -0.140  -5.147  1.00 20.00      A    P  
+HETATM    6  O1B TYD A   1       1.884   1.074  -4.771  1.00 20.00      A    O  
+HETATM    7  O2B TYD A   1       2.027  -1.055  -6.119  1.00 20.00      A    O  
+HETATM    8  O3B TYD A   1      -0.224   0.285  -5.912  1.00 20.00      A    O  
+HETATM    9  O5* TYD A   1      -0.555  -0.774  -1.549  1.00 20.00      A    O  
+HETATM   10  C5* TYD A   1      -1.345   0.133  -0.779  1.00 20.00      A    C  
+HETATM   11  C4* TYD A   1      -1.772  -0.541   0.525  1.00 20.00      A    C  
+HETATM   12  O4* TYD A   1      -0.624  -0.809   1.363  1.00 20.00      A    O  
+HETATM   13  C3* TYD A   1      -2.631   0.421   1.383  1.00 20.00      A    C  
+HETATM   14  O3* TYD A   1      -4.008   0.349   1.007  1.00 20.00      A    O  
+HETATM   15  C2* TYD A   1      -2.418  -0.137   2.811  1.00 20.00      A    C  
+HETATM   16  C1* TYD A   1      -1.113  -0.949   2.708  1.00 20.00      A    C  
+HETATM   17  N1  TYD A   1      -0.124  -0.425   3.654  1.00 20.00      A    N  
+HETATM   18  C2  TYD A   1       0.276   0.854   3.558  1.00 20.00      A    C  
+HETATM   19  O2  TYD A   1      -0.186   1.564   2.685  1.00 20.00      A    O  
+HETATM   20  N3  TYD A   1       1.182   1.362   4.414  1.00 20.00      A    N  
+HETATM   21  C4  TYD A   1       1.701   0.590   5.390  1.00 20.00      A    C  
+HETATM   22  O4  TYD A   1       2.522   1.048   6.165  1.00 20.00      A    O  
+HETATM   23  C5  TYD A   1       1.292  -0.760   5.499  1.00 20.00      A    C  
+HETATM   24  C5M TYD A   1       1.860  -1.645   6.578  1.00 20.00      A    C  
+HETATM   25  C6  TYD A   1       0.381  -1.243   4.627  1.00 20.00      A    C  
+CONECT    1    3    4    9
+CONECT    1    2
+CONECT    1    2
+CONECT    2    1
+CONECT    2    1
+CONECT    3    1
+CONECT    4    1    5
+CONECT    5    4    7    8
+CONECT    5    6
+CONECT    5    6
+CONECT    6    5
+CONECT    6    5
+CONECT    7    5
+CONECT    8    5
+CONECT    9    1   10
+CONECT   10    9   11
+CONECT   11   10   12   13
+CONECT   12   11   16
+CONECT   13   11   14   15
+CONECT   14   13
+CONECT   15   13   16
+CONECT   16   12   15   17
+CONECT   17   16
+CONECT   17   18   25
+CONECT   18   17   20
+CONECT   18   19
+CONECT   18   19
+CONECT   19   18
+CONECT   19   18
+CONECT   20   18   21
+CONECT   21   20   23
+CONECT   21   22
+CONECT   21   22
+CONECT   22   21
+CONECT   22   21
+CONECT   23   24
+CONECT   23   21   25
+CONECT   24   23
+CONECT   25   17   23
+END
+
