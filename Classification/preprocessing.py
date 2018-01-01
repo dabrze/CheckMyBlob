@@ -14,7 +14,6 @@ from sklearn import preprocessing
 from util import DatasetStatistics
 from sklearn.base import BaseEstimator, TransformerMixin
 
-
 __author__ = "Marcin Kowiel, Dariusz Brzezinski"
 
 
@@ -157,7 +156,7 @@ class DatasetCleaner:
 
     GLOBALS = ["resolution_max_limit", "part_step_FoFc_std_min",
                "part_step_FoFc_std_max", "part_step_FoFc_std_step"]
-    
+
     GRAPH_ATTRIBUTES = ["local_maxi_graph_low_cycles", "local_maxi_graph_low_cycle_6", "local_maxi_graph_low_cycle_7",
                         "local_maxi_graph_low_cycle_5", "local_maxi_graph_low_closeness_000_002",
                         "local_maxi_graph_low_closeness_002_004", "local_maxi_graph_low_closeness_004_006",
@@ -165,9 +164,9 @@ class DatasetCleaner:
                         "local_maxi_graph_low_closeness_010_012", "local_maxi_graph_low_closeness_012_014",
                         "local_maxi_graph_low_closeness_014_016", "local_maxi_graph_low_closeness_016_018",
                         "local_maxi_graph_low_diameter", "local_maxi_graph_low_radius",
-                        "local_maxi_graph_low_deg_5_plus", "local_maxi_graph_low_density", 
+                        "local_maxi_graph_low_deg_5_plus", "local_maxi_graph_low_density",
                         "local_maxi_graph_low_periphery", "local_maxi_graph_low_graph_clique_number",
-                        "local_maxi_graph_low_nodes", "local_maxi_graph_low_avg_degree","local_maxi_graph_low_edges",
+                        "local_maxi_graph_low_nodes", "local_maxi_graph_low_avg_degree", "local_maxi_graph_low_edges",
                         "local_maxi_graph_low_average_clustering", "local_maxi_graph_low_center",
                         "local_maxi_graph_low_deg_4", "local_maxi_graph_low_deg_0",
                         "local_maxi_graph_low_deg_1", "local_maxi_graph_low_deg_2", "local_maxi_graph_low_deg_3",
@@ -192,8 +191,8 @@ class DatasetCleaner:
                  validation_data=None, remove_poor_quality_data=True, keep=None, remove_poorly_covered=True,
                  blob_coverage_threshold=0.1, res_coverage_threshold=0.2, twilight_data=None, combine_ligands=True,
                  remove_symmetry_ligands=True, ligand_selection=None, discretize_add_noise=False,
-                 discretize_round_noise=False, min_electron_pct=0.5, nonH_atom_range=None, resolution_range=(0,4),
-                 non_xray_pdb_list=None, edstats_data=None, min_ZOa=None, max_ZDa=None):
+                 discretize_round_noise=False, min_electron_pct=0.5, nonH_atom_range=None, resolution_range=(0, 4),
+                 non_xray_pdb_list=None, edstats_data=None, min_ZOa=None, max_ZDa=None, training_data=True):
         """
         Initializes a new preprocessor object with the specified settings.
         """
@@ -230,6 +229,7 @@ class DatasetCleaner:
         self.edstats_data = edstats_data
         self.min_ZOa = min_ZOa
         self.max_ZDa = max_ZDa
+        self.training_data = training_data
 
         self.clean()
 
@@ -260,22 +260,25 @@ class DatasetCleaner:
 
     def clean(self):
         logging.info("Cleaning data...")
-        logging.info("Initial dataset:\r\n%s", DatasetStatistics(self.data_frame,
-                                                                 self.data_frame.loc[:, self.class_attribute]))
 
-        try:
-            non_xray_df = read_non_xray_pdb_list(self.non_xray_pdb_list)
-            non_xray = self.data_frame[(self.data_frame[self.PDBID_ATTRIBUTE].isin(non_xray_df.loc[:, "pdbid"]))]
-            non_xray_num = non_xray.shape[0]
-            non_xray_unique = len(pd.unique(non_xray.loc[:, self.PDBID_ATTRIBUTE]))
+        if self.training_data:
+            logging.info("Initial dataset:\r\n%s", DatasetStatistics(self.data_frame,
+                                                                     self.data_frame.loc[:, self.class_attribute]))
 
-            if non_xray_num > 0:
-                logging.info("Removing %s examples taken from PDB entries with experimental methods other tha X-ray "
-                             "diffraction (%s non-xray PDB files)", str(non_xray_num), str(non_xray_unique))
-                self.data_frame = self.data_frame.drop(non_xray.index)
-        except:
-            logging.warning("Could not find list of non-xray pdb files")
-        # pdb_code pdbid
+            try:
+                non_xray_df = read_non_xray_pdb_list(self.non_xray_pdb_list)
+                non_xray = self.data_frame[(self.data_frame[self.PDBID_ATTRIBUTE].isin(non_xray_df.loc[:, "pdbid"]))]
+                non_xray_num = non_xray.shape[0]
+                non_xray_unique = len(pd.unique(non_xray.loc[:, self.PDBID_ATTRIBUTE]))
+
+                if non_xray_num > 0:
+                    logging.info(
+                        "Removing %s examples taken from PDB entries with experimental methods other tha X-ray "
+                        "diffraction (%s non-xray PDB files)", str(non_xray_num), str(non_xray_unique))
+                    self.data_frame = self.data_frame.drop(non_xray.index)
+            except:
+                logging.warning("Could not find list of non-xray pdb files")
+                # pdb_code pdbid
 
         no_electrons = self.data_frame[~(self.data_frame[self.ELECTRON_ATTRIBUTE] > 0)].index
         no_electrons_num = no_electrons.shape[0]
@@ -283,18 +286,19 @@ class DatasetCleaner:
             logging.info("Removing %s examples with no electron density", str(no_electrons_num))
             self.data_frame = self.data_frame.drop(no_electrons)
 
-        if self.where_title is not None:
-            self.data_frame = self.data_frame.loc[self.data_frame[self.KEY_ATTRIBUTE].isin(self.where_title), :]
+        if self.training_data:
+            if self.where_title is not None:
+                self.data_frame = self.data_frame.loc[self.data_frame[self.KEY_ATTRIBUTE].isin(self.where_title), :]
 
-        if self.sort_by_title:
-            self.data_frame = self.data_frame.sort_values(by=self.KEY_ATTRIBUTE)
+            if self.sort_by_title:
+                self.data_frame = self.data_frame.sort_values(by=self.KEY_ATTRIBUTE)
 
-        if self.filter_examples:
-            self._drop_duplicates(self.unique_attributes, self.keep)
-            if self.remove_poorly_covered:
-                self._filter_poorly_covered_examples()
-            self._filter_examples(self.max_num_of_classes, self.min_examples_per_class, self.ligand_selection,
-                                  self.nonH_atom_range, self.resolution_range)
+            if self.filter_examples:
+                self._drop_duplicates(self.unique_attributes, self.keep)
+                if self.remove_poorly_covered:
+                    self._filter_poorly_covered_examples()
+                self._filter_examples(self.max_num_of_classes, self.min_examples_per_class, self.ligand_selection,
+                                      self.nonH_atom_range, self.resolution_range)
 
         self.data_frame.set_index(self.KEY_ATTRIBUTE, inplace=True)
         self._drop_attributes(self.drop_attributes)
@@ -305,8 +309,9 @@ class DatasetCleaner:
         self._convert_columns_to_floats()
         self._select_attributes(self.select_attributes)
 
-        logging.info("Dataset after preprocessing:\r\n%s",
-                     DatasetStatistics(self.data_frame, self.data_frame.loc[:, self.class_attribute]))
+        if self.training_data:
+            logging.info("Dataset after preprocessing:\r\n%s",
+                         DatasetStatistics(self.data_frame, self.data_frame.loc[:, self.class_attribute]))
 
     def prepare_for_classification(self, selected_class_attribute, all_class_attributes=None):
         """
@@ -412,7 +417,7 @@ class DatasetCleaner:
 
         if poorly_covered_num > 0:
             logging.info("Removing %s examples with blobs covered by the model below %s%%", str(poorly_covered_num),
-                         str(self.blob_coverage_threshold*100))
+                         str(self.blob_coverage_threshold * 100))
             self.data_frame = self.data_frame.drop(poorly_covered)
 
         res_poorly_covered = self.data_frame[self.data_frame.res_volume_coverage < self.res_coverage_threshold].index
@@ -598,7 +603,7 @@ class DatasetCleaner:
             logging.info("Limiting dataset to classes with at least %d examples", min_examples_per_class)
             count_attribute = self.class_attribute + "_count"
             res_name_count = self.data_frame.loc[:, self.class_attribute].value_counts()
-            self.data_frame.loc[:, count_attribute] = self.data_frame.loc[:, self.class_attribute]\
+            self.data_frame.loc[:, count_attribute] = self.data_frame.loc[:, self.class_attribute] \
                 .map(res_name_count).astype(int)
             self.data_frame = self.data_frame[self.data_frame[count_attribute] >= min_examples_per_class]
             self.data_frame = self.data_frame.drop(count_attribute, axis=1)
@@ -664,7 +669,6 @@ class DatasetCleaner:
         self.data_frame[self.data_frame < -10e32] = -10e32
 
         self.data_frame = self.data_frame.astype("float32")
-
         self.data_frame = pd.concat([self.data_frame, tmp_frame], axis=1)
 
     @staticmethod
@@ -727,6 +731,7 @@ def read_dataset(path):
     logging.info("Read dataset in: %.2f seconds", time.time() - start)
     return df
 
+
 def read_merge_datasets(paths):
     dfs = []
 
@@ -734,6 +739,7 @@ def read_merge_datasets(paths):
         dfs.append(read_dataset(path))
 
     return pd.concat(dfs, ignore_index=True)
+
 
 def read_validation_data(path):
     validation_data = pd.read_csv(path, sep=",", header=0, na_values=["n/a", "nan", ""],
@@ -749,7 +755,7 @@ def read_validation_data(path):
 
 def read_twilight_data(path):
     twilight_data = pd.read_csv(path, sep="\t", header=0, na_values=["n/a"],
-                                  keep_default_na=False, engine="c", low_memory=False)
+                                keep_default_na=False, engine="c", low_memory=False)
     twilight_data = twilight_data.drop_duplicates(keep="first")
 
     twilight_data.loc[:, "chain_id"] = twilight_data.ResNr.str[0].str.strip()
@@ -770,6 +776,6 @@ def read_edstats_data(path):
 
 def read_non_xray_pdb_list(path):
     non_xray_pdbs = pd.read_csv(path, header=0, na_values=["n/a"], keep_default_na=False, engine="c",
-                                  low_memory=False)
+                                low_memory=False)
 
     return non_xray_pdbs

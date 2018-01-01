@@ -16,6 +16,40 @@ from matplotlib import offsetbox
 
 __author__ = 'Marcin Kowiel, Dariusz Brzezinski'
 
+CLASS_ATTRIBUTE = "res_name"
+SELECTION = ["resolution", "percent_cut", "part_00_electrons", "part_00_volume",
+
+             "electrons_over_resolution_00", "volume_over_resolution_00", "std_over_resolution_00",
+
+             "part_00_mean",
+             "delta_std_2", "delta_std_1",
+             "local_near_cut_count_N", "local_near_cut_count_O", "local_near_cut_count_C",
+             "local_mean", "local_electrons",
+             "part_00_density_CI", "part_00_shape_CI",
+
+             "delta_electrons_1", "delta_electrons_2",
+             "delta_volume_1", "delta_volume_2",
+             "delta_mean_1", "delta_mean_2",
+             "delta_skewness_1", "delta_skewness_2",
+
+             "part_00_shape_sqrt_E1", "part_00_shape_sqrt_E3", "part_00_shape_E2_E1",
+             "part_00_density_sqrt_E2", "part_00_density_sqrt_E1", "part_00_density_sqrt_E3",
+             "part_00_density_E2_E1", "part_00_density_E3_E1", "part_00_density_E3_E2",
+             "delta_density_sqrt_E1_1", "delta_density_sqrt_E2_1", "delta_density_sqrt_E3_1",
+
+             "shape_segments_count_over_volume_00", "skewness_over_volume_00",
+
+             "part_00_shape_Z_1_0", "part_00_shape_Z_2_0", "part_00_shape_Z_2_1", "part_00_shape_Z_3_1",
+             "part_00_shape_Z_4_0", "part_00_shape_Z_4_2",
+             "part_00_shape_FL", "part_00_shape_O5_norm",
+
+             "part_00_density_I6", "part_00_density_I2_norm", "part_00_density_I5_norm", "part_00_density_I4_norm",
+             "part_00_density_O3_norm", "part_00_density_O4_norm",
+             "part_00_density_Z_3_0", "part_00_density_Z_7_0", "part_00_density_Z_5_0", "part_00_density_Z_6_0",
+
+             "std_over_volume_01", "local_cut_by_mainchain_volume",
+             "delta_shape_segments_count_2",
+             ]
 
 class DatasetStatistics:
     """

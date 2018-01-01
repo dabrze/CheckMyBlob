@@ -100,9 +100,9 @@ def run_phenix(pdb, timeout):
 def run_cmb(pdb, timeout):
     start = time.time()
 
-    pdb_file = "{0}/{1}_cut.pdb ".format(MAPS_PATH, pdb)
-    cif_file = "{0}/{1}_cut.cif ".format(MAPS_PATH, pdb)
-    mtz_file = "{0}/{1}_refmac.mtz ".format(MAPS_PATH, pdb)
+    pdb_file = "{0}/{1}_cut.pdb".format(MAPS_PATH, pdb)
+    cif_file = "{0}/{1}_cut.cif".format(MAPS_PATH, pdb)
+    mtz_file = "{0}/{1}_refmac.mtz".format(MAPS_PATH, pdb)
 
     ref_time, proc_time, blobs = \
         calculate.calculate(pdb, pdb_file, cif_file, mtz_file,
@@ -156,8 +156,8 @@ def write_result(pdb, method, time, save_to_folder=RESULTS_FOLDER, file_name="Ti
 
 
 def measure_time(pdb, x, y, z, timeout=3600):
-    # t = run_warp(pdb, x, y, z, timeout)
-    # write_result(pdb, "cl", t)
+    t = run_warp(pdb, x, y, z, timeout)
+    write_result(pdb, "cl", t)
 
     # t = run_phenix(pdb, timeout)
     # write_result(pdb, "tamc", t)
