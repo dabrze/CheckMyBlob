@@ -1614,6 +1614,8 @@ class GatherData(object):
 
         start = datetime.datetime.now()
         blobls = self.get_blobs(self.options.MIN_VOLUME_LIMIT, threshold, self.options.BLOB_MERGE_DIST)
+        blobls.sort(key=lambda x: x.volume, reverse=True)
+
         self.logger.info('Get blobs took %s' % (datetime.datetime.now() - start))
         self.logger.info('%d blobs found bigger than %f' % (len(blobls), self.options.MIN_VOLUME_LIMIT))
 
@@ -1730,6 +1732,9 @@ class GatherData(object):
                 except Exception as err:
                     self.logger.info("ERROR " + str(err))
                     continue
+
+            if not self.rerefine and blob_done_count > 0:
+                break;
 
         if blob_done_count == 0:
             result_data = DataAggregator()

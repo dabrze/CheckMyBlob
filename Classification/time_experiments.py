@@ -167,11 +167,11 @@ def measure_time(pdb, x, y, z, timeout=3600):
 
 
 if __name__ == '__main__':
-    warp_errors = ["4m8u", "4pn9", "4cgs"]
+    files_with_errors = ["4m8u", "4pn9", "4cgs", "1ok2", "3g7v"]
 
     data = joblib.load(CAROLAN_PATH)
-    sample = data.data_frame.sample(n=33, random_state=SEED).index.str[0:4].values
-    sample = [x for x in sample if x not in warp_errors]
+    sample = data.data_frame.sample(n=36, random_state=SEED).index.str[0:4].unique().values
+    sample = [x for x in sample if x not in files_with_errors]
     coordinates = pd.read_csv(COORDINATES_FILE, index_col=0)
 
     for pdb in sample:
