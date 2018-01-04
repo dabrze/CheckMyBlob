@@ -2,11 +2,13 @@
 # Authors: Dariusz Brzezinski <dariusz.brzezinski@cs.put.poznan.pl>
 
 import os
+import gc
 import logging
 import subprocess
 import threading
 import time
 import csv
+import shutil
 
 import pandas as pd
 import numpy as np
@@ -22,10 +24,13 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(me
 SEED = 23
 DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Data'))
 RESULTS_FOLDER = os.path.join(os.path.join(os.path.dirname(__file__), '..', 'Results'))
+MODELS_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Models'))
+OUTPUT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Output'))
+
 CAROLAN_PATH = os.path.join(DATA_FOLDER, "cl.pkl")
 MAPS_PATH = os.path.join(DATA_FOLDER, "TimeExperiments")
 COORDINATES_FILE = os.path.join(MAPS_PATH, "sample.csv")
-MODEL_PATH = os.path.join(MAPS_PATH, "cl_model.pkl")
+
 
 
 class Command(object):
@@ -97,7 +102,12 @@ def run_phenix(pdb, timeout):
     return time_command(cmd, timeout)
 
 
-def run_cmb(pdb, timeout):
+def run_cmb(pdb, timeout, model_path):
+    # cleanup, so we don't used cached REFMAC results
+    if os.path.exists(OUTPUT_FOLDER):
+        shutil.rmtree(OUTPUT_FOLDER)
+    gc.collect()
+
     start = time.time()
 
     pdb_file = "{0}/{1}_cut.pdb".format(MAPS_PATH, pdb)
@@ -107,12 +117,13 @@ def run_cmb(pdb, timeout):
     ref_time, proc_time, blobs = \
         calculate.calculate(pdb, pdb_file, cif_file, mtz_file,
                             overwrite=True, logging_level=logging.WARNING, output_stats=True,
-                            rerefine=False)
+                            rerefine=False, pdb_out_data_dir=OUTPUT_FOLDER)
     examples_file = postrun.single_file(pdb)
 
     X = prep.DatasetCleaner(prep.read_dataset(examples_file), class_attribute=util.CLASS_ATTRIBUTE,
                                    select_attributes=util.SELECTION, training_data=False).data_frame
-    pred_model = util.load_model(MODEL_PATH)
+    gc.collect()
+    pred_model = util.load_model(model_path)
     y_pred = pred_model.classifier.predict(X)
     y_proba = pred_model.classifier.predict_proba(X)
     y_pred_label = pred_model.label_encoder.inverse_transform(y_pred)
@@ -162,8 +173,14 @@ def measure_time(pdb, x, y, z, timeout=3600):
     t = run_phenix(pdb, timeout)
     write_result(pdb, "tamc", t)
 
-    t = run_cmb(pdb, timeout)
-    write_result(pdb, "cmb", t)
+    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_knn.pkl"))
+    write_result(pdb, "cmb_knn", t)
+    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_lgbm.pkl"))
+    write_result(pdb, "cmb_lgbm", t)
+    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_rf.pkl"))
+    write_result(pdb, "cmb_rf", t)
+    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_stacking.pkl"))
+    write_result(pdb, "cmb_stacking", t)
 
 
 if __name__ == '__main__':
