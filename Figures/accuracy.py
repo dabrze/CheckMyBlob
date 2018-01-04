@@ -43,7 +43,7 @@ def parse_ligand(ligands='ligands.csv'):
 
 def read_files(directory, wildcard):
     path = os.path.join(directory, wildcard)
-    
+
     dataframes = []
     print 'checking', path
 
@@ -98,11 +98,11 @@ def get_stats(directory, wildcard, group_by_column='resolution', low=1.0, high=4
         df = df[(df[group_by_column] >= bins[1]) & (df[group_by_column] <= bins[-2])]
 
     group = df.groupby(group_by_column)
-    
+
     mean = group.is_correct.mean()
     std = group.is_correct.std()
     count = group.is_correct.count()
-    
+
     print mean, high_mean
 
     if bins is None:
@@ -124,7 +124,12 @@ def get_stats(directory, wildcard, group_by_column='resolution', low=1.0, high=4
         std.loc[cent_hi] = high_std
 
         count.loc[cent_lo] = low_count
-        count.loc[cent_hi] = high_count 
+        count.loc[cent_hi] = high_count
+
+    print '##########'
+    print count
+    print mean
+    print '##########'
 
     stats = pd.concat([mean, std, count], axis=1)
     stats.columns = ['accuracy', 'std', 'count']
@@ -140,7 +145,7 @@ right_lte = {'resolution': True, 'rscc': False, 'non_h_atoms': True}
 left_lte = {'resolution': True, 'rscc': False, 'non_h_atoms': True}
 column_name = {'resolution': 'Resolution', 'rscc': 'RSCC', 'non_h_atoms': 'Non H atoms'}
 digits = {'resolution': 2, 'rscc': 2, 'non_h_atoms': 1}
-bins = {'resolution': None, 'rscc': None, 
+bins = {'resolution': None, 'rscc': None,
         'non_h_atoms': range(low['non_h_atoms']-step['non_h_atoms'], high['non_h_atoms']+3*step['non_h_atoms'],step['non_h_atoms'])}
 
 delete_x_ticks = {'resolution': True, 'rscc': False, 'non_h_atoms': False}
@@ -160,7 +165,7 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
         ax2.set_xlim(low[column]-1.5*step[column], high[column]+1.5*step[column])
     else:
         ax2.set_xlim(low[column]-1.0*step[column], high[column]+2.0*step[column])
-    
+
     p_count_cmb = ax2.bar(cmb.index.values-0.3*step[column], (cmb['count'].values), width=0.25*step[column], align='center', color=colors[0]+"66")
     p_count_tamc = ax2.bar(tamc.index.values+0.0*step[column], (tamc['count'].values), width=0.25*step[column], align='center', color=colors[1]+"66")
     p_count_cl = ax2.bar(cl.index.values+0.3*step[column], (cl['count'].values), width=0.25*step[column], align='center', color=colors[2]+"66")
@@ -175,24 +180,24 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
     else:
         ax.set_xlim(low[column]-1.0*step[column], high[column]+2.0*step[column])
     ax.set_ylim(0, 1)
-    
+
     xticks= np.arange(low[column]-1*step[column], high[column]+1*step[column]+0.0001, step[column])
     xticks_names = list(xticks)
-    
+
     xticks_minor = np.arange(low[column]-0.5*step[column], high[column]+1.5*step[column]+0.0001, step[column])
 
     print len(xticks), len(xticks_names), len(xticks_minor)
 
     if bins[column] is not None:
         xticks_names = [u"(%.0f\u2013%.0f]" % (xt, xt+step[column]) for xt in xticks]
-    
+
     if left_lte[column]:
         xticks_names[0] = u"< %.1f" % (low[column]) #\u2264
         if bins[column] is not None:
             xticks_names[0] = u"\u2264 %.0f" % (low[column]) #\u2264
     else:
         xticks_names[0] = u"\u2264 %.1f" % (low[column]-step[column]) #\u2264
-    
+
     if right_lte[column]:
         xticks_names[-1] = u"> %.1f" % (high[column]) #\u2265
         if bins[column] is not None:
