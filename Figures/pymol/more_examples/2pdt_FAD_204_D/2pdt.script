@@ -2,12 +2,16 @@
 #https://pymolwiki.org/index.php/Color_Values#greens
 
 load pymol_data\2pdt_FAD_204_D\2pdt.pdb, data
+load pymol_data\2pdt_FAD_204_D\FAD_part.pdb, fad_data
 load pymol_data\2pdt_FAD_204_D\2pdt_2FoFc.cover.ccp4, map2fofc
 load pymol_data\2pdt_FAD_204_D\2pdt_FoFc.cover.ccp4, mapfofc
 
-   
-select mole, chain D and resi 204
+
+select mole, data and chain D and resi 204 
+select fad, fad_data and chain A and resi 1  
 #symexp sym, data, (mole), 4
+
+
 
 zoom mole
 orient mole
@@ -19,18 +23,24 @@ show sticks
 show spheres
 
 # hide mainchain
-hide sticks, data and resi 1-203
-hide spheres, data and resi 1-203
+hide sticks, data and resi 2-203
+hide spheres, data and resi 2-203
 hide sticks, data and resi 205-9999
 hide spheres, data and resi 205-9999
 
-hide spheres, data and not (chain D and resi 204)
+hide spheres, data and not (chain D and resi 204 or fad)
 
 # carbon color white/grey 
 #util.cbaw
 # carbon color yellow 
 util.cbay
 
+#util.cbaw fad
+color gray50, fad
+#set transparency, 0.4, fad
+#set sphere_transparency, 0.4, fad
+#set stick_transparency, 0.4, fad
+#set_bond stick_transparency, 0.4, fad
 
 # increase the sampling rate of the map
 map_double map2fofc, -1    
@@ -89,14 +99,24 @@ hide labels
 set field_of_view, 10
 set ray_opaque_background, off
 
+#set_view (\
+#    -0.970421314,   -0.237810194,   -0.041552406,\
+#     0.100220181,   -0.553435981,    0.826839268,\
+#    -0.219627962,    0.798218131,    0.560900152,\
+#     0.000062329,   -0.000000827,  -70.303268433,\
+#    29.203443527,   34.200706482,   31.416183472,\
+#    61.631214142,   78.970138550,  -10.000000000 )
+
 set_view (\
-    -0.970421314,   -0.237810194,   -0.041552406,\
-     0.100220181,   -0.553435981,    0.826839268,\
-    -0.219627962,    0.798218131,    0.560900152,\
-     0.000062329,   -0.000000827,  -70.303268433,\
-    29.203443527,   34.200706482,   31.416183472,\
-    61.631214142,   78.970138550,  -10.000000000 )
-    
+    -0.987881303,   -0.135018721,   -0.076530434,\
+     0.096524559,   -0.920646667,    0.378278166,\
+    -0.121531576,    0.366306871,    0.922519207,\
+     0.000139028,   -0.000118717, -101.505073547,\
+    24.339365005,   35.563236237,   32.514884949,\
+    91.077003479,  111.847282410,  -10.000000000 )
+
+
+
 isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.1 
 ray 2048,1572 
 # output final image

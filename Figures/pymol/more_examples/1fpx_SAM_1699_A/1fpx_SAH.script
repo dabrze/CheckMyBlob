@@ -19,8 +19,8 @@ show sticks
 show spheres
 
 # hide mainchain
-hide sticks, data and resi 1-1698
-hide spheres, data and resi 1-1698
+hide sticks, data and resi 2-1698
+hide spheres, data and resi 2-1698
 hide sticks, data and resi 1700-9999
 hide spheres, data and resi 1700-9999
 
@@ -97,6 +97,13 @@ set_view (\
    -22.982223511,   12.101753235,    8.517407417,\
     61.506694794,   76.139343262,  -10.000000000 )
 
+set_view (\
+    -0.580797732,   -0.588412881,    0.562531412,\
+     0.813115656,   -0.452414066,    0.366279483,\
+     0.038973201,    0.670131385,    0.741209626,\
+     0.000007788,   -0.000109661,  -69.509269714,\
+   -22.982223511,   12.101753235,    8.517407417,\
+    62.192737579,   76.825378418,  -10.000000000 )
 
 isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.1 
 ray 2048,1572 

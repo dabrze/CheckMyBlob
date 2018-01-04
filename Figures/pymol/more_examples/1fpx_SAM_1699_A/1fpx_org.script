@@ -2,8 +2,8 @@
 #https://pymolwiki.org/index.php/Color_Values#greens
 
 load pymol_data\1fpx_SAM_1699_A\1fpx.pdb, data
-load pymol_data\1fpx_SAM_1699_A\1fpx_2FoFc.cover.ccp4, map2fofc
-load pymol_data\1fpx_SAM_1699_A\1fpx_FoFc.cover.ccp4, mapfofc
+load pymol_data\1fpx_SAM_1699_A\1fpx_2FoFc_org.cover.ccp4, map2fofc
+load pymol_data\1fpx_SAM_1699_A\1fpx_FoFc_org.cover.ccp4, mapfofc
 
    
 select mole, chain A and resi 1699
@@ -37,17 +37,12 @@ map_double map2fofc, -1
 map_double mapfofc, -1
 
 # carve - odleglosc od 
-#isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
-#color marine, mesh2fofc 
+isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
+color marine, mesh2fofc 
 
-isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.8 
-#isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=2.2 
-isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=0.9 
-
-# additional minus map
-sele atom_ce, (chain A and resi 1699 and name ce)
-isomesh meshfofc_minus_ce, mapfofc, -2.8, atom_ce, carve=2.7 
-color red, meshfofc_minus_ce 
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.67 
+select mole_no_oxt, chain A and resi 1699 AND NOT name O
+isomesh meshfofc_minus, mapfofc, -2.8, mole_no_oxt, carve=1.5 
 
 color lime, meshfofc_plus  
 color red, meshfofc_minus  
@@ -95,13 +90,21 @@ hide labels
 set field_of_view, 10
 set ray_opaque_background, off
 
-set_view (\
-    -0.693208456,   -0.232284889,    0.682278395,\
-     0.712323844,   -0.365021795,    0.599456728,\
-     0.109801628,    0.901549220,    0.418500394,\
-     0.000007788,   -0.000109661,  -68.823234558,\
-   -22.982223511,   12.101753235,    8.517407417,\
-    61.506694794,   76.139343262,  -10.000000000 )
+#set_view (\
+#    -0.693208456,   -0.232284889,    0.682278395,\
+#     0.712323844,   -0.365021795,    0.599456728,\
+#     0.109801628,    0.901549220,    0.418500394,\
+#     0.000007788,   -0.000109661,  -68.823234558,\
+#   -22.982223511,   12.101753235,    8.517407417,\
+#    61.506694794,   76.139343262,  -10.000000000 )
+
+#set_view (\
+#    -0.693208456,   -0.232284889,    0.682278395,\
+#     0.712323844,   -0.365021795,    0.599456728,\
+#     0.109801628,    0.901549220,    0.418500394,\
+#     0.000007788,   -0.000109661,  -69.509269714,\
+#   -22.982223511,   12.101753235,    8.517407417,\
+#    62.192737579,   76.825378418,  -10.000000000 )
 
 set_view (\
     -0.580797732,   -0.588412881,    0.562531412,\
@@ -110,7 +113,7 @@ set_view (\
      0.000007788,   -0.000109661,  -69.509269714,\
    -22.982223511,   12.101753235,    8.517407417,\
     62.192737579,   76.825378418,  -10.000000000 )
-    
+
 ray 2048,1572 
 # output final image
-png pymol_data\1fpx_SAM_1699_A\1fpx_SAM_1699_A.png 
+png pymol_data\1fpx_SAM_1699_A\1fpx_SAM_1699_A_org.png 

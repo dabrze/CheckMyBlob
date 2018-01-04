@@ -40,7 +40,7 @@ map_double mapfofc, -1
 #isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
 #color marine, mesh2fofc 
 
-isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.8 
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=2.2 
 isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=2.2 
 
 color lime, meshfofc_plus  
