@@ -37,6 +37,14 @@ hide spheres, data and not (chain X and resi 1002)
 # carbon color yellow 
 util.cbay
 
+#sulfur [0.9, 0.775, 0.25]  
+#iron   [0.878431373, 0.4, 0.2]    
+set_color mysul = [1.0, 0.975, 0.45]
+set_color myiro = [1.0, 0.6, 0.4]
+select sul, (sym01000000 and chain X and resi 1002 and (name S1 or name S2))
+select iro, (sym01000000 and chain X and resi 1002 and (name Fe1 or name Fe2))
+color mysul, sul
+color myiro, iro
 
 # increase the sampling rate of the map
 map_double map2fofc, -1    
@@ -103,7 +111,7 @@ set_view (\
     43.376792908,   -5.208280563,   33.354259491,\
     31.864511490,   37.864517212,  -10.000000000 )
     
-isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.1 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=0.1 
 ray 2048,1572 
 # output final image
 png pymol_data\5fle_FES_1002_X\5fle_FES_1002_X.png 

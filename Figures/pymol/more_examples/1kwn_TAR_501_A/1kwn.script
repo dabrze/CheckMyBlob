@@ -2,11 +2,13 @@
 #https://pymolwiki.org/index.php/Color_Values#greens
 
 load pymol_data\1kwn_TAR_501_A\1kwn.pdb, data
+load pymol_data\1kwn_TAR_501_A\TAR_part.pdb, tar_data
 load pymol_data\1kwn_TAR_501_A\1kwn_2FoFc.cover.ccp4, map2fofc
 load pymol_data\1kwn_TAR_501_A\1kwn_FoFc.cover.ccp4, mapfofc
 
    
 select mole, chain A and resi 501
+select tar, tar_data and chain A and resi 1  
 #symexp sym, data, (mole), 4
 
 zoom mole
@@ -19,18 +21,19 @@ show sticks
 show spheres
 
 # hide mainchain
-hide sticks, data and resi 1-500
-hide spheres, data and resi 1-500
+hide sticks, data and resi 2-500
+hide spheres, data and resi 2-500
 hide sticks, data and resi 502-9999
 hide spheres, data and resi 502-9999
 
-hide spheres, data and not (chain A and resi 501)
+hide spheres, data and not (chain A and resi 501 or tar)
 
 # carbon color white/grey 
 #util.cbaw
 # carbon color yellow 
 util.cbay
 
+color gray50, tar
 
 # increase the sampling rate of the map
 map_double map2fofc, -1    

@@ -101,7 +101,7 @@ set_view (\
     43.376792908,   -5.208280563,   33.354259491,\
     31.864511490,   37.864517212,  -10.000000000 )
 
-isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.1 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=0.1 
 ray 2048,1572 
 # output final image
 png pymol_data\5fle_FES_1002_X\5fle_SF4_1002_X.png 
