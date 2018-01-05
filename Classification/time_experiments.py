@@ -9,15 +9,14 @@ import threading
 import time
 import csv
 import shutil
+import sys
 
 import pandas as pd
-import numpy as np
 from sklearn.externals import joblib
 
-import util
-import preprocessing as prep
-import calculate
-import postrun
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'GatherData'))
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 
@@ -26,11 +25,12 @@ DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Dat
 RESULTS_FOLDER = os.path.join(os.path.join(os.path.dirname(__file__), '..', 'Results'))
 MODELS_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Models'))
 OUTPUT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Output'))
+PYTHON = '/usr/bin/python'
+CMB_SCRIPT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'run_cmb.py'))
 
 CAROLAN_PATH = os.path.join(DATA_FOLDER, "cl.pkl")
 MAPS_PATH = os.path.join(DATA_FOLDER, "TimeExperiments")
 COORDINATES_FILE = os.path.join(MAPS_PATH, "sample.csv")
-
 
 
 class Command(object):
@@ -78,7 +78,7 @@ def run_warp(pdb, x, y, z, timeout):
     return time_command(cmd, timeout)
 
 
-def run_phenix(pdb, timeout):
+def run_phenix(pdb, x, y, z, timeout):
     conf = "ligand_identification {"
     conf += """
     mtz_in = "{0}/{1}_refmac.mtz"
@@ -108,37 +108,29 @@ def run_cmb(pdb, timeout, model_path):
         shutil.rmtree(OUTPUT_FOLDER)
     gc.collect()
 
-    start = time.time()
+    # using seperate script instead of Python code to make the identification process comparable to ARP and PHENIX
+    cmd = "{0} {1} {3} {2}/{3}_cut.pdb {2}/{3}_cut.cif {2}/{3}_refmac.mtz {4} {5}".format(PYTHON, CMB_SCRIPT_PATH,
+                                                                                      MAPS_PATH, pdb, model_path,
+                                                                                      OUTPUT_FOLDER)
+    logging.info(cmd)
 
-    pdb_file = "{0}/{1}_cut.pdb".format(MAPS_PATH, pdb)
-    cif_file = "{0}/{1}_cut.cif".format(MAPS_PATH, pdb)
-    mtz_file = "{0}/{1}_refmac.mtz".format(MAPS_PATH, pdb)
+    return time_command(cmd, timeout)
 
-    ref_time, proc_time, blobs = \
-        calculate.calculate(pdb, pdb_file, cif_file, mtz_file,
-                            overwrite=True, logging_level=logging.WARNING, output_stats=True,
-                            rerefine=False, pdb_out_data_dir=OUTPUT_FOLDER)
-    examples_file = postrun.single_file(pdb)
 
-    X = prep.DatasetCleaner(prep.read_dataset(examples_file), class_attribute=util.CLASS_ATTRIBUTE,
-                                   select_attributes=util.SELECTION, training_data=False).data_frame
-    gc.collect()
-    pred_model = util.load_model(model_path)
-    y_pred = pred_model.classifier.predict(X)
-    y_proba = pred_model.classifier.predict_proba(X)
-    y_pred_label = pred_model.label_encoder.inverse_transform(y_pred)
-    top_10_pred = np.argsort(y_proba, axis=1)[:, -10:][:, ::-1]
-    top_10_labels = pred_model.label_encoder.inverse_transform(top_10_pred)
-    top_10_probabilities = np.array([subarray[index] for subarray, index in zip(y_proba, top_10_pred)])
+def run_cmb_knn(pdb, x, y, z, timeout):
+    return run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_knn.pkl"))
 
-    end = time.time()
 
-    elapsed = end - start
+def run_cmb_rf(pdb, x, y, z, timeout):
+    return run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_rf.pkl"))
 
-    if elapsed > timeout:
-        return -1
-    else:
-        return elapsed
+
+def run_cmb_lgbm(pdb, x, y, z, timeout):
+    return run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_lgbm.pkl"))
+
+
+def run_cmb_stacking(pdb, x, y, z, timeout):
+    return run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_stacking.pkl"))
 
 
 def write_result(pdb, method, time, save_to_folder=RESULTS_FOLDER, file_name="TimeComparison.csv"):
@@ -166,25 +158,17 @@ def write_result(pdb, method, time, save_to_folder=RESULTS_FOLDER, file_name="Ti
         writer.writerow(row)
 
 
-def measure_time(pdb, x, y, z, timeout=3600):
-    t = run_warp(pdb, x, y, z, timeout)
-    write_result(pdb, "cl", t)
-
-    t = run_phenix(pdb, timeout)
-    write_result(pdb, "tamc", t)
-
-    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_knn.pkl"))
-    write_result(pdb, "cmb_knn", t)
-    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_lgbm.pkl"))
-    write_result(pdb, "cmb_lgbm", t)
-    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_rf.pkl"))
-    write_result(pdb, "cmb_rf", t)
-    t = run_cmb(pdb, timeout, os.path.join(MODELS_FOLDER, "cl_stacking.pkl"))
-    write_result(pdb, "cmb_stacking", t)
-
-
 if __name__ == '__main__':
+    timeout = 3600
     files_with_errors = ["4m8u", "4pn9", "4cgs", "1ok2", "3g7v"]
+    algorithms = {
+        "cl": run_warp,
+        "cmb_knn": run_cmb_knn,
+        "cmb_rf": run_cmb_rf,
+        "cmb_lgbm": run_cmb_lgbm,
+        "cmb_stacking": run_cmb_stacking,
+        "tamc": run_phenix
+    }
 
     data = joblib.load(CAROLAN_PATH)
     sample = data.data_frame.sample(n=36, random_state=SEED).index.str[0:4].unique().values
@@ -192,5 +176,8 @@ if __name__ == '__main__':
     coordinates = pd.read_csv(COORDINATES_FILE, index_col=0)
 
     for pdb in sample:
-        c = coordinates[coordinates.pdb == pdb]
-        measure_time(pdb, float(c.x), float(c.y), float(c.z))
+        for alg in algorithms:
+            len(gc.get_objects())
+            c = coordinates[coordinates.pdb == pdb]
+            t = algorithms[alg](pdb, float(c.x), float(c.y), float(c.z), timeout)
+            write_result(pdb, alg, t)

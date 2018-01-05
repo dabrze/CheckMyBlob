@@ -102,7 +102,7 @@ def pandas_gather(df, key, value, cols):
     return pd.melt(df, id_vars, id_values, var_name, value_name)
 
 
-def save_model(clf, path, compress=0):
+def save_model(clf, path, compress=3):
     joblib.dump(clf, path, compress=compress)
 
 
