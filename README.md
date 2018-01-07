@@ -1,10 +1,8 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1042748.svg)](https://doi.org/10.5281/zenodo.1042748)
-
 # CheckMyBlob
 
 Machine learning experiments for the CheckMyBlob ligand identification
 pipeline as described in *"Automatic recognition of ligands in electron
-density by machine learning methods"* by Kowiel, M. *et al.*
+density by machine learning"* by Kowiel, M. *et al.*
 
 ## Amazon virtual machine
 
@@ -248,6 +246,21 @@ Figures depicting ligands can be reproduced using
 [PyMOL](https://pymol.org/). The data and scripts required to 
 reproduce these images are available in the 
 `CheckMyBlob/Figures/pymol` directory.
+
+## Reproducing time measurement
+
+The maps and ARP/PHENIX ligand definitions used to measure ligand 
+identification time can be found in the 
+`CheckMyBlob/Data/TimeExperiments` folder. The experimental script
+is in the `CheckMyBlob/Classification` and can be run as follows:
+
+```
+python time_experiments.py
+```
+
+Prior to running the scripts, PHENIX and ARP/WARP have to be installed
+and the CheckMyBlob blob identification pipeline has to be set up, as
+described in the `CheckMyBlob/GatherData` folder.
 
 ## Contact
 
