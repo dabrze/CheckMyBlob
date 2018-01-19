@@ -62,6 +62,7 @@ def get_stats(directory, wildcard, group_by_column='resolution', low=1.0, high=4
     print group_by_column, 'all', df.loc[:, group_by_column].count(), 'empty', df[group_by_column].isnull().sum()
     df = df.ix[~df[group_by_column].isnull()]
     print group_by_column, 'all', df.loc[:, group_by_column].count(), 'empty', df[group_by_column].isnull().sum()
+    df.loc[:, 'y_pred_prob'] *= 100
 
     if bins is None:
         df.loc[:, group_by_column] = ((df.loc[:, group_by_column]/step).round(digits)*step)
@@ -137,20 +138,22 @@ def get_stats(directory, wildcard, group_by_column='resolution', low=1.0, high=4
     print stats
     return stats
 
-filename = {'resolution': 'Fig4_a.png', 'rscc': 'Fig4_b.png', 'non_h_atoms': 'Fig4_c.png'}
-low = {'resolution': 1.0, 'rscc':0.7, 'non_h_atoms': 5}
-high = {'resolution': 4.0, 'rscc':0.9, 'non_h_atoms': 50}
-step ={'resolution': 0.1, 'rscc':0.1, 'non_h_atoms': 5}
-right_lte = {'resolution': True, 'rscc': False, 'non_h_atoms': True}
-left_lte = {'resolution': True, 'rscc': False, 'non_h_atoms': True}
-column_name = {'resolution': 'Resolution', 'rscc': 'RSCC', 'non_h_atoms': 'Non H atoms'}
-digits = {'resolution': 2, 'rscc': 2, 'non_h_atoms': 1}
+filename = {'resolution': 'Fig4_a.png', 'rscc': 'Fig4_b.png',
+            'non_h_atoms': 'Fig4_c.png', 'y_pred_prob': 'Fig4_d.png'}
+low = {'resolution': 1.0, 'rscc':0.7, 'non_h_atoms': 5, 'y_pred_prob': 15}
+high = {'resolution': 4.0, 'rscc':0.9, 'non_h_atoms': 50, 'y_pred_prob': 95}
+step ={'resolution': 0.1, 'rscc':0.1, 'non_h_atoms': 5, 'y_pred_prob': 5}
+right_lte = {'resolution': True, 'rscc': False, 'non_h_atoms': True, 'y_pred_prob': False}
+left_lte = {'resolution': True, 'rscc': False, 'non_h_atoms': True, 'y_pred_prob': False}
+column_name = {'resolution': u"Resolution [\u212B]", 'rscc': 'RSCC', 'non_h_atoms':
+    'Non H atoms', 'y_pred_prob': 'Prediction probability (certainty) [%]'}
 bins = {'resolution': None, 'rscc': None,
-        'non_h_atoms': range(low['non_h_atoms']-step['non_h_atoms'], high['non_h_atoms']+3*step['non_h_atoms'],step['non_h_atoms'])}
+        'non_h_atoms': range(low['non_h_atoms']-step['non_h_atoms'], high['non_h_atoms']+3*step['non_h_atoms'],step['non_h_atoms']),
+        'y_pred_prob': None}
 
-delete_x_ticks = {'resolution': True, 'rscc': False, 'non_h_atoms': False}
+delete_x_ticks = {'resolution': True, 'rscc': False, 'non_h_atoms': False, 'y_pred_prob': False}
 
-for column in ['resolution', 'rscc', 'non_h_atoms']:
+for column in ['resolution', 'rscc', 'non_h_atoms', 'y_pred_prob']:
     cmb = get_stats('../Results', 'cmb_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
     tamc = get_stats('../Results', 'tamc_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
     cl = get_stats('../Results', 'cl_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
@@ -202,6 +205,10 @@ for column in ['resolution', 'rscc', 'non_h_atoms']:
         xticks_names[-1] = u"> %.1f" % (high[column]) #\u2265
         if bins[column] is not None:
             xticks_names[-1] = u"> %.0f" % (high[column]+step[column]) #\u2264
+
+    if column == 'y_pred_prob':
+        xticks_names = [u"%.0f" % xt for xt in xticks]
+        xticks_names[0] = u"\u2264 %.0f" % (low[column] - step[column])
 
     if delete_x_ticks[column]:
        for i_tick, x_name in enumerate(xticks_names):
