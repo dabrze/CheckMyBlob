@@ -125,7 +125,7 @@ class DatasetCleaner:
                         'MSE', 'PHE', 'PRO', 'SEC', 'SER', 'THR', 'TRP', 'TYR', 'VAL',
                         'DA', 'DG', 'DT', 'DC', 'DU',
                         'A', 'G', 'T', 'C', 'U', }
-    WATER = ["HOH", "H20", "WAT"]
+    WATER = ["HOH", "H20", "WAT", "DOD"]
     IGNORED_RES_NAMES = set().union(UNKNOWN_LIGANDS, ANY_NUCLEOTYDE, UNLABELED, PEPTIDES_DNA_RNA, WATER)
 
     KEY_ATTRIBUTE = "title"
