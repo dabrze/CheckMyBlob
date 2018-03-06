@@ -15,7 +15,7 @@ To re-run the final experiments simply on the prepared AMI:
 1. Request a machine on [Amazon](https://aws.amazon.com/console/)
 (we used an r4.8xlarge),
 2. While searching for the AMI, use the following AMI ID
-`ami-c8be93ad` or lookup CheckMyBlob AMI in the `us-east-2` (Ohio) region
+`ami-74794f11` or lookup CheckMyBlob in the `us-east-2` (Ohio) region
 
 3. Log in to the instance,
 4. Go to the `Classification` directory:
@@ -38,11 +38,7 @@ to be downloaded, as described below.
 
 ## Requirements
 
-Experiments and data sets were primarily prepared for Python 2. The code
-should be compatible with Python 3, however, the `*.pkl` serialized and
-compressed dataset objects have to be recreated in order to work in
-Python 3 (pickle incompatibilities between python versions).
-
+Experiments and data sets were primarily prepared for Python 2.7.
 The scripts require the following libraries:
 - scikit-learn
 - numpy
@@ -53,6 +49,7 @@ The scripts require the following libraries:
 - mlxtend
 - plotly
 - lightgbm
+with versions listed in `requirements.txt`.
 
 ## Ligand data sets
 
@@ -126,7 +123,7 @@ selection can be found in the paper of Kowiel *et al.*
 The `cmb.pkl` file is included int he repository, whereas the
 csv version of the data set can be downloaded using the link below:
 
-[cmb.csv](https://zenodo.org/record/1040843/files/cmb.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1040843.svg)](https://doi.org/10.5281/zenodo.1040843)
+[cmb.csv](https://zenodo.org/record/1191394/files/cmb.csv) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1191394.svg)](https://doi.org/10.5281/zenodo.1191394)
 
 For machine learning (classification) purposes, the target attribute is: `res_name`.
 
