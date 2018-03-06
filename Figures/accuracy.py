@@ -26,7 +26,7 @@ plt.rcParams['lines.linewidth'] = 0.75
 #X_SIZE = SCALE*4.75
 #Y_SIZE = SCALE*2
 X_SIZE = SCALE*8
-Y_SIZE = SCALE*4
+Y_SIZE = SCALE*4.4
 DPI = 600
 
 def read_file(path, separator=',', index_col=0, dtype={'is_correct': np.bool}):
@@ -159,6 +159,7 @@ i_plot = 220
 #fig = plt.figure(figsize=(X_SIZE, Y_SIZE))
 fig, axes = plt.subplots(2, 2, sharex=False, sharey=True, figsize=(X_SIZE, Y_SIZE))
 right_ax2 = [[1, 2], [3, 4]]
+title = [['A', 'B'], ['C', 'D']]
 
 for column in ['rscc', 'non_h_atoms', 'resolution', 'y_pred_prob']:
     cmb = get_stats('../Results', 'cmb_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
@@ -168,7 +169,7 @@ for column in ['rscc', 'non_h_atoms', 'resolution', 'y_pred_prob']:
     colors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 
     ax = axes[i_plot // 222][i_plot % 2]
-
+    ax.set_title(title[i_plot // 222][i_plot % 2], loc='left')
     #ax = fig.add_subplot(i_plot)
 
     ax2 = ax.twinx()
