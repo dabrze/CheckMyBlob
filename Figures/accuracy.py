@@ -23,8 +23,10 @@ plt.rcParams['legend.fontsize'] = SCALE*6
 plt.rcParams['figure.titlesize'] = SCALE*7
 plt.rcParams['lines.markersize'] = 2.0  #6.0
 plt.rcParams['lines.linewidth'] = 0.75
-X_SIZE = SCALE*4.75
-Y_SIZE = SCALE*2
+#X_SIZE = SCALE*4.75
+#Y_SIZE = SCALE*2
+X_SIZE = SCALE*8
+Y_SIZE = SCALE*4.4
 DPI = 600
 
 def read_file(path, separator=',', index_col=0, dtype={'is_correct': np.bool}):
@@ -153,17 +155,31 @@ bins = {'resolution': None, 'rscc': None,
 
 delete_x_ticks = {'resolution': True, 'rscc': False, 'non_h_atoms': False, 'y_pred_prob': False}
 
-for column in ['resolution', 'rscc', 'non_h_atoms', 'y_pred_prob']:
+i_plot = 220
+#fig = plt.figure(figsize=(X_SIZE, Y_SIZE))
+fig, axes = plt.subplots(2, 2, sharex=False, sharey=True, figsize=(X_SIZE, Y_SIZE))
+right_ax2 = [[1, 2], [3, 4]]
+title = [['A', 'B'], ['C', 'D']]
+
+for column in ['rscc', 'non_h_atoms', 'resolution', 'y_pred_prob']:
     cmb = get_stats('../Results', 'cmb_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
     tamc = get_stats('../Results', 'tamc_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
     cl = get_stats('../Results', 'cl_StackingCVClassifier_preprocessor_predictions_*', column, low[column], high[column], step[column], digits=0, bins=bins[column])
 
     colors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 
-    fig = plt.figure(figsize=(X_SIZE, Y_SIZE))
-    ax = fig.add_subplot(111)
+    ax = axes[i_plot // 222][i_plot % 2]
+    ax.set_title(title[i_plot // 222][i_plot % 2], loc='left')
+    #ax = fig.add_subplot(i_plot)
 
     ax2 = ax.twinx()
+    right_ax2[i_plot // 222][i_plot % 2] = ax2
+
+    if i_plot % 2 == 1:
+        ax2.get_shared_y_axes().join(ax2, right_ax2[i_plot // 222][0])
+
+    i_plot += 1
+
     if bins[column] is None:
         ax2.set_xlim(low[column]-1.5*step[column], high[column]+1.5*step[column])
     else:
@@ -172,7 +188,11 @@ for column in ['resolution', 'rscc', 'non_h_atoms', 'y_pred_prob']:
     p_count_cmb = ax2.bar(cmb.index.values-0.3*step[column], (cmb['count'].values), width=0.25*step[column], align='center', color=colors[0]+"66")
     p_count_tamc = ax2.bar(tamc.index.values+0.0*step[column], (tamc['count'].values), width=0.25*step[column], align='center', color=colors[1]+"66")
     p_count_cl = ax2.bar(cl.index.values+0.3*step[column], (cl['count'].values), width=0.25*step[column], align='center', color=colors[2]+"66")
-    ax2.set_ylabel('Number of examples')
+
+    if i_plot % 2 == 0:
+        ax2.set_ylabel('Number of examples')
+    else:
+        ax2.tick_params(labelright='off')
 
     p_cmb = ax.errorbar(cmb.index.values, cmb['accuracy'].values, color=colors[0], marker='o')
     p_tamc = ax.errorbar(tamc.index.values, tamc['accuracy'].values, color=colors[1], marker='s')
@@ -215,7 +235,8 @@ for column in ['resolution', 'rscc', 'non_h_atoms', 'y_pred_prob']:
            if i_tick != 0 and i_tick != len(xticks_names)-1 and i_tick % 2 == 1:
                xticks_names[i_tick] = ''
 
-    ax.set_ylabel('Accuracy')
+    if i_plot % 2 == 1:
+        ax.set_ylabel('Accuracy')
     ax.set_xlabel(column_name[column])
 
     ax.set_xticks(xticks)
@@ -232,7 +253,7 @@ for column in ['resolution', 'rscc', 'non_h_atoms', 'y_pred_prob']:
 
     plt.legend([p_cmb, p_tamc, p_cl], ['Stacking on $\it{CMB}$ dataset', 'Stacking on $\it{TAMC}$ dataset', 'Stacking on $\it{CL}$ dataset'])
 
-    plt.tight_layout()
-    fig.savefig(filename[column], dpi=DPI)
-    fig.savefig(filename[column].replace('png', 'svg'), dpi=DPI)
-    fig.savefig(filename[column].replace('png', 'eps'), rasterize=False, dpi=DPI)
+plt.tight_layout()
+fig.savefig("Fig4_all.png", dpi=DPI)
+fig.savefig("Fig4_all.png".replace('png', 'svg'), dpi=DPI)
+fig.savefig("Fig4_all.png".replace('png', 'eps'), rasterize=False, dpi=DPI)
