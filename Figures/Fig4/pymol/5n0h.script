@@ -1,0 +1,117 @@
+#https://pymolwiki.org/index.php/PLoS
+#https://pymolwiki.org/index.php/Color_Values#greens
+
+load pymol_data\5n0h.pdb, data
+load pymol_data\5n0h_2FoFc.cover.ccp4, map2fofc
+load pymol_data\5n0h_FoFc.cover.ccp4, mapfofc
+
+   
+select mole, chain B and resi 303
+symexp sym, data, (mole), 4
+
+zoom mole
+orient mole
+set field_of_view, 40
+
+
+hide everything
+show sticks
+show spheres
+
+# hide mainchain
+hide sticks, data and resi 1-300
+hide spheres, data and resi 1-300
+hide sticks, sym04000000 and resi 1-300
+hide spheres, sym04000000 and resi 1-300
+
+#hide spheres, data and not (chain B and resi 303-303 around 3)
+#hide spheres, sym04000000 and not (chain B and resi 303-303 around 3)
+hide spheres, data and not (chain B and resi 303)
+hide spheres, sym04000000 and not (chain B and resi 303)
+
+# carbon color white/grey 
+#util.cbaw
+# carbon color yellow 
+util.cbay
+
+# show distance
+#distance (data and resid 57 and chain B and n;OD1), (sym05000000 and resid 90 and chain B and n;ND1)
+#distance (data and resid 57 and chain B and n;OD2), (sym05000000 and resid 90 and chain B and n;ND1)
+
+# increase the sampling rate of the map
+map_double map2fofc, -1    
+map_double mapfofc, -1
+
+# carve - odleglosc od 
+#isomesh mesh2fofc, map2fofc, 1.5, mole, carve=1.8
+#color marine, mesh2fofc 
+
+isomesh meshfofc_plus, mapfofc, 2.8, mole, carve=1.8 
+isomesh meshfofc_minus, mapfofc, -2.8, mole, carve=1.6 
+
+color lime, meshfofc_plus  
+color red, meshfofc_minus  
+
+# makes meshes thinner for ray-tracing
+#set mesh_radius, 0.010
+#set mesh_width, 0.12  
+set mesh_radius, 0.008
+set mesh_width, 0.12  
+
+# default bond and stick
+#set stick_radius, .20
+#set sphere_scale, .20
+#set sphere_scale, .15, elem H
+
+# try for mesh
+set stick_radius, .14
+set sphere_scale, .14
+set sphere_scale, .08, elem H
+
+set bg_rgb=[1, 1, 1]
+set stick_quality, 50
+set sphere_quality, 4
+
+# 1 - with borders
+set ray_trace_mode, 0 
+set ray_texture, 2
+set antialias, 3
+
+# turns off raytrace fog--optional
+set ray_trace_fog, 0 
+# turns off depth cueing--optional
+set depth_cue, 0 
+# turns off ray-tracing shadows
+set ray_shadows, off 
+
+#set ray_shadow_decay_factor, 0.1
+#set ray_shadow_decay_range, 2
+#set depth_cue, 0
+
+# higher values of direct will lighten the image
+set direct =0.5
+
+hide labels
+set field_of_view, 10
+set ray_opaque_background, off
+
+#set_view (\
+#     0.360238820,   -0.848690927,    0.387233257,\
+#     0.931314886,    0.303335994,   -0.201575726,\
+#     0.053613637,    0.433250993,    0.899673104,\
+#    -0.000128841,   -0.000287552,   -6.328331947,\
+#   -15.222216606,   21.449378967,   55.860481262,\
+#     5.416268826,    7.206247330,  -40.000000000 )
+
+set_view (\
+     0.452783614,   -0.796321154,    0.401069134,\
+     0.889466226,    0.372185141,   -0.265181601,\
+     0.061897755,    0.476806879,    0.876821220,\
+    -0.000108570,   -0.000216386,  -26.341045380,\
+   -15.195889473,   21.382080078,   55.771499634,\
+    25.434482574,   27.224456787,  -10.000000954 )
+
+ray 2048,1572 
+# output final image
+png pymol_data\5n0h_B_GOL_303.png 
+

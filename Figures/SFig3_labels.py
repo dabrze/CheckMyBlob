@@ -19,7 +19,7 @@ data_cmb = util.DatasetStatistics(cmb_model.data_frame, cmb_model.data_frame.loc
 data_tamc = util.DatasetStatistics(tamc_model.data_frame, tamc_model.data_frame.loc[:, cmb_model.class_attribute]).classes.to_dict()
 data_cl = util.DatasetStatistics(cl_model.data_frame, cl_model.data_frame.loc[:, cmb_model.class_attribute]).classes.to_dict()
 
-filenames = ['SFig3_A.png', 'SFig3_B.png', 'SFig3_C.png']
+filenames = ['SFig3/SFig3_A.png', 'SFig3/SFig3_B.png', 'SFig3/SFig3_C.png']
 datasets =  [data_cmb, data_tamc, data_cl]
 colors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 y_ranges = [55000, 40000, 45000]
