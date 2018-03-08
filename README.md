@@ -49,6 +49,7 @@ The scripts require the following libraries:
 - mlxtend
 - plotly
 - lightgbm
+
 with versions listed in `requirements.txt`.
 
 ## Ligand data sets
