@@ -254,6 +254,6 @@ for column in ['rscc', 'non_h_atoms', 'resolution', 'y_pred_prob']:
     plt.legend([p_cmb, p_tamc, p_cl], ['Stacking on $\it{CMB}$ dataset', 'Stacking on $\it{TAMC}$ dataset', 'Stacking on $\it{CL}$ dataset'])
 
 plt.tight_layout()
-fig.savefig("Fig4_all.png", dpi=DPI)
-fig.savefig("Fig4_all.png".replace('png', 'svg'), dpi=DPI)
-fig.savefig("Fig4_all.png".replace('png', 'eps'), rasterize=False, dpi=DPI)
+fig.savefig("Fig3_ABCD.png", dpi=DPI)
+fig.savefig("Fig3_ABCD.png".replace('png', 'svg'), dpi=DPI)
+fig.savefig("Fig3_ABCD.png".replace('png', 'eps'), rasterize=False, dpi=DPI)
